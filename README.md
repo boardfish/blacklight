@@ -1,24 +1,15 @@
-# README
+# Blacklight
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A system for connecting escape room businesses with enthusiasts.
 
-Things you may want to cover:
+Developed with Ruby `2.7.0`, Rails `6.0.2`.
 
-* Ruby version
+## To be documented
 
 * System dependencies
-
 * Configuration
-
 * Database creation
-
 * Database initialization
-
 * How to run the test suite
-
 * Services (job queues, cache servers, search engines, etc.)
-
 * Deployment instructions
-
-* ...
