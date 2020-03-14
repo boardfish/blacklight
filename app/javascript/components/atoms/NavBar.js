@@ -16,6 +16,8 @@ import {
   Button
 } from 'reactstrap';
 
+import NavbarData from '../../data/navbar.json'
+
 export default ({ currentPage, loggedIn, loginButton }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,14 +32,18 @@ export default ({ currentPage, loggedIn, loginButton }) => {
           <Nav className="mr-auto" navbar>
             {
               loggedIn
-                ? <NavItem>
-                  <NavLink href="/feed">Feed</NavLink>
-                </NavItem>
+                ? NavbarData.enthusiastLoggedIn.map(({ href, name }) => (
+                  <NavItem>
+                    <NavLink href={href}>{name}</NavLink>
+                  </NavItem>
+                ))
                 : ""
             }
-            <NavItem>
-              <NavLink href="https://github.com/boardfish/blacklight">GitHub</NavLink>
-            </NavItem>
+            {NavbarData.alwaysVisible.map(({ href, name }) => (
+              <NavItem>
+                <NavLink href={href}>{name}</NavLink>
+              </NavItem>
+            ))}
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Options

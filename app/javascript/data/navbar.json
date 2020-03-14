@@ -1,0 +1,15 @@
+{
+    "alwaysVisible": [
+        {
+            "name": "GitHub",
+            "href": "https://github.com/boardfish/blacklight"
+        }
+    ],
+    "enthusiastLoggedIn": [
+        {
+            "name": "Feed",
+            "href": "/feed"
+        }
+    ]
+
+}
