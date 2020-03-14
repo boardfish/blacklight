@@ -23,6 +23,11 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Use React with Rails
 gem 'react-rails'
+# User management with Devise
+gem 'devise'
+# Auth0-backed auth
+gem 'omniauth-auth0'
+gem 'omniauth-rails_csrf_protection'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
