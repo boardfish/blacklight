@@ -16,7 +16,7 @@ import {
   Button
 } from 'reactstrap';
 
-export default ({ currentPage, loginButton }) => {
+export default ({ currentPage, loggedIn, loginButton }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -28,9 +28,13 @@ export default ({ currentPage, loginButton }) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/feed">Feed</NavLink>
-            </NavItem>
+            {
+              loggedIn
+                ? <NavItem>
+                  <NavLink href="/feed">Feed</NavLink>
+                </NavItem>
+                : ""
+            }
             <NavItem>
               <NavLink href="https://github.com/boardfish/blacklight">GitHub</NavLink>
             </NavItem>

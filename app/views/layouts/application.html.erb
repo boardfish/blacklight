@@ -16,6 +16,7 @@
     <%= react_component(
       "atoms/NavBar",
       {
+        loggedIn: user_signed_in?,
         currentPage: "Hello from react-rails.",
         loginButton: (!user_signed_in? ?
           button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary') :
