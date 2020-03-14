@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Blacklight</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
@@ -9,19 +10,22 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'stylesheets/application', 'data-turbolinks-track': 'reload' %>
-  </head>
+</head>
 
-  <body class="container-fluid px-0">
+<body class="container-fluid px-0">
     <%= react_component(
       "atoms/NavBar",
       {
         currentPage: "Hello from react-rails.",
-        loginButton: button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary')
+        loginButton: (!user_signed_in? ?
+          button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary') :
+          link_to('Logout', destroy_user_session_path, class: 'btn btn-primary'))
         }) %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <main class="container">
-      <%= yield %>
+        <%= yield %>
     </main>
-  </body>
+</body>
+
 </html>

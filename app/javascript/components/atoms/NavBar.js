@@ -52,6 +52,7 @@ export default ({ currentPage, loginButton }) => {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
+          {/* No worries here, since loginButton is SSR */}
           <div dangerouslySetInnerHTML={{ __html: loginButton }} />
         </Collapse>
       </Navbar>
