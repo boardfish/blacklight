@@ -12,7 +12,7 @@
     <%= javascript_pack_tag 'stylesheets/application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="container-fluid px-0">
+<body class="container-fluid d-flex flex-column px-0" style="min-height: 100vh;">
     <%= react_component(
       "atoms/NavBar",
       {
@@ -24,9 +24,14 @@
         }) %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <main class="container">
+    <main class="container flex-grow-1">
         <%= yield %>
     </main>
+    <footer class="container-fluid px-0 py-3 bg-light">
+        <div class="container">
+            Placeholder copyright string
+        </div>
+    </footer>
 </body>
 
 </html>
