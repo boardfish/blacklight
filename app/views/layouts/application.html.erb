@@ -17,6 +17,7 @@
       "atoms/NavBar",
       {
         loggedIn: user_signed_in?,
+        username: current_user&.nickname,
         currentPage: "Hello from react-rails.",
         loginButton: (!user_signed_in? ?
           button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary') :

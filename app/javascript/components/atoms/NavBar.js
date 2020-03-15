@@ -18,7 +18,7 @@ import {
 
 import NavbarData from '../../data/navbar.json'
 
-export default ({ currentPage, loggedIn, loginButton }) => {
+export default ({ currentPage, loggedIn, loginButton, username }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -44,26 +44,28 @@ export default ({ currentPage, loggedIn, loginButton }) => {
                 <NavLink href={href}>{name}</NavLink>
               </NavItem>
             ))}
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  Option 1
-                </DropdownItem>
-                <DropdownItem>
-                  Option 2
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  Reset
-                </DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
           </Nav>
           {/* No worries here, since loginButton is SSR */}
-          <div dangerouslySetInnerHTML={{ __html: loginButton }} />
+          <Nav>
+            {username ? <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  {username}
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem>
+                    Option 1
+                  </DropdownItem>
+                  <DropdownItem>
+                    Option 2
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem dangerouslySetInnerHTML={{ __html: loginButton }} >
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              : <div dangerouslySetInnerHTML={{ __html: loginButton }} />
+            }
+          </Nav>
         </Collapse>
       </Navbar>
     </div>
