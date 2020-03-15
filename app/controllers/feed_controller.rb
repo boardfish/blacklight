@@ -1,6 +1,7 @@
 class FeedController < ApplicationController
-  include Secured
-  
+
+  before_action :authenticate_user!
+
   def show
   end
 end
