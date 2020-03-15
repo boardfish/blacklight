@@ -10,6 +10,12 @@
             "name": "Feed",
             "href": "/feed"
         }
+    ],
+    "maintainerLoggedIn": [
+        {
+            "name": "Escape Games",
+            "href": "/escape_games"
+        }
     ]
 
 }

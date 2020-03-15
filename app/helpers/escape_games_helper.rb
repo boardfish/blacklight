@@ -1,0 +1,2 @@
+module EscapeGamesHelper
+end
