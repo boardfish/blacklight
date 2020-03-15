@@ -1,77 +1,78 @@
 <%= form_with(model: escape_game, local: true) do |form| %>
-  <% if escape_game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(escape_game.errors.count, "error") %> prohibited this escape_game from being saved:</h2>
+<% if escape_game.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(escape_game.errors.count, "error") %> prohibited this escape_game from being saved:</h2>
 
-      <ul>
+    <ul>
         <% escape_game.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <li><%= message %></li>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+</div>
+<% end %>
 
-  <div class="field">
+<div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :genre %>
-    <%= form.number_field :genre %>
-  </div>
+    <%= form.select :genre, EscapeGame.genres.keys %>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :summary %>
     <%= form.text_field :summary %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :description %>
     <%= form.text_field :description %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :difficulty_level %>
-    <%= form.number_field :difficulty_level %>
-  </div>
+    <%= form.select :difficulty_level, EscapeGame.difficulty_levels.keys %>
+    <%# FIXME: This shouldn't be hardcoded %>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :available_time %>
     <%= form.number_field :available_time %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :website_link %>
     <%= form.text_field :website_link %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :place_id %>
     <%= form.text_field :place_id %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :latitude %>
     <%= form.text_field :latitude %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :longitude %>
     <%= form.text_field :longitude %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :visible %>
     <%= form.check_box :visible %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id %>
-  </div>
+</div>
 
-  <div class="actions">
+<div class="actions">
     <%= form.submit %>
-  </div>
+</div>
 <% end %>

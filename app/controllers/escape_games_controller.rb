@@ -1,10 +1,11 @@
 class EscapeGamesController < ApplicationController
   before_action :set_escape_game, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /escape_games
   # GET /escape_games.json
   def index
-    @escape_games = EscapeGame.all
+    @escape_games = current_user.escape_games
   end
 
   # GET /escape_games/1
@@ -14,7 +15,7 @@ class EscapeGamesController < ApplicationController
 
   # GET /escape_games/new
   def new
-    @escape_game = EscapeGame.new
+    @escape_game = EscapeGame.new(user: current_user)
   end
 
   # GET /escape_games/1/edit
@@ -24,7 +25,7 @@ class EscapeGamesController < ApplicationController
   # POST /escape_games
   # POST /escape_games.json
   def create
-    @escape_game = EscapeGame.new(escape_game_params)
+    @escape_game = EscapeGame.new(escape_game_params.merge(user: current_user))
 
     respond_to do |format|
       if @escape_game.save
