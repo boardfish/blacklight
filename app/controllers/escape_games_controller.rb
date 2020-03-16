@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EscapeGamesController < ApplicationController
-  before_action :set_escape_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_escape_game, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
   # GET /escape_games
@@ -10,8 +12,7 @@ class EscapeGamesController < ApplicationController
 
   # GET /escape_games/1
   # GET /escape_games/1.json
-  def show
-  end
+  def show; end
 
   # GET /escape_games/new
   def new
@@ -19,8 +20,7 @@ class EscapeGamesController < ApplicationController
   end
 
   # GET /escape_games/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /escape_games
   # POST /escape_games.json
@@ -63,13 +63,14 @@ class EscapeGamesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_escape_game
-      @escape_game = EscapeGame.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def escape_game_params
-      params.require(:escape_game).permit(:name, :genre, :summary, :description, :difficulty_level, :available_time, :website_link, :place_id, :latitude, :longitude, :visible, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_escape_game
+    @escape_game = EscapeGame.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def escape_game_params
+    params.require(:escape_game).permit(:name, :genre, :summary, :description, :difficulty_level, :available_time, :website_link, :place_id, :latitude, :longitude, :visible, :user_id)
+  end
 end

@@ -1,7 +1,7 @@
-class FeedController < ApplicationController
+# frozen_string_literal: true
 
+class FeedController < ApplicationController
   before_action :authenticate_user!
 
-  def show
-  end
+  def show; end
 end

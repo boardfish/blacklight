@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EscapeGame < ApplicationRecord
   belongs_to :user
   validates :name, presence: true
@@ -11,5 +13,5 @@ class EscapeGame < ApplicationRecord
   # images
   validates :latitude, presence: true, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }
   validates :longitude, presence: true, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
-  validates :place_id, format: { with: /([A-z\-\d])*/, message: "may not be a valid Google Maps Place ID" }
+  validates :place_id, format: { with: /([A-z\-\d])*/, message: 'may not be a valid Google Maps Place ID' }
 end
