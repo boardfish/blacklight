@@ -26,11 +26,11 @@
 <%= %>
 
 <div class="field">
-    <%= form.text_field :summary %>
+    <%= form.text_field :summary, help: 'Sum up the story and appeal of your escape room in 140 characters or less.' %>
 </div>
 
 <div class="field">
-    <%= form.text_area :description %>
+    <%= form.text_area :description, help: 'Give a more thorough description of your escape room in 1000 characters or less.' %>
 </div>
 
 <div class="field">
@@ -42,11 +42,11 @@
 </div>
 
 <div class="field">
-    <%= form.number_field :available_time %>
+    <%= form.number_field :available_time, help: 'How much time do you allow for participants to complete the room?' %>
 </div>
 
 <div class="field">
-    <%= form.text_field :website_link %>
+    <%= form.text_field :website_link, help: 'If you have a website or social media, link to it here.' %>
 </div>
 
 <div class="field">
@@ -62,14 +62,19 @@
 </div>
 
 <div class="field">
-    <%= form.check_box :visible, custom: true %>
-</div>
-
-<div class="field">
     <%= form.hidden_field :user_id %>
 </div>
 
-<div class="actions">
-    <%= form.submit %>
+<div class="d-flex flex-row">
+    <div class="field">
+        <%= form.check_box :visible,
+                        custom: true,
+                        label: 'Make this escape room publicly visible across the site' %>
+    </div>
+
+    <div class="actions ml-auto">
+        <%= form.submit %>
+    </div>
 </div>
+
 <% end %>
