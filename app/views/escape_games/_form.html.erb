@@ -18,8 +18,10 @@
 
 <div class="field">
     <%= form.label :genre %>
-    <%= form.select :genre, EscapeGame.genres.keys %>
+    <%= form.select :genre, EscapeGame.genres.keys.map(&:humanize).zip(EscapeGame.genres.keys) %>
 </div>
+
+<%= %>
 
 <div class="field">
     <%= form.label :summary %>
@@ -33,8 +35,7 @@
 
 <div class="field">
     <%= form.label :difficulty_level %>
-    <%= form.select :difficulty_level, EscapeGame.difficulty_levels.keys %>
-    <%# FIXME: This shouldn't be hardcoded %>
+    <%= form.select :difficulty_level, EscapeGame.difficulty_levels.keys.map(&:humanize).zip(EscapeGame.difficulty_levels.keys) %>
 </div>
 
 <div class="field">
