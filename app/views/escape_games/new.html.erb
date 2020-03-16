@@ -1,5 +1,9 @@
 <h1>New Escape Game</h1>
 
-<%= render 'form', escape_game: @escape_game %>
+<div class="card">
+    <div class="card-body w-100 w-md-75 d-flex flex-column align-items-center">
+        <%= render 'form', escape_game: @escape_game %>
+    </div>
+</div>
 
 <%= link_to 'Back', escape_games_path %>

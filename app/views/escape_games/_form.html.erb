@@ -1,4 +1,4 @@
-<%= form_with(model: escape_game, local: true) do |form| %>
+<%= bootstrap_form_with(model: escape_game, local: true) do |form| %>
 <% if escape_game.errors.any? %>
 <div id="error_explanation">
     <h2><%= pluralize(escape_game.errors.count, "error") %> prohibited this escape_game from being saved:</h2>
@@ -12,65 +12,61 @@
 <% end %>
 
 <div class="field">
-    <%= form.label :name %>
     <%= form.text_field :name %>
 </div>
 
 <div class="field">
-    <%= form.label :genre %>
-    <%= form.select :genre, EscapeGame.genres.keys.map(&:humanize).zip(EscapeGame.genres.keys) %>
+    <%= form.select :genre,
+        EscapeGame.genres.keys.map(&:humanize).zip(EscapeGame.genres.keys),
+        {},
+        { control_class: 'custom-select' }
+        %>
 </div>
 
 <%= %>
 
 <div class="field">
-    <%= form.label :summary %>
     <%= form.text_field :summary %>
 </div>
 
 <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description %>
 </div>
 
 <div class="field">
-    <%= form.label :difficulty_level %>
-    <%= form.select :difficulty_level, EscapeGame.difficulty_levels.keys.map(&:humanize).zip(EscapeGame.difficulty_levels.keys) %>
+    <%= form.select :difficulty_level,
+        EscapeGame.difficulty_levels.keys.map(&:humanize).zip(EscapeGame.difficulty_levels.keys),
+        {},
+        { control_class: 'custom-select' }
+        %>
 </div>
 
 <div class="field">
-    <%= form.label :available_time %>
     <%= form.number_field :available_time %>
 </div>
 
 <div class="field">
-    <%= form.label :website_link %>
     <%= form.text_field :website_link %>
 </div>
 
 <div class="field">
-    <%= form.label :place_id %>
-    <%= form.text_field :place_id %>
+    <%= form.text_field :place_id, label: 'Google Maps Place ID' %>
 </div>
 
 <div class="field">
-    <%= form.label :latitude %>
     <%= form.text_field :latitude %>
 </div>
 
 <div class="field">
-    <%= form.label :longitude %>
     <%= form.text_field :longitude %>
 </div>
 
 <div class="field">
-    <%= form.label :visible %>
-    <%= form.check_box :visible %>
+    <%= form.check_box :visible, custom: true %>
 </div>
 
 <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id %>
 </div>
 
 <div class="actions">
