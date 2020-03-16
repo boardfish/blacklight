@@ -1,4 +1,4 @@
-<%= bootstrap_form_with(model: escape_game, local: true) do |form| %>
+<%= bootstrap_form_with(model: escape_game, local: true, class: 'w-100') do |form| %>
 <% if escape_game.errors.any? %>
 <div id="error_explanation">
     <h2><%= pluralize(escape_game.errors.count, "error") %> prohibited this escape_game from being saved:</h2>
