@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LogoutHelper
   def logout_url
     domain = Rails.application.secrets.auth0_domain
@@ -13,6 +15,8 @@ module LogoutHelper
   private
 
   def to_query(hash)
-    hash.map { |k, v| "#{k}=#{CGI.escape(v)}" unless v.nil? }.reject(&:nil?).join('&')
+    hash.map do |k, v|
+      "#{k}=#{CGI.escape(v)}" unless v.nil?
+    end .reject(&:nil?).join('&')
   end
 end
