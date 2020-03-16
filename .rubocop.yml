@@ -1,0 +1,25 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+    - 'app/controllers/escape_games_controlller.rb'
+Metrics/MethodLength:
+  Exclude:
+    - 'app/controllers/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+    - 'app/controllers/escape_games_controller.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+
+Style/Documentation:
+  Exclude:
+    - 'app/mailers/application_mailer.rb'
+    - 'app/models/application_record.rb'
+    - 'app/controllers/application_controller.rb'
