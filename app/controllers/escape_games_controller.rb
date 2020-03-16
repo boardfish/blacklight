@@ -93,7 +93,7 @@ class EscapeGamesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def escape_game_params
     params.require(:escape_game).permit(
-      name, :genre, :summary, :description,
+      :name, :genre, :summary, :description,
       :difficulty_level, :available_time, :website_link, :place_id, :latitude,
       :longitude, :visible, :user_id
     )
