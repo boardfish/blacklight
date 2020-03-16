@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :escape_games
   get 'sessions/new'
   get 'sessions/destroy'
   get 'feed/show'

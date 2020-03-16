@@ -1,0 +1,80 @@
+<%= bootstrap_form_with(model: escape_game, local: true, class: 'w-100') do |form| %>
+<% if escape_game.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(escape_game.errors.count, "error") %> prohibited this escape_game from being saved:</h2>
+
+    <ul>
+        <% escape_game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<div class="field">
+    <%= form.text_field :name %>
+</div>
+
+<div class="field">
+    <%= form.select :genre,
+        EscapeGame.genres.keys.map(&:humanize).zip(EscapeGame.genres.keys),
+        {},
+        { control_class: 'custom-select' }
+        %>
+</div>
+
+<%= %>
+
+<div class="field">
+    <%= form.text_field :summary, help: 'Sum up the story and appeal of your escape room in 140 characters or less.' %>
+</div>
+
+<div class="field">
+    <%= form.text_area :description, help: 'Give a more thorough description of your escape room in 1000 characters or less.' %>
+</div>
+
+<div class="field">
+    <%= form.select :difficulty_level,
+        EscapeGame.difficulty_levels.keys.map(&:humanize).zip(EscapeGame.difficulty_levels.keys),
+        {},
+        { control_class: 'custom-select' }
+        %>
+</div>
+
+<div class="field">
+    <%= form.number_field :available_time, help: 'How much time do you allow for participants to complete the room?' %>
+</div>
+
+<div class="field">
+    <%= form.text_field :website_link, help: 'If you have a website or social media, link to it here.' %>
+</div>
+
+<div class="field">
+    <%= form.text_field :place_id, label: 'Google Maps Place ID' %>
+</div>
+
+<div class="field">
+    <%= form.text_field :latitude %>
+</div>
+
+<div class="field">
+    <%= form.text_field :longitude %>
+</div>
+
+<div class="field">
+    <%= form.hidden_field :user_id %>
+</div>
+
+<div class="d-flex flex-row">
+    <div class="field">
+        <%= form.check_box :visible,
+                        custom: true,
+                        label: 'Make this escape room publicly visible across the site' %>
+    </div>
+
+    <div class="actions ml-auto">
+        <%= form.submit %>
+    </div>
+</div>
+
+<% end %>
