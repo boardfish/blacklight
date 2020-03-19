@@ -27,8 +27,8 @@ require 'rails_helper'
 
 RSpec.describe EscapeGamesController, type: :controller do
   before(:all) do
-    @escape_game = EscapeGame.first
-    @user = User.first
+    @escape_game = create(:escape_game)
+    @user = @escape_game.user
   end
 
   before(:each) do

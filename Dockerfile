@@ -7,7 +7,7 @@ RUN mkdir /blacklight
 WORKDIR /blacklight
 COPY Gemfile /blacklight/Gemfile
 COPY Gemfile.lock /blacklight/Gemfile.lock
-RUN bundle install --quiet
+RUN bundle install
 COPY . /blacklight
 RUN npm install -g yarn && yarn install --check-files
 

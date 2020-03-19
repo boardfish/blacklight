@@ -2,19 +2,15 @@
 
 FactoryBot.define do
   factory :escape_game do
-    name { 'Test Escape Room' }
+    name { Faker::Games::SuperSmashBros.stage }
     genre { :modern }
-    summary { 'An exciting escape game!' }
-    description do
-      'This is a really long description of an escape game. It\'s
-      very interesting, so give it a listen.
-      '
-    end
+    summary { Faker::Lorem.sentence(word_count: 5) }
+    description { Faker::Lorem.paragraphs.join('\n') }
     difficulty_level { :beginner }
-    available_time { 60 }
+    available_time { Random.rand(30..150) }
     latitude { 0 }
     longitude { 0 }
     place_id { 'ChIJrTLr-GyuEmsRBfy61i59si0' }
-    user_id { create(:user).id }
+    user_id { User.count > 2 ? User.all.sample.id : create(:user).id }
   end
 end
