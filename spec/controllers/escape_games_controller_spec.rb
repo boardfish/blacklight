@@ -65,21 +65,24 @@ RSpec.describe EscapeGamesController, type: :controller do
 
   describe 'POST #create' do
     context 'with valid params' do
-      xit 'creates a new EscapeGame' do
+      it 'creates a new EscapeGame' do
         expect do
-          post :create, params: { escape_game: @escape_game }
+          post :create, params: { escape_game: attributes_for(:escape_game) }
         end.to change(EscapeGame, :count).by(1)
       end
 
-      xit 'redirects to the created escape_game' do
-        post :create, params: { escape_game: @escape_game }
+      it 'redirects to the created escape_game' do
+        post :create, params: { escape_game: attributes_for(:escape_game) }
         expect(response).to redirect_to(EscapeGame.last)
       end
     end
 
     context 'with invalid params' do
-      xit "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { escape_game: @escape_game }
+      it "returns a success response (i.e. to display the 'new' template)" do
+        post :create,
+             params: {
+               escape_game: attributes_for(:escape_game).merge(name: '')
+             }
         expect(response).to be_successful
       end
     end
@@ -88,31 +91,35 @@ RSpec.describe EscapeGamesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        attributes_for(:escape_game)
       end
 
-      xit 'updates the requested escape_game' do
+      it 'updates the requested escape_game' do
         escape_game = @escape_game
         put :update, params: {
           id: escape_game.to_param,
           escape_game: new_attributes
         }
         escape_game.reload
-        skip('Add assertions for updated state')
+        expect(@escape_game.name).to eq(new_attributes[:name])
       end
 
-      xit 'redirects to the escape_game' do
+      it 'redirects to the escape_game' do
         escape_game = @escape_game
         put :update, params: {
           id: escape_game.to_param,
-          escape_game: valid_attributes
+          escape_game: new_attributes
         }
         expect(response).to redirect_to(escape_game)
       end
     end
 
     context 'with invalid params' do
-      xit "returns a success response (i.e. to display the 'edit' template)" do
+      let(:invalid_attributes) do
+        attributes_for(:escape_game).merge(name: '')
+      end
+
+      it "returns a success response (i.e. to display the 'edit' template)" do
         escape_game = @escape_game
         put :update, params: {
           id: escape_game.to_param,
