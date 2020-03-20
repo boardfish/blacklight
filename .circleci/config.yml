@@ -19,10 +19,10 @@ jobs:
             set -x
             docker-compose up -d
             sleep 20
-            docker-compose exec web rails db:setup
+            docker-compose exec web bin/rails db:setup
             docker-compose exec web yarn install
-            docker-compose exec web rails assets:precompile
+            docker-compose exec web bin/rails assets:precompile
             docker-compose exec web \
               curl --retry 20 --retry-delay 1 --retry-connrefused http://localhost:3000
-            docker-compose exec web rspec
+            docker-compose exec web bin/rspec
             docker-compose logs web
