@@ -8,7 +8,7 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games
   # GET /escape_games.json
   def index
-    @escape_games = current_user.escape_games
+    @escape_games = current_user.escape_games.kept
   end
 
   # GET /escape_games/1
@@ -73,7 +73,7 @@ class EscapeGamesController < ApplicationController
   # DELETE /escape_games/1
   # DELETE /escape_games/1.json
   def destroy
-    @escape_game.destroy
+    @escape_game.discard
     respond_to do |format|
       format.html do
         redirect_to escape_games_url,

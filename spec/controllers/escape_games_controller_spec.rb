@@ -149,11 +149,13 @@ RSpec.describe EscapeGamesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested escape_game' do
+    it 'discards the requested escape_game' do
       escape_game = @escape_game
+      full_count = EscapeGame.count
       expect do
         delete :destroy, params: { id: escape_game.to_param }
-      end.to change(EscapeGame, :count).by(-1)
+      end.to change(EscapeGame.kept, :count).by(-1)
+      expect(full_count).to eq(EscapeGame.count)
     end
 
     it 'redirects to the escape_games list' do

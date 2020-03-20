@@ -3,6 +3,8 @@
 # Represents an escape game. This may be one of many offered at the same
 # location.
 class EscapeGame < ApplicationRecord
+  include Discard::Model
+
   belongs_to :user
   validates :name, presence: true
   validates :genre, presence: true
