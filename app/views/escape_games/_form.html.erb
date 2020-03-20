@@ -77,9 +77,12 @@
                 <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
             </td>
             <td>
-                <%= link_to root_path, class: "btn btn-danger" do %>
-                Remove
-                <% end %>
+                <%= link_to "Remove", escape_game_image_path(escape_game, image),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" },
+                    remote: true,
+                    class: "remove-image btn btn-danger"
+                %>
             </td>
         </tr>
         <% end %>
