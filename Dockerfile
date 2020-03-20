@@ -5,9 +5,7 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt -y install nodejs
 RUN mkdir /blacklight
 WORKDIR /blacklight
-COPY Gemfile /blacklight/Gemfile
-COPY Gemfile.lock /blacklight/Gemfile.lock
-RUN bundle install
+ENV BUNDLE_PATH /bundle_cache
 COPY . /blacklight
 RUN npm install -g yarn && yarn install --check-files
 
