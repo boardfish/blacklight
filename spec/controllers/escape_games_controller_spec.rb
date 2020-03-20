@@ -112,6 +112,24 @@ RSpec.describe EscapeGamesController, type: :controller do
         }
         expect(response).to redirect_to(escape_game)
       end
+
+      it 'does not change the associated user ID' do
+        escape_game = @escape_game
+        owner = @escape_game.user
+        attacking_user = if User.all.count < 2
+                           create(:user)
+                         else
+                           users = User.all
+                           users -= [owner]
+                           users.sample
+                         end
+        put :update, params: {
+          id: escape_game.to_param,
+          escape_game: attributes_for(:escape_game).merge(user: attacking_user)
+        }
+        escape_game.reload
+        expect(@escape_game.user).to eq(owner)
+      end
     end
 
     context 'with invalid params' do
