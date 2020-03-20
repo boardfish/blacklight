@@ -75,6 +75,20 @@ RSpec.describe EscapeGamesController, type: :controller do
         post :create, params: { escape_game: attributes_for(:escape_game) }
         expect(response).to redirect_to(EscapeGame.last)
       end
+
+      it 'does not allow a user to manipulate the owner on create' do
+        user_signing_in = random_user
+        sign_in user_signing_in
+        expect do
+          post :create,
+               params: {
+                 escape_game: attributes_for(:escape_game).merge(
+                   user: random_user(owner: user_signing_in)
+                 )
+               }
+        end.to change(EscapeGame, :count).by(1)
+        expect(EscapeGame.last.user).to eq(user_signing_in)
+      end
     end
 
     context 'with invalid params' do
