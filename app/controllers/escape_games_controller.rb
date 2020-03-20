@@ -98,7 +98,7 @@ class EscapeGamesController < ApplicationController
       params.require(:escape_game).permit(
         :name, :genre, :summary, :description,
         :difficulty_level, :available_time, :website_link, :place_id, :latitude,
-        :longitude, :visible, :user_id
+        :longitude, :visible, :user_id, images: []
       )
     end
   end

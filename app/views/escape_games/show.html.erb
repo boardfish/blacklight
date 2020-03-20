@@ -1,64 +1,70 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @escape_game.name %>
+    <strong>Name:</strong>
+    <%= @escape_game.name %>
 </p>
 
 <p>
-  <strong>Genre:</strong>
-  <%= @escape_game.genre %>
+    <strong>Genre:</strong>
+    <%= @escape_game.genre %>
 </p>
 
 <p>
-  <strong>Summary:</strong>
-  <%= @escape_game.summary %>
+    <strong>Summary:</strong>
+    <%= @escape_game.summary %>
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @escape_game.description %>
+    <strong>Description:</strong>
+    <%= @escape_game.description %>
 </p>
 
 <p>
-  <strong>Difficulty level:</strong>
-  <%= @escape_game.difficulty_level %>
+    <strong>Difficulty level:</strong>
+    <%= @escape_game.difficulty_level %>
 </p>
 
 <p>
-  <strong>Available time:</strong>
-  <%= @escape_game.available_time %>
+    <strong>Available time:</strong>
+    <%= @escape_game.available_time %>
 </p>
 
 <p>
-  <strong>Website link:</strong>
-  <%= @escape_game.website_link %>
+    <strong>Website link:</strong>
+    <%= @escape_game.website_link %>
 </p>
 
 <p>
-  <strong>Place:</strong>
-  <%= @escape_game.place_id %>
+    <strong>Place:</strong>
+    <%= @escape_game.place_id %>
 </p>
 
 <p>
-  <strong>Latitude:</strong>
-  <%= @escape_game.latitude %>
+    <strong>Latitude:</strong>
+    <%= @escape_game.latitude %>
 </p>
 
 <p>
-  <strong>Longitude:</strong>
-  <%= @escape_game.longitude %>
+    <strong>Longitude:</strong>
+    <%= @escape_game.longitude %>
 </p>
 
 <p>
-  <strong>Visible:</strong>
-  <%= @escape_game.visible %>
+    <strong>Visible:</strong>
+    <%= @escape_game.visible %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @escape_game.user_id %>
+    <strong>User:</strong>
+    <%= @escape_game.user_id %>
 </p>
+
+<div>
+    <% @escape_game.images.each do |image| %>
+    <%= image_tag  url_for(image), class: "img-fluid" %>
+    <% end %>
+</div>
 
 <%= link_to 'Edit', edit_escape_game_path(@escape_game) %> |
 <%= link_to 'Back', escape_games_path %>
