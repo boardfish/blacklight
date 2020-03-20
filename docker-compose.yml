@@ -11,6 +11,7 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/blacklight
+      - bundle_cache:/bundle_cache
     tmpfs: /blacklight/tmp
     ports:
       - "3000:3000"
@@ -21,3 +22,9 @@ services:
       - AUTH0_CLIENT_ID
       - AUTH0_CLIENT_SECRET
       - AUTH0_DOMAIN
+  bundle_cache:
+    image: busybox
+    volumes:
+      - bundle_cache:/bundle_cache
+volumes:
+  bundle_cache:
