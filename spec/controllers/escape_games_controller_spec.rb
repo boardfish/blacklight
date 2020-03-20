@@ -116,13 +116,7 @@ RSpec.describe EscapeGamesController, type: :controller do
       it 'does not change the associated user ID' do
         escape_game = @escape_game
         owner = @escape_game.user
-        attacking_user = if User.all.count < 2
-                           create(:user)
-                         else
-                           users = User.all
-                           users -= [owner]
-                           users.sample
-                         end
+        attacking_user = random_user(owner: owner)
         put :update, params: {
           id: escape_game.to_param,
           escape_game: attributes_for(:escape_game).merge(user: attacking_user)

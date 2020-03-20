@@ -71,3 +71,17 @@ RSpec.configure do |config|
   # Include FactoryBot methods
   config.include FactoryBot::Syntax::Methods
 end
+
+# Helper methods
+
+# Get or create a random user from the set. Optionally pass a user (owner) who
+# you'd like it not to be.
+def random_user(owner: nil)
+  if User.all.count < 2
+    create(:user)
+  else
+    users = User.all
+    users -= [owner]
+    users.sample
+  end
+end
