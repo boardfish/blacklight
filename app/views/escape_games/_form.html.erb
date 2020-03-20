@@ -66,6 +66,24 @@
 </div>
 
 <div class="field">
+    <table class="table">
+        <tr>
+            <th>Image</th>
+            <th>Remove?</th>
+        </tr>
+        <% escape_game.images.each do |image| %>
+        <tr>
+            <td>
+                <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
+            </td>
+            <td>
+                <%= link_to root_path, class: "btn btn-danger" do %>
+                Remove
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
     <%= form.file_field :images, multiple: true %>
 </div>
 
