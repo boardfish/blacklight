@@ -53,7 +53,7 @@ class EscapeGamesController < ApplicationController
   # PATCH/PUT /escape_games/1.json
   def update
     respond_to do |format|
-      if @escape_game.update(escape_game_params)
+      if @escape_game.update(escape_game_params.merge(user: @escape_game.user))
         format.html do
           redirect_to @escape_game,
                       notice: 'Escape game was successfully updated.'
@@ -92,10 +92,14 @@ class EscapeGamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def escape_game_params
-    params.require(:escape_game).permit(
-      :name, :genre, :summary, :description,
-      :difficulty_level, :available_time, :website_link, :place_id, :latitude,
-      :longitude, :visible, :user_id
-    )
+    if params.require(:escape_game) == '1'
+      params[:escape_game]
+    else
+      params.require(:escape_game).permit(
+        :name, :genre, :summary, :description,
+        :difficulty_level, :available_time, :website_link, :place_id, :latitude,
+        :longitude, :visible, :user_id
+      )
+    end
   end
 end
