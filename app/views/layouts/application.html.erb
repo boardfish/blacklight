@@ -26,8 +26,8 @@
     <main class="container flex-grow-1">
         <% if (notice || alert) %>
         <div class="my-3">
-            <%= notice ? react_component('atoms/Alert', { type: 'info', content: notice }) : '' %>
-            <%= alert ? react_component('atoms/Alert', { type: 'danger', content: alert }) : '' %>
+            <%= notice ? react_component('atoms/Alert', { type: 'info', alert: notice }) : '' %>
+            <%= alert ? react_component('atoms/Alert', { type: 'danger', alert: alert }) : '' %>
         </div>
         <% end %>
         <%= yield %>

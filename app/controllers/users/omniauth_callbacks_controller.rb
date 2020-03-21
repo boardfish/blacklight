@@ -10,6 +10,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication
       if is_navigational_format?
         set_flash_message(:notice, :success, kind: 'Auth0')
+        flash[:notice] = {
+          title: 'Logged in successfully!',
+          content: 'Welcome to Blacklight. You\'re now logged in!'
+        }
       end
     else
       session[devise.auth0_data] = request.env['omniauth.auth']
