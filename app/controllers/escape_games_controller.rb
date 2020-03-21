@@ -34,7 +34,8 @@ class EscapeGamesController < ApplicationController
           redirect_to @escape_game,
                       notice: {
                         title: 'New listing created',
-                        content: 'You\'ve successfully listed your escape game on the site.'
+                        content: 'You\'ve successfully listed your escape ' \
+                                 'game on the site.'
                       }
         end
         format.json do
@@ -60,8 +61,10 @@ class EscapeGamesController < ApplicationController
         format.html do
           redirect_to @escape_game,
                       notice: {
-                        title: "#{@escape_game.name}'s listing updated successfully!",
-                        content: 'Your changes to the listing were saved. Now they\'re visible across the site!'
+                        title: "#{@escape_game.name}'s listing updated" \
+                               'successfully!',
+                        content: 'Your changes to the listing were saved. Now' \
+                                 'they\'re visible across the site!'
                       }
         end
         format.json { render :show, status: :ok, location: @escape_game }
@@ -84,9 +87,10 @@ class EscapeGamesController < ApplicationController
       format.html do
         redirect_to escape_games_url,
                     notice: {
-                        title: "Listing removed.",
-                        content: 'You\'ve completely removed the listing for your escape game from the site.'
-                      }
+                      title: 'Listing removed.',
+                      content: 'You\'ve completely removed the listing for' \
+                               ' your escape game from the site.'
+                    }
       end
       format.json { head :no_content }
     end
