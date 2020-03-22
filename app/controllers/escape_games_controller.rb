@@ -32,7 +32,11 @@ class EscapeGamesController < ApplicationController
       if @escape_game.save
         format.html do
           redirect_to @escape_game,
-                      notice: 'Escape game was successfully created.'
+                      notice: {
+                        title: 'New listing created',
+                        content: 'You\'ve successfully listed your escape ' \
+                                 'game on the site.'
+                      }
         end
         format.json do
           render :show,
@@ -56,7 +60,12 @@ class EscapeGamesController < ApplicationController
       if @escape_game.update(escape_game_params.merge(user: @escape_game.user))
         format.html do
           redirect_to @escape_game,
-                      notice: 'Escape game was successfully updated.'
+                      notice: {
+                        title: "#{@escape_game.name}'s listing updated" \
+                               'successfully!',
+                        content: 'Your changes to the listing were saved. Now' \
+                                 'they\'re visible across the site!'
+                      }
         end
         format.json { render :show, status: :ok, location: @escape_game }
       else
@@ -77,7 +86,11 @@ class EscapeGamesController < ApplicationController
     respond_to do |format|
       format.html do
         redirect_to escape_games_url,
-                    notice: 'Escape game was successfully destroyed.'
+                    notice: {
+                      title: 'Listing removed.',
+                      content: 'You\'ve completely removed the listing for' \
+                               ' your escape game from the site.'
+                    }
       end
       format.json { head :no_content }
     end

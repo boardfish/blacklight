@@ -23,9 +23,13 @@
           button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary') :
           link_to('Logout', destroy_user_session_path, class: 'btn btn-primary'))
         }) %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <main class="container flex-grow-1">
+        <% if (notice || alert) %>
+        <div class="my-3">
+            <%= notice ? react_component('atoms/Alert', { type: 'info', alert: notice }) : '' %>
+            <%= alert ? react_component('atoms/Alert', { type: 'danger', alert: alert }) : '' %>
+        </div>
+        <% end %>
         <%= yield %>
     </main>
     <footer class="container-fluid px-0 py-3 bg-light">
