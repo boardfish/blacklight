@@ -16,14 +16,16 @@
     <%= react_component(
       "atoms/NavBar",
       {
-        loggedIn: user_signed_in?,
+        isMaintainer: current_user&.maintainer,
+        isEnthusiast: current_user&.enthusiast,
         username: current_user&.nickname,
+        userId: current_user&.id,
         currentPage: "Hello from react-rails.",
         loginButton: (!user_signed_in? ?
           button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary') :
           link_to('Logout', destroy_user_session_path, class: 'btn btn-primary'))
         }) %>
-    <main class="container flex-grow-1">
+    <main class="d-flex flex-column w-100 flex-grow-1">
         <% if (notice || alert) %>
         <div class="my-3">
             <%= notice ? react_component('atoms/Alert', { type: 'info', alert: notice }) : '' %>

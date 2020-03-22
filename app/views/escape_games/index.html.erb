@@ -1,47 +1,49 @@
-<h1>Escape Games</h1>
+<div class="container">
+    <h1>Escape Games</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Genre</th>
-            <th>Summary</th>
-            <th>Description</th>
-            <th>Difficulty level</th>
-            <th>Available time</th>
-            <th>Website link</th>
-            <th>Place</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Visible</th>
-            <th>User</th>
-            <th colspan="3"></th>
-        </tr>
-    </thead>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Summary</th>
+                <th>Description</th>
+                <th>Difficulty level</th>
+                <th>Available time</th>
+                <th>Website link</th>
+                <th>Place</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Visible</th>
+                <th>User</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
 
-    <tbody>
-        <% @escape_games.each do |escape_game| %>
-        <tr>
-            <td><%= escape_game.name %></td>
-            <td><%= escape_game.genre %></td>
-            <td><%= escape_game.summary %></td>
-            <td><%= escape_game.description %></td>
-            <td><%= escape_game.difficulty_level %></td>
-            <td><%= escape_game.available_time %></td>
-            <td><%= escape_game.website_link %></td>
-            <td><%= escape_game.place_id %></td>
-            <td><%= escape_game.latitude %></td>
-            <td><%= escape_game.longitude %></td>
-            <td><%= escape_game.visible %></td>
-            <td><%= escape_game.user_id %></td>
-            <td><%= link_to 'Show', escape_game %></td>
-            <td><%= link_to 'Edit', edit_escape_game_path(escape_game) %></td>
-            <td><%= link_to 'Destroy', escape_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+        <tbody>
+            <% @escape_games.each do |escape_game| %>
+            <tr>
+                <td><%= escape_game.name %></td>
+                <td><%= escape_game.genre %></td>
+                <td><%= escape_game.summary %></td>
+                <td><%= escape_game.description %></td>
+                <td><%= escape_game.difficulty_level %></td>
+                <td><%= escape_game.available_time %></td>
+                <td><%= escape_game.website_link %></td>
+                <td><%= escape_game.place_id %></td>
+                <td><%= escape_game.latitude %></td>
+                <td><%= escape_game.longitude %></td>
+                <td><%= escape_game.visible %></td>
+                <td><%= escape_game.user_id %></td>
+                <td><%= link_to 'Show', escape_game %></td>
+                <td><%= link_to 'Edit', edit_escape_game_path(escape_game) %></td>
+                <td><%= link_to 'Destroy', escape_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
 
-<br>
+    <br>
 
-<%= link_to 'New Escape Game', new_escape_game_path %>
+    <%= link_to 'New Escape Game', new_escape_game_path %>
+</div>

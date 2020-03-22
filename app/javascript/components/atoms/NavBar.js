@@ -18,7 +18,7 @@ import {
 
 import NavbarData from '../../data/navbar.json'
 
-export default ({ currentPage, loggedIn, loginButton, username }) => {
+export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username, userId }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -31,8 +31,17 @@ export default ({ currentPage, loggedIn, loginButton, username }) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             {
-              loggedIn
+              isEnthusiast
                 ? NavbarData.enthusiastLoggedIn.map(({ href, name }) => (
+                  <NavItem>
+                    <NavLink href={href}>{name}</NavLink>
+                  </NavItem>
+                ))
+                : ""
+            }
+            {
+              isMaintainer
+                ? NavbarData.maintainerLoggedIn.map(({ href, name }) => (
                   <NavItem>
                     <NavLink href={href}>{name}</NavLink>
                   </NavItem>
@@ -53,10 +62,7 @@ export default ({ currentPage, loggedIn, loginButton, username }) => {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
+                    <NavLink href={`/users/${userId}/edit`}>Account</NavLink>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem dangerouslySetInnerHTML={{ __html: loginButton }} >
