@@ -89,7 +89,7 @@ RSpec.describe '/users', type: :request do
       user = User.create! valid_attributes
       sign_in user
       delete user_url(user)
-      expect(response).to redirect_to(users_url)
+      expect(response).to redirect_to(root_url)
     end
   end
 end
