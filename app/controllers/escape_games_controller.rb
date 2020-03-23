@@ -2,7 +2,7 @@
 
 # Controller for dealing with the Escape Game model.
 class EscapeGamesController < ApplicationController
-  before_action :set_escape_game, only: %i[show edit update destroy]
+  before_action :set_escape_game, only: %i[show edit update destroy cleared]
   before_action :authenticate_user!
 
   # GET /escape_games
@@ -91,6 +91,24 @@ class EscapeGamesController < ApplicationController
                       content: 'You\'ve completely removed the listing for' \
                                ' your escape game from the site.'
                     }
+      end
+      format.json { head :no_content }
+    end
+  end
+
+  def cleared
+    if params[:cleared]
+      Clear.where(user: current_user, escape_game: @escape_game).first_or_create
+    else
+      Clear.where(user: current_user, escape_game: @escape_game).last.destroy!
+    end
+    respond_to do |format|
+      format.html do
+        redirect_to @escape_game,
+        notice: {
+          title: 'Game clear!',
+          content: 'You\'ve marked yourself as having completed this escape game.'
+        }
       end
       format.json { head :no_content }
     end

@@ -172,4 +172,20 @@ RSpec.describe EscapeGamesController, type: :controller do
       expect(response).to redirect_to(escape_games_url)
     end
   end
+
+  describe 'POST #cleared' do
+    it 'creates a Clear' do
+      visitor = random_user(owner: @escape_game.user)
+      sign_in visitor
+      expect { put :cleared, params: { id: @escape_game.to_param, cleared: true } }.to change(Clear, :count).by(1)
+    end
+
+    it 'creates a Clear containing the logged-in user' do
+      visitor = random_user(owner: @escape_game.user)
+      sign_in visitor
+      put :cleared, params: { id: @escape_game.to_param, cleared: true }
+      expect(Clear.last.user).to eq(visitor)
+      expect(Clear.last.escape_game).to eq(@escape_game)
+    end
+  end
 end
