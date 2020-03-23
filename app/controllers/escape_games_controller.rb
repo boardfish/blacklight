@@ -5,6 +5,8 @@ class EscapeGamesController < ApplicationController
   before_action :set_escape_game, only: %i[show edit update destroy cleared]
   before_action :authenticate_user!
 
+  I18N_HASH = I18n.t('controllers.escape_games')
+
   # GET /escape_games
   # GET /escape_games.json
   def index
