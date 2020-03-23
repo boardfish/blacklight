@@ -1,4 +1,11 @@
 <div class="container">
+    <%= react_component(
+      "atoms/ClearButton",
+      {
+        cleared: cleared?,
+        escapeGameId: @escape_game.id,
+        authenticity_token: form_authenticity_token
+        }) %>
     <p>
         <strong>Name:</strong>
         <%= @escape_game.name %>
@@ -57,6 +64,11 @@
     <p>
         <strong>User:</strong>
         <%= @escape_game.user_id %>
+    </p>
+
+    <p>
+        <strong>Cleared by:</strong>
+        <%= @escape_game.clears.count %>
     </p>
 
     <div>

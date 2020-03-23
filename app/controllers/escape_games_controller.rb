@@ -2,8 +2,10 @@
 
 # Controller for dealing with the Escape Game model.
 class EscapeGamesController < ApplicationController
-  before_action :set_escape_game, only: %i[show edit update destroy]
+  before_action :set_escape_game, only: %i[show edit update destroy cleared]
   before_action :authenticate_user!
+
+  I18N_HASH = I18n.t('controllers.escape_games')
 
   # GET /escape_games
   # GET /escape_games.json
@@ -31,23 +33,15 @@ class EscapeGamesController < ApplicationController
     respond_to do |format|
       if @escape_game.save
         format.html do
-          redirect_to @escape_game,
-                      notice: {
-                        title: 'New listing created',
-                        content: 'You\'ve successfully listed your escape ' \
-                                 'game on the site.'
-                      }
+          redirect_to @escape_game, notice: I18N_HASH.dig(:create, :success)
         end
         format.json do
-          render :show,
-                 status: :created,
-                 location: @escape_game
+          render :show, status: :created, location: @escape_game
         end
       else
         format.html { render :new }
         format.json do
-          render json: @escape_game.errors,
-                 status: :unprocessable_entity
+          render json: @escape_game.errors, status: :unprocessable_entity
         end
       end
     end
@@ -59,21 +53,13 @@ class EscapeGamesController < ApplicationController
     respond_to do |format|
       if @escape_game.update(escape_game_params.merge(user: @escape_game.user))
         format.html do
-          redirect_to @escape_game,
-                      notice: {
-                        title: "#{@escape_game.name}'s listing updated" \
-                               'successfully!',
-                        content: 'Your changes to the listing were saved. Now' \
-                                 'they\'re visible across the site!'
-                      }
+          redirect_to @escape_game, notice: I18N_HASH.dig(:update, :success)
         end
         format.json { render :show, status: :ok, location: @escape_game }
       else
         format.html { render :edit }
         format.json do
-          render json:
-          @escape_game.errors,
-                 status: :unprocessable_entity
+          render json: @escape_game.errors, status: :unprocessable_entity
         end
       end
     end
@@ -85,12 +71,21 @@ class EscapeGamesController < ApplicationController
     @escape_game.discard
     respond_to do |format|
       format.html do
-        redirect_to escape_games_url,
-                    notice: {
-                      title: 'Listing removed.',
-                      content: 'You\'ve completely removed the listing for' \
-                               ' your escape game from the site.'
-                    }
+        redirect_to escape_games_url, notice: I18N_HASH.dig(:destroy, :success)
+      end
+      format.json { head :no_content }
+    end
+  end
+
+  def cleared
+    if params[:cleared]
+      Clear.where(user: current_user, escape_game: @escape_game).first_or_create
+    else
+      Clear.where(user: current_user, escape_game: @escape_game).last.destroy!
+    end
+    respond_to do |format|
+      format.html do
+        redirect_to @escape_game, notice: I18N_HASH.dig(:cleared, :success)
       end
       format.json { head :no_content }
     end

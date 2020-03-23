@@ -6,6 +6,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[auth0]
   enum purpose: %i[maintainer enthusiast is_both]
+  has_many :clears
 
   def onboarded?
     maintainer || enthusiast
