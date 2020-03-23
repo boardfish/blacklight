@@ -1,2 +1,18 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="jumbotron">
+    <h1 class="display-4">Find your escape</h1>
+    <p class="lead">
+        Blacklight helps you find the next escape room you'd like to challenge.
+        Whether you've got specific access requirements or you're just hungry
+        for a challenge, Blacklight will reveal your next adventure.
+    </p>
+    <% if current_user && !current_user.onboarded? %>
+    <div class="d-flex flex-column align-items-center">
+        <h2>Welcome!</h2>
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+            <%= button_to('I\'m a maintainer!', make_user_maintainer_path(current_user), method: :post, class: 'btn btn-primary mr-md-2 mb-2') %>
+            <%= button_to('I\'m an enthusiast!', make_user_enthusiast_path(current_user), method: :post, class: 'btn btn-primary mr-md-2 mb-2') %>
+            <%= button_to('I\'m both!', make_maintainer_and_enthusiast_path(current_user), method: :post, class: 'btn btn-primary mb-2') %>
+        </div>
+    </div>
+    <% end %>
+</div>
