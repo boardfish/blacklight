@@ -6,5 +6,7 @@ FactoryBot.define do
   factory :user do
     email { Faker::Internet.unique.email }
     nickname { Faker::Internet.unique.username }
+    maintainer { [true, false].sample }
+    enthusiast { [true, false].sample }
   end
 end

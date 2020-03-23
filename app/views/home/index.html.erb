@@ -5,7 +5,9 @@
         Whether you've got specific access requirements or you're just hungry
         for a challenge, Blacklight will reveal your next adventure.
     </p>
-    <% if current_user && current_user.onboarded? %>
+    <%= current_user.maintainer %>
+    <%= current_user.enthusiast %>
+    <% if current_user && !current_user.onboarded? %>
     <div class="d-flex flex-column align-items-center">
         <h2>Welcome!</h2>
         <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">

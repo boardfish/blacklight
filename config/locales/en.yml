@@ -31,3 +31,40 @@
 
 en:
   hello: "Hello world"
+  controllers:
+    users:
+      update:
+        success:
+          title: Changes saved!
+          content: We've saved the changes to your profile.
+        failure:
+          title: Could not save changes.
+          content: There was a problem. You might need to try again or check what you sent across.
+      destroy:
+        success:
+          title: Account removed.
+          content: We're sad to see you go... 
+        failure:
+          title: Could not remove account.
+          content: Please try again.
+      maintainer:
+        success:
+          title: You're a maintainer!
+          content: You now have access to maintainer tools. Add your escape rooms to the site, and we'll guide enthuiasts to them!
+        failure:
+          title: Failed to update...
+          content: We couldn't mark you as a maintainer. Please try again.
+      enthusiast:
+        success:
+          title: You're an enthusiast!
+          content: You're now registered as an enthuiast! Let's find your next adventure.
+        failure:
+          title: Failed to update...
+          content: We couldn't mark you as an enthusiast. Please try again.
+      maintainer_and_enthusiast:
+        success:
+          title: Jack of all trades!
+          content: You can now use maintainer tools, but we'll also help you find other escape rooms to try.
+        failure:
+          title: Failed to update...
+          content: We couldn't save the changes you requested. Please try again.
