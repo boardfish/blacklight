@@ -13,6 +13,20 @@ class EscapeGamesController < ApplicationController
     @escape_games = current_user.escape_games.kept
   end
 
+  # GET /escape_games/explore
+  # GET /escape_games/explore.json
+  def explore
+    @escape_games = EscapeGame.kept.where.not(user: current_user)
+    respond_to do |format|
+      format.html do
+        render :explore
+      end
+      format.json do
+        render json: @escape_games, status: :ok
+      end
+    end
+  end
+
   # GET /escape_games/1
   # GET /escape_games/1.json
   def show; end
