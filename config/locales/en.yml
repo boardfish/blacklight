@@ -32,6 +32,23 @@
 en:
   hello: "Hello world"
   controllers:
+    escape_games:
+      create:
+        success:
+          title: New listing created!
+          content: You\'ve successfully listed your escape game on the site.
+      update:
+        success:
+          title: Listing updated successfully!
+          content: Your changes to the listing were saved. Now they\'re visible across the site!
+      destroy:
+        success:
+          title: Listing removed.
+          content: You\'ve completely removed the listing for your escape game from the site.
+      cleared:
+        success:
+          title: Game clear!
+          content: You\'ve marked yourself as having completed this escape game.
     users:
       update:
         success:
