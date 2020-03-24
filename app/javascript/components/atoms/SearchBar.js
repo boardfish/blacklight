@@ -1,5 +1,11 @@
 import React from 'react';
 
-export default () => (
-  <input type="text" className="form-control"></input>
-)
+export default ({ search, onChange }) => { 
+  return (
+  <input
+    type="text"
+    className="form-control"
+    value={search}
+    onChange={onChange} />
+  )
+ }

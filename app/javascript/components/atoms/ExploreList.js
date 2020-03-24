@@ -1,20 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Table } from "reactstrap";
 
-export default () => {
-  const [escapeGames, setEscapeGames] = useState([]);
-  useEffect(() => {
-    fetch(`/explore`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    })
-      .then(resp => resp.json()) // Transform the data into json
-      .then(function(data) {
-        setEscapeGames(data);
-      });
-  });
+export default ({ escapeGames }) => {
   return (
     <Table>
       <thead>
