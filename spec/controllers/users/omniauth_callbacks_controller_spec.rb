@@ -3,10 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
-
   before(:each) do
-    request.env["devise.mapping"] = Devise.mappings[:user] # If using Devise
-    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:auth0] 
+    request.env['devise.mapping'] = Devise.mappings[:user] # If using Devise
+    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:auth0]
   end
 
   it 'creates a user through Auth0' do
