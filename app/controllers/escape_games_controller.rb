@@ -106,6 +106,12 @@ class EscapeGamesController < ApplicationController
     end
   end
 
+  def already_cleared
+    respond_to do |format|
+      format.json { render json: { cleared: true}  }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

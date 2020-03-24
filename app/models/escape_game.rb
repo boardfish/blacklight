@@ -5,7 +5,7 @@
 class EscapeGame < ApplicationRecord
   include Discard::Model
   has_many_attached :images
-  has_many :clears
+  has_many :clears, dependent: :destroy
 
   belongs_to :user
   validates :name, presence: true

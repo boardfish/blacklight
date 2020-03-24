@@ -29,6 +29,7 @@ export default ({ authenticity_token }) => {
         setInputValue(e.target.value)
         fetchEscapeGames(e.target.value)
         }} />
+      <p>{escapeGames.length} result{escapeGames.length == 1 ? '' : 's'}</p>
       <ExploreList escapeGames={escapeGames} authenticity_token={authenticity_token} />
     </div>
   );

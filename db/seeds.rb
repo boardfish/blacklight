@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'factory_bot_rails' 
+
+seed_user = FactoryBot.create(:user)
+100.times do
+  FactoryBot.create(:escape_game, 
+    user: seed_user
+  )
+end
