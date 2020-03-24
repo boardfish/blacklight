@@ -16,7 +16,7 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games/explore
   # GET /escape_games/explore.json
   def explore
-    @escape_games = EscapeGame.kept.where.not(user: current_user)
+    @escape_games = search
     respond_to do |format|
       format.html do
         render :explore
@@ -123,5 +123,10 @@ class EscapeGamesController < ApplicationController
         :longitude, :visible, :user_id, images: []
       )
     end
+  end
+
+  def search
+    EscapeGame
+      .kept.where.not(user: current_user).ransack(name_cont: params[:q]).result
   end
 end

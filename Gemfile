@@ -34,6 +34,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'bootstrap_form', '~> 4.0'
 # Soft delete
 gem 'discard'
+# Search
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -7,7 +7,7 @@ export default () => {
   const [inputValue, setInputValue] = useState('');
 
   const fetchEscapeGames = (search) => {
-    fetch(`/explore${search ? `?${search}` : ''}`, {
+    fetch(`/explore${search ? `?q=${encodeURIComponent(search)}` : ''}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -19,11 +19,15 @@ export default () => {
       });
   };
 
+  useEffect(() => {
+    fetchEscapeGames()
+  }, []);
+
   return (
     <div>
       <SearchBar search={inputValue} onChange={(e) => {
         setInputValue(e.target.value)
-        fetchEscapeGames(inputValue)
+        fetchEscapeGames(e.target.value)
         }} />
       <ExploreList escapeGames={escapeGames} />
     </div>
