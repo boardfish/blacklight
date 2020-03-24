@@ -61,6 +61,13 @@ RSpec.describe EscapeGamesController, type: :controller do
       get :edit, params: { id: @escape_game.to_param }
       expect(response).to be_successful
     end
+
+    it 'does not allow those that aren\'t the owner to access it' do
+      sign_in random_user(owner: @user)
+      expect do
+        get :edit, params: { id: @escape_game.to_param }
+      end.to raise_error ActiveRecord::RecordNotFound
+    end
   end
 
   describe 'POST #create' do
@@ -138,6 +145,16 @@ RSpec.describe EscapeGamesController, type: :controller do
         escape_game.reload
         expect(@escape_game.user).to eq(owner)
       end
+
+      it 'does not allow those that aren\'t the owner to update it' do
+        sign_in random_user(owner: @user)
+        expect do
+          put :update, params: {
+            id: @escape_game.to_param,
+            escape_game: attributes_for(:escape_game)
+          }
+        end.to raise_error ActiveRecord::RecordNotFound
+      end
     end
 
     context 'with invalid params' do
@@ -170,6 +187,13 @@ RSpec.describe EscapeGamesController, type: :controller do
       escape_game = @escape_game
       delete :destroy, params: { id: escape_game.to_param }
       expect(response).to redirect_to(escape_games_url)
+    end
+
+    it 'does not allow those that aren\'t the owner to destroy it' do
+      sign_in random_user(owner: @user)
+      expect do
+        delete :destroy, params: { id: @escape_game.to_param }
+      end.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
