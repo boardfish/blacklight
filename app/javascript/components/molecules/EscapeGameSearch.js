@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchBar from "../atoms/SearchBar";
 import ExploreList from "../atoms/ExploreList";
 
-export default () => {
+export default ({ authenticity_token }) => {
   const [escapeGames, setEscapeGames] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -29,7 +29,7 @@ export default () => {
         setInputValue(e.target.value)
         fetchEscapeGames(e.target.value)
         }} />
-      <ExploreList escapeGames={escapeGames} />
+      <ExploreList escapeGames={escapeGames} authenticity_token={authenticity_token} />
     </div>
   );
 };
