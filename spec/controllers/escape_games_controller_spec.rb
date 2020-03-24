@@ -64,9 +64,9 @@ RSpec.describe EscapeGamesController, type: :controller do
 
     it 'does not allow those that aren\'t the owner to access it' do
       sign_in random_user(owner: @user)
-      expect {
+      expect do
         get :edit, params: { id: @escape_game.to_param }
-      }.to raise_error ActiveRecord::RecordNotFound
+      end.to raise_error ActiveRecord::RecordNotFound
     end
   end
 
@@ -149,10 +149,10 @@ RSpec.describe EscapeGamesController, type: :controller do
       it 'does not allow those that aren\'t the owner to update it' do
         sign_in random_user(owner: @user)
         expect do
-        put :update, params: {
-          id: @escape_game.to_param,
-          escape_game: attributes_for(:escape_game)
-        }
+          put :update, params: {
+            id: @escape_game.to_param,
+            escape_game: attributes_for(:escape_game)
+          }
         end.to raise_error ActiveRecord::RecordNotFound
       end
     end
