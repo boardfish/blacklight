@@ -34,6 +34,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'bootstrap_form', '~> 4.0'
 # Soft delete
 gem 'discard'
+# Search
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -48,6 +50,7 @@ group :development, :test do
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0.0rc1'
 end
 

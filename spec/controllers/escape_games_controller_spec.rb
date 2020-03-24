@@ -42,6 +42,28 @@ RSpec.describe EscapeGamesController, type: :controller do
     end
   end
 
+  describe 'GET #explore' do
+    it 'returns a success response' do
+      get :explore
+      expect(response).to be_successful
+    end
+
+    it 'does not show my escape rooms' do
+      get :explore
+      expect(
+        assigns(:escape_games).filter { |game| game.user == @user }
+      ).to be_empty
+    end
+
+    it 'filters escape rooms by name' do
+      get :explore, params: { q: 'Mushroom' }
+      puts assigns(:escape_games).map(&:name)
+      expect(
+        assigns(:escape_games).filter { |game| !game.name.include? 'Mushroom' }
+      ).to be_empty
+    end
+  end
+
   describe 'GET #show' do
     it 'returns a success response' do
       get :show, params: { id: @escape_game.to_param }
