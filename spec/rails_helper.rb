@@ -6,6 +6,20 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require File.expand_path('../config/environment', __dir__)
 
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:auth0] = OmniAuth::AuthHash.new(
+  {
+    provider: 'auth0',
+    uid: '1',
+    info: {
+      email: 'foo@bar.com',
+      name: 'Foo Bar',
+      nickname: 'foo'
+    }
+    # etc.
+  }
+)
+
 # Prevent database truncation if the environment is production
 if Rails.env.production?
   abort('The Rails environment is running in production mode!')
