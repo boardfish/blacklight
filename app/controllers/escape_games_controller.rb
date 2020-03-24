@@ -2,8 +2,9 @@
 
 # Controller for dealing with the Escape Game model.
 class EscapeGamesController < ApplicationController
-  before_action :set_escape_game, only: %i[show edit update destroy cleared]
   before_action :authenticate_user!
+  before_action :set_escape_game, only: %i[show cleared]
+  before_action :set_user_escape_game, only: %i[edit update destroy]
 
   I18N_HASH = I18n.t('controllers.escape_games')
 
@@ -96,6 +97,10 @@ class EscapeGamesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_escape_game
     @escape_game = EscapeGame.find(params[:id])
+  end
+
+  def set_user_escape_game
+    @escape_game = current_user.escape_games.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
