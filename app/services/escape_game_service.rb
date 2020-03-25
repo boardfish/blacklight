@@ -2,6 +2,8 @@
 
 # Service for searching and clearing escape games, as used by the controller
 class EscapeGameService
+  include Rails.application.routes.url_helpers
+
   class << self
     def search_with_clears(user, query)
       new(user, nil).tap do |egs|
@@ -41,7 +43,16 @@ class EscapeGameService
       clears: { user: @user }
     )
     @escape_games.map do |e|
-      { escape_game: e, cleared: my_cleared_games.include?(e) }
+      if e.images.attached?
+        image_path = polymorphic_url(e.images.first, only_path: true)
+      else
+        image_path = nil
+      end
+      {
+        escape_game: e,
+        cleared: my_cleared_games.include?(e),
+        image_path: image_path
+      }
     end
   end
 end

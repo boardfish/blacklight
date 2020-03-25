@@ -22,8 +22,11 @@ session. You can then use `rails` and `rake` commands from there.
 
 ### Bootstrapping the database
 
-Use `docker-compose exec web rake db:create` to create the database in the
-`postgresql` container.
+Use `docker-compose exec web rake db:setup` to create the database in the
+`postgresql` container. This will also seed the database with some escape room
+data based on Faker::Games::SuperSmashBros.stage. If you'd like to attach images
+too, you can retrieve these by running the script in
+`spec/fixtures/files/escape_game`.
 
 ### Permissions issues?
 
@@ -34,7 +37,6 @@ If `docker-compose build` reports permissions issues related to `tmp/db`, run
 ## To be documented
 
 * Configuration
-* Database initialization (seeding)
 * How to run the test suite
 * Services (job queues, cache servers, search engines, etc.)
 * Deployment instructions

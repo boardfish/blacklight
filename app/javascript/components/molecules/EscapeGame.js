@@ -1,6 +1,6 @@
 import React from 'react';
 import ClearButton from '../atoms/ClearButton';
-import { Card, CardBody, CardHeader, CardFooter } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardFooter, CardImg } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import startCase from 'lodash/startCase'
 
@@ -29,17 +29,15 @@ const renderDifficulty = (difficultyLevel) => {
   return content;
 }
 
-const chooseColor = (exploring, cleared) => {
-  let colors = []
+const chooseColor = (exploring) => {
   switch(exploring) {
     case false:
-      colors = ['success', 'secondary'];
+      return ['secondary', 'success'];
       break;
     default:
-      colors = ['secondary', 'primary'];
+      return ['primary', 'secondary'];
       break;
   }
-  return (cleared ? colors[0] : colors[1])
 }
 
 const chooseGenreIcon = (genre) => {
@@ -61,13 +59,14 @@ const chooseGenreIcon = (genre) => {
   }[genre]
 }
 
-export default ({ cleared, escapeGame, authenticity_token, exploring }) => (
+export default ({ cleared, escapeGame, imagePath, authenticity_token, exploring }) => (
   <a href={escapeGame.website_link} className="text-body" target="_blank" rel="noopener">
     <Card>
       <CardHeader>
         <h4>{escapeGame.name}</h4>
         <p className="text-muted">{escapeGame.summary}</p>
       </CardHeader>
+      <CardImg top width="100%" src={imagePath} />
       <CardBody>
         <div>
           <span className="text-muted">
@@ -76,12 +75,12 @@ export default ({ cleared, escapeGame, authenticity_token, exploring }) => (
             <FontAwesomeIcon icon={chooseGenreIcon(escapeGame.genre)} /> {startCase(escapeGame.genre)}
           </span>
         </div>
-        <p>{escapeGame.description.split('\\n').map((item, i) => {
-    return <p key={i}>{item}</p>;
-})}</p>
+        {escapeGame.description.split('\\n').map((item, i) => {
+            return <p key={i}>{item}</p>;
+        })}
       </CardBody>
       <CardFooter>
-        <ClearButton cleared={cleared} color={chooseColor(exploring, cleared)} escapeGameId={escapeGame.id} authenticity_token={authenticity_token} />
+        <ClearButton cleared={cleared} stateColors={chooseColor(exploring, cleared)} escapeGameId={escapeGame.id} authenticity_token={authenticity_token} />
       </CardFooter>
     </Card>
   </a>
