@@ -39,18 +39,13 @@ class EscapeGameService
 
   # for each escape_game, list whether the user has a Clear with it.
   def list_clears
-    my_cleared_games = @escape_games.joins(:clears).where(
-      clears: { user: @user }
-    )
-    @escape_games.map do |e|
-      if e.images.attached?
-        image_path = polymorphic_url(e.images.first, only_path: true)
-      else
-        image_path = nil
-      end
+    @escape_games.includes(:clears).map do |e|
+      image_path = if e.images.attached?
+                     polymorphic_url(e.images.first, only_path: true)
+                   end
       {
         escape_game: e,
-        cleared: my_cleared_games.include?(e),
+        cleared: e.clears.exists?(user: @user),
         image_path: image_path
       }
     end

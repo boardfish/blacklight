@@ -13,13 +13,22 @@ FactoryBot.define do
     place_id { 'ChIJrTLr-GyuEmsRBfy61i59si0' }
     user_id { User.count > 2 ? User.all.sample.id : create(:user).id }
     after(:build) do |escape_game|
-      begin
-        escape_game.images.attach(
-          io: File.open(Rails.root.join('spec', 'fixtures', 'files', 'escape_game', "SSBU-#{URI::encode(escape_game.name.tr(" ", "_")).to_s}.png")),
-          filename: "SSBU-#{URI::encode(escape_game.name.tr(" ", "_")).to_s}.png",
-          content_type: 'image/png')
-      rescue Errno::ENOENT
-      end
+      escape_game.images.attach(
+        io: File.open(
+          Rails.root.join(
+            'spec',
+            'fixtures',
+            'files',
+            'escape_game',
+            "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png"
+          )
+        ),
+        filename: "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png",
+        content_type: 'image/png'
+      )
+    # rubocop:disable Lint/SuppressedException
+    rescue Errno::ENOENT
+      # rubocop:enable Lint/SuppressedException
     end
   end
 end
