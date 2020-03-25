@@ -38,15 +38,21 @@ class EscapeGameService
   attr_writer :escape_games
 
   # for each escape_game, list whether the user has a Clear with it.
+
+  def explore_thumbnail_for(image)
+    return unless image
+    rails_representation_url(
+      image.variant(resize_to_limit: [350, 350]),
+      only_path: true
+    )
+  end
+
   def list_clears
     @escape_games.includes(:clears).map do |e|
-      image_path = if e.images.attached?
-                     polymorphic_url(e.images.first, only_path: true)
-                   end
       {
         escape_game: e,
         cleared: e.clears.exists?(user: @user),
-        image_path: image_path
+        image_path: explore_thumbnail_for(e.images&.first)
       }
     end
   end
