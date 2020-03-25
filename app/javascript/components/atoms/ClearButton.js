@@ -1,43 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Button } from 'reactstrap';
+import React, { useState, useEffect } from "react";
+import { Button } from "reactstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default ({ cleared, escapeGameId, authenticity_token }) => { 
-  const [clearedState, setCleared] = useState(cleared)
-  const firstUpdate = useRef(true);
+export default ({ cleared, escapeGameId, authenticity_token, color }) => {
+  const [clearedState, setCleared] = useState(cleared);
   useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-    // send a PUT request to `/escape_game/n/cleared`
+    setCleared(cleared);
+  }, [cleared]);
+  const updateCleared = state => {
     fetch(`/escape_games/${escapeGameId}/cleared.json`, {
-      method: 'GET',
+      method: "PUT",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }).then((data) => data.json())
-      .then((data) => setCleared(data.cleared))
-  })
-  const updateCleared = (state) => {
-    fetch(`/escape_games/${escapeGameId}/cleared.json`, {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({ cleared: state, authenticity_token })
-    })
-  }
+    });
+  };
 
   return (
     <Button
-      color={'primary'}
+      color={color}
       onClick={() => {
-        const newState = !clearedState
-        setCleared(newState)
-        updateCleared(newState)
+        const newState = !clearedState;
+        setCleared(newState);
+        updateCleared(newState);
       }}
-      >{clearedState ? 'Cleared!' : 'Still to do...'}</Button>
-  )
- }
+    >
+      {clearedState ? <FontAwesomeIcon icon="lock-open" /> : <FontAwesomeIcon icon="lock" />}
+    </Button>
+  );
+};

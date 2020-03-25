@@ -29,7 +29,20 @@ const renderDifficulty = (difficultyLevel) => {
   return content;
 }
 
-export default ({ cleared, escapeGame, authenticity_token }) => (
+const chooseColor = (exploring, cleared) => {
+  let colors = []
+  switch(exploring) {
+    case false:
+      colors = ['success', 'secondary'];
+      break;
+    default:
+      colors = ['secondary', 'primary'];
+      break;
+  }
+  return (cleared ? colors[0] : colors[1])
+}
+
+export default ({ cleared, escapeGame, authenticity_token, exploring }) => (
   <a href={escapeGame.website_link} className="text-body" target="_blank" rel="noopener">
     <Card>
       <CardHeader>
@@ -48,7 +61,7 @@ export default ({ cleared, escapeGame, authenticity_token }) => (
         <p>{escapeGame.description}</p>
       </CardBody>
       <CardFooter>
-        <ClearButton cleared={cleared} escapeGameId={escapeGame.id} authenticity_token={authenticity_token} />
+        <ClearButton cleared={cleared} color={chooseColor(exploring, cleared)} escapeGameId={escapeGame.id} authenticity_token={authenticity_token} />
       </CardFooter>
     </Card>
   </a>

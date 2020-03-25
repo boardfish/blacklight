@@ -17,7 +17,7 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games/explore
   # GET /escape_games/explore.json
   def explore
-    @escape_games = search
+    @escape_games = list_clears(search)
     respond_to do |format|
       format.html do
         render :explore
@@ -108,7 +108,7 @@ class EscapeGamesController < ApplicationController
 
   def already_cleared
     respond_to do |format|
-      format.json { render json: { cleared: true}  }
+      format.json { render json: { cleared: true } }
     end
   end
 
@@ -139,5 +139,15 @@ class EscapeGamesController < ApplicationController
   def search
     EscapeGame
       .kept.where.not(user: current_user).ransack(name_cont: params[:q]).result
+  end
+
+  def list_clears(escape_games)
+    my_cleared_games = escape_games.joins(:clears).where(
+      clears: { user: current_user }
+    )
+    escape_games.map do |e|
+      { escape_game: e, cleared: my_cleared_games.include?(e) }
+    end
+    # for each escape_game, list whether the user has a Clear with it.
   end
 end

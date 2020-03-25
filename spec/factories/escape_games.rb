@@ -3,10 +3,10 @@
 FactoryBot.define do
   factory :escape_game do
     name { Faker::Games::SuperSmashBros.stage }
-    genre { :modern }
+    genre { EscapeGame.genres.keys.sample }
     summary { Faker::Lorem.sentence(word_count: 5) }
     description { Faker::Lorem.paragraphs.join('\n') }
-    difficulty_level { :beginner }
+    difficulty_level { EscapeGame.difficulty_levels.keys.sample }
     available_time { Random.rand(30..150) }
     latitude { 0 }
     longitude { 0 }

@@ -23,7 +23,7 @@
         </thead>
 
         <tbody>
-            <% @escape_games.each do |escape_game| %>
+            <% @escape_games.map { |e| e[:escape_game] }.each do |escape_game| %>
             <tr>
                 <td><%= escape_game.name %></td>
                 <td><%= escape_game.genre %></td>
