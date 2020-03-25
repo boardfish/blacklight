@@ -51,7 +51,9 @@ RSpec.describe EscapeGamesController, type: :controller do
     it 'does not show my escape rooms' do
       get :explore
       expect(
-        assigns(:escape_games).filter { |game| game.user == @user }
+        assigns(:escape_games).filter do |game|
+          game[:escape_game].user == @user
+        end
       ).to be_empty
     end
 
