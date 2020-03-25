@@ -58,7 +58,9 @@ export default ({ cleared, escapeGame, authenticity_token, exploring }) => (
             
           </span>
         </div>
-        <p>{escapeGame.description}</p>
+        <p>{escapeGame.description.split('\\n').map((item, i) => {
+    return <p key={i}>{item}</p>;
+})}</p>
       </CardBody>
       <CardFooter>
         <ClearButton cleared={cleared} color={chooseColor(exploring, cleared)} escapeGameId={escapeGame.id} authenticity_token={authenticity_token} />
