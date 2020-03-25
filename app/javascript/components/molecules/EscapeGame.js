@@ -42,6 +42,25 @@ const chooseColor = (exploring, cleared) => {
   return (cleared ? colors[0] : colors[1])
 }
 
+const chooseGenreIcon = (genre) => {
+  return{
+    modern: 'mobile',
+    other: 'question-circle',
+    historical: 'history',
+    horror: 'ghost',
+    fantasy: 'meteor',
+    science: 'atom',
+    abstract: 'dungeon',
+    future: 'user-astronaut',
+    military: 'fighter-jet',
+    toy_room: 'shapes',
+    cartoon: 'laugh-wink',
+    steampunk: 'cogs',
+    seasonal: 'calendar-day',
+    default: 'question-circle'
+  }[genre]
+}
+
 export default ({ cleared, escapeGame, authenticity_token, exploring }) => (
   <a href={escapeGame.website_link} className="text-body" target="_blank" rel="noopener">
     <Card>
@@ -54,8 +73,7 @@ export default ({ cleared, escapeGame, authenticity_token, exploring }) => (
           <span className="text-muted">
             {renderDifficulty(escapeGame.difficulty_level)} {startCase(escapeGame.difficulty_level)} |{' '}
             <FontAwesomeIcon icon="hourglass-start" /> {fuzzyTime(escapeGame.available_time)} |{' '}
-            <FontAwesomeIcon icon="hourglass-start" /> {startCase(escapeGame.genre)}
-            
+            <FontAwesomeIcon icon={chooseGenreIcon(escapeGame.genre)} /> {startCase(escapeGame.genre)}
           </span>
         </div>
         <p>{escapeGame.description.split('\\n').map((item, i) => {
