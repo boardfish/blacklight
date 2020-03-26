@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Blurhash } from "react-blurhash";
 
 // imageRatio = height / width
-export default ({ blurhash, src, blurhashOpts, className }) => {
+export default ({ blurhash, src, blurhashOpts, className, children }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <div
       src={src}
+      className="d-flex"
       style={{
         background: `url(${src}) no-repeat center`,
         backgroundSize: 'cover',
@@ -20,11 +21,12 @@ export default ({ blurhash, src, blurhashOpts, className }) => {
         blurhash && blurhash.length >= 6 ? (
       <Blurhash
         hash={blurhash}
-        className={(loaded ? "blurdash-fadeout " : "") + className}
+        className={"position-absolute " + (loaded ? "blurdash-fadeout " : "") + className}
         {...blurhashOpts}
       />
         ) : ''
       }
+      {children}
     </div>
   );
 };
