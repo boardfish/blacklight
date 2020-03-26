@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+require 'rmagick'
+
 # Represents an escape game. This may be one of many offered at the same
 # location.
 class EscapeGame < ApplicationRecord
   include Discard::Model
   has_many_attached :images
   has_many :clears, dependent: :destroy
+  before_save :build_blurhash
 
   belongs_to :user
   validates :name, presence: true
@@ -44,4 +47,17 @@ class EscapeGame < ApplicationRecord
   validates :place_id, format: {
     with: /([A-z\-\d])*/, message: 'may not be a valid Google Maps Place ID'
   }
+
+  private
+
+  def build_blurhash
+    return unless images.attached?
+
+    images.first.open do |file|
+      @image = Magick::ImageList.new(file.path)
+    end
+    self.blurhash = Blurhash.encode(
+      @image.columns, @image.rows, @image.export_pixels
+    )
+  end
 end

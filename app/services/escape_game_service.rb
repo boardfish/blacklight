@@ -41,6 +41,7 @@ class EscapeGameService
 
   def explore_thumbnail_for(image)
     return unless image
+
     rails_representation_url(
       image.variant(resize_to_limit: [350, 350]),
       only_path: true
@@ -49,10 +50,11 @@ class EscapeGameService
 
   def list_clears
     @escape_games.includes(:clears).map do |e|
+      image_path = explore_thumbnail_for(e.images&.first)
       {
         escape_game: e,
         cleared: e.clears.exists?(user: @user),
-        image_path: explore_thumbnail_for(e.images&.first)
+        image_path: image_path
       }
     end
   end
