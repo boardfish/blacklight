@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "../atoms/SearchBar";
 import ExploreList from "../atoms/ExploreList";
+import throttle from "lodash-es/throttle";
 
 export default ({ authenticity_token }) => {
   const [escapeGames, setEscapeGames] = useState([]);
-  const [inputValue, setInputValue] = useState('');
 
-  const fetchEscapeGames = (search) => {
-    fetch(`/explore${search ? `?q=${encodeURIComponent(search)}` : ''}`, {
+  const fetchEscapeGames = throttle(function(search) {
+    fetch(`/explore${search ? `?q=${encodeURIComponent(search)}` : ""}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -17,20 +17,24 @@ export default ({ authenticity_token }) => {
       .then(function(data) {
         setEscapeGames(data);
       });
-  };
-
-  useEffect(() => {
-    fetchEscapeGames()
-  }, []);
+  }, 1000);
 
   return (
     <div>
-      <SearchBar search={inputValue} onChange={(e) => {
-        setInputValue(e.target.value)
-        fetchEscapeGames(e.target.value)
-        }} />
-      <p>{escapeGames.length} result{escapeGames.length == 1 ? '' : 's'}</p>
-      <ExploreList escapeGames={escapeGames} authenticity_token={authenticity_token} />
+      <input
+        type="text"
+        className="form-control"
+        onChange={e => {
+          fetchEscapeGames(e.target.value);
+        }}
+      />
+      <p>
+        {escapeGames.length} result{escapeGames.length == 1 ? "" : "s"}
+      </p>
+      <ExploreList
+        escapeGames={escapeGames}
+        authenticity_token={authenticity_token}
+      />
     </div>
   );
 };
