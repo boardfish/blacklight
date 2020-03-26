@@ -49,7 +49,7 @@ class EscapeGameService
   end
 
   def list_clears
-    @escape_games.includes(:clears).map do |e|
+    @escape_games.with_attached_images.includes(:clears).map do |e|
       image_path = explore_thumbnail_for(e.images&.first)
       {
         escape_game: e,
