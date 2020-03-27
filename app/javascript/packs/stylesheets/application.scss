@@ -1,1 +1,58 @@
+// Solarized color theme, originally by Ethan Schoonover
+// Licensed under the MIT License
+// https://github.com/altercation/solarized/blob/master/LICENSE
+$white:    #fdf6e3;
+$gray-100: #eee8d5;
+$gray-200: #93a1a1;
+$gray-300: #839496;
+$gray-400: #657b83;
+$gray-500: #586e75;
+$gray-600: #073642;
+$gray-700: #002b36;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
+
+// fusv-disable
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+) !default;
+// fusv-enable
+
+
+$blue:    #268bd2;
+$indigo:  #d336ac;
+$purple:  #6c71c4;
+$pink:    #d33682;
+$red:     #dc322f;
+$orange:  #cb4b16;
+$yellow:  #b58900;
+$green:   #859900;
+$teal:    #20c997;
+$cyan:    #2aa198;
+
+$colors: (
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+);
+
 @import "~bootstrap/scss/bootstrap";
