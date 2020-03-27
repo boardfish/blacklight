@@ -1,16 +1,32 @@
 // Solarized color theme, originally by Ethan Schoonover
 // Licensed under the MIT License
 // https://github.com/altercation/solarized/blob/master/LICENSE
-$white: #fdf6e3;
-$gray-100: #d8d7c4;
-$gray-200: #afc0c0;
-$gray-300: #a2b3b3;
-$gray-400: #93a1a1;
-$gray-500: #8ea1a3;
-$gray-600: #657b83;
-$gray-700: #586e75;
-$gray-800: #073642;
-$gray-900: #002b36;
+
+$solarized: (
+  "Base3": #fdf6e3,
+  "Base2": #eee8d5,
+  "Base1": #93a1a1,
+  "Base0": #839496,
+  "Base00": #657b83,
+  "Base01": #586e75,
+  "Base02": #073642,
+  "Base03": #002b36
+);
+
+@function solarized($key: "Base3") {
+  @return map-get($solarized, $key);
+}
+
+$white: solarized("Base3"); // Base3
+$gray-100: solarized("Base2"); // Base2
+$gray-200: #afc0c0; // Light gray (avoid using)
+$gray-300: #a2b3b3; // Light gray (avoid using)
+$gray-400: solarized("Base1"); // Base1
+$gray-500: solarized("Base0"); // Base0
+$gray-600: solarized("Base00"); // Base00
+$gray-700: solarized("Base01"); // Base01
+$gray-800: solarized("Base02"); // Base02
+$gray-900: solarized("Base03"); // Base03
 $black: #000;
 
 // fusv-disable
@@ -27,16 +43,16 @@ $grays: (
 ) !default;
 // fusv-enable
 
-$blue: #268bd2;
+$blue: #268bd2; // Blue
 $indigo: #d336ac;
-$purple: #6c71c4;
-$pink: #d33682;
-$red: #dc322f;
-$orange: #cb4b16;
-$yellow: #b58900;
-$green: #859900;
-$teal: #20c997;
-$cyan: #2aa198;
+$purple: #6c71c4; // Violet
+$pink: #d33682; // Magenta
+$red: #dc322f; // Red
+$orange: #cb4b16; // Orange
+$yellow: #b58900; // Yellow
+$green: #859900; // Green
+$teal: #20c997 !default;
+$cyan: #2aa198; // Cyan
 
 $colors: (
   "blue": $blue,
@@ -60,8 +76,8 @@ $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
 $danger: $red !default;
-$light: $gray-100 !default;
-$dark: $gray-800 !default;
+$light: solarized("Base2");
+$dark: solarized("Base02");
 
 $theme-colors: (
   "primary": $primary,
@@ -74,14 +90,39 @@ $theme-colors: (
   "dark": $dark
 ) !default;
 
+$body-bg: solarized("Base3");
+$body-text: solarized("Base00");
+
 @import "~bootstrap/scss/bootstrap";
 
+.text-dark {
+  color: solarized("Base0") b {
+    color: solarized("Base1");
+  }
+}
+
+.text-light {
+  color: solarized("Base00") b {
+    color: solarized("Base01");
+  }
+}
+
+.text-muted {
+  color: solarized("Base1") !important;
+}
+
 body[data-theme="dark"] {
-  background-color: $gray-900;
+  background-color: solarized("Base03");
   @extend .text-light;
 }
 [data-theme="dark"] {
-  .bg-light, .table, .card, .form-control, .custom-select, .custom-file-label, .dropdown-menu {
+  .bg-light,
+  .table,
+  .card,
+  .form-control,
+  .custom-select,
+  .custom-file-label,
+  .dropdown-menu {
     @extend .bg-dark;
     @extend .text-light;
   }
@@ -97,9 +138,10 @@ body[data-theme="dark"] {
     background-color: $gray-600;
   }
 
-  .dropdown-item{
+  .dropdown-item {
     @extend .text-light;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: lighten($light, 10%);
       background-color: $gray-900;
     }
@@ -107,6 +149,10 @@ body[data-theme="dark"] {
 
   .text-body {
     @extend .text-light;
+  }
+
+  .text-muted {
+    color: solarized("Base01") !important;
   }
 }
 
