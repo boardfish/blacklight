@@ -50,7 +50,7 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
             }
             {NavbarData.alwaysVisible.map(({ href, name }) => (
               <NavItem>
-                <NavLink href={href}>{name}</NavLink>
+                <NavLink href={href}></NavLink>
               </NavItem>
             ))}
           </Nav>
@@ -61,8 +61,8 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
                   {username}
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    <NavLink href={`/users/${userId}/edit`}>Account</NavLink>
+                  <DropdownItem href={`/users/${userId}/edit`}>
+                    Account
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem dangerouslySetInnerHTML={{ __html: loginButton }} >
