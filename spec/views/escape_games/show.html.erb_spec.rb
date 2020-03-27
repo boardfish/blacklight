@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'escape_games/show', type: :view do
   before(:each) do
-    @escape_game = assign(:escape_game, EscapeGame.first)
+    assign(:escape_game, create(:escape_game))
   end
 
   it 'renders attributes in <p>' do
