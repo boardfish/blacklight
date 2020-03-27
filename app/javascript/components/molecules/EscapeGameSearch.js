@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SearchBar from "../atoms/SearchBar";
 import ExploreList from "../atoms/ExploreList";
 import throttle from "lodash-es/throttle";
 
