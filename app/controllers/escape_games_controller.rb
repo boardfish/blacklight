@@ -17,7 +17,9 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games/explore
   # GET /escape_games/explore.json
   def explore
-    @escape_games = search
+    @escape_games = EscapeGameService.search_with_clears(
+      current_user, params[:q]
+    )
     respond_to do |format|
       format.html do
         render :explore
@@ -93,16 +95,18 @@ class EscapeGamesController < ApplicationController
   end
 
   def cleared
-    if params[:cleared]
-      Clear.where(user: current_user, escape_game: @escape_game).first_or_create
-    else
-      Clear.where(user: current_user, escape_game: @escape_game).last.destroy!
-    end
+    EscapeGameService.set_cleared(@escape_game, current_user, params[:cleared])
     respond_to do |format|
       format.html do
         redirect_to @escape_game, notice: I18N_HASH.dig(:cleared, :success)
       end
       format.json { head :no_content }
+    end
+  end
+
+  def already_cleared
+    respond_to do |format|
+      format.json { render json: { cleared: true } }
     end
   end
 
@@ -128,10 +132,5 @@ class EscapeGamesController < ApplicationController
         :longitude, :visible, :user_id, images: []
       )
     end
-  end
-
-  def search
-    EscapeGame
-      .kept.where.not(user: current_user).ransack(name_cont: params[:q]).result
   end
 end

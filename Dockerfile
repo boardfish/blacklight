@@ -1,4 +1,5 @@
 FROM ruby:2.7
+ENV RUBYOPT='-W:no-deprecated -W:no-experimental'
 RUN apt-get -qq update && apt-get -qq install -y postgresql-client
 RUN apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -

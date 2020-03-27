@@ -14,3 +14,13 @@
  *= require_self
  */
 @import "rails_bootstrap_forms";
+
+.blurdash-fadeout {
+  animation: fadeout 0.2s ease-in;
+  opacity: 0;
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

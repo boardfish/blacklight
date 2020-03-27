@@ -1,19 +1,21 @@
 import React from "react";
-import { Table } from "reactstrap";
+import EscapeGame from "../molecules/EscapeGame";
 
-export default ({ escapeGames }) => {
+export default ({ escapeGames, authenticity_token }) => {
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {(escapeGames || []).map(escapeGame => (
-          <tr><td>{escapeGame.name}</td></tr>
-        ))}
-      </tbody>
-    </Table>
+    // <p>{JSON.stringify(escapeGames)}</p>
+    <div className="card-columns">
+      {(escapeGames || []).map(({ escape_game, cleared, image_path }) => (
+        <div>
+          <EscapeGame
+            escapeGame={escape_game}
+            id={escape_game.id}
+            authenticity_token={authenticity_token}
+            cleared={cleared}
+            imagePath={image_path}
+          />
+        </div>
+      ))}
+    </div>
   );
 };
