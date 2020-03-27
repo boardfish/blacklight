@@ -7,7 +7,7 @@ RSpec.describe 'escape_games/show', type: :view do
     assign(:escape_game, create(:escape_game))
   end
 
-  it 'renders attributes in <p>' do
+  xit 'renders attributes in <p>' do
     render
   end
 end
