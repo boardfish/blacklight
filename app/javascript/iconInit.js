@@ -12,11 +12,12 @@ import {
   faLaughWink,
   faLock,
   faLockOpen,
+  faMapMarker,
   faMeteor,
   faMobile,
   faQuestionCircle,
   faShapes,
-  faUserAstronaut
+  faUserAstronaut,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -32,6 +33,7 @@ library.add(
   faLaughWink,
   faLock,
   faLockOpen,
+  faMapMarker,
   faMeteor,
   faMobile,
   faQuestionCircle,

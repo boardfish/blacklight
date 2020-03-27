@@ -31,39 +31,68 @@ export default ({
     <Card>
       <CardHeader>
         <div className="d-flex flex-row">
-        <h4 className="mr-auto">{escapeGame.name}</h4>
-        <ClearButton
-          cleared={cleared}
-          size='sm'
-          stateColors={chooseColor(exploring, cleared)}
-          escapeGameId={escapeGame.id}
-          authenticity_token={authenticity_token}
-        />
+          <h4 className="mr-auto">{escapeGame.name}</h4>
+          <ClearButton
+            cleared={cleared}
+            size="sm"
+            stateColors={chooseColor(exploring, cleared)}
+            escapeGameId={escapeGame.id}
+            authenticity_token={authenticity_token}
+          />
         </div>
         <p className="text-muted">{escapeGame.summary}</p>
       </CardHeader>
-      {imagePath ? <BlurHashTest
-        blurhash={escapeGame.blurhash}
-        src={imagePath}
-        className="card-img"
-        blurhashOpts={{
-          width: "100%",
-          height: "200px",
-          resolutionX: 350,
-          punch: 1
-        }}
-      >
-        <h5 className="ml-auto mt-auto mr-2" style={{zIndex: 1}}>
-          <EscapeGameMetadata id={escapeGame.id} difficultyLevel={escapeGame.difficulty_level} availableTime={escapeGame.available_time} genre={escapeGame.genre} />
-        </h5>
-      </BlurHashTest> : ''
-      }
+      {imagePath ? (
+        <BlurHashTest
+          blurhash={escapeGame.blurhash}
+          src={imagePath}
+          className="card-img"
+          blurhashOpts={{
+            width: "100%",
+            height: "200px",
+            resolutionX: 350,
+            punch: 1
+          }}
+        >
+          <h5 className="ml-auto mt-auto mr-2" style={{ zIndex: 1 }}>
+            <EscapeGameMetadata
+              id={escapeGame.id}
+              difficultyLevel={escapeGame.difficulty_level}
+              availableTime={escapeGame.available_time}
+              genre={escapeGame.genre}
+              location={{
+                latitude: escapeGame.latitude,
+                longitude: escapeGame.longitude,
+                placeId: escapeGame.place_id
+              }}
+            />
+          </h5>
+        </BlurHashTest>
+      ) : (
+        ""
+      )}
       <CardBody>
+        {!imagePath ? (
+          <h5 className="d-flex justify-content-end">
+            <EscapeGameMetadata
+              id={escapeGame.id}
+              difficultyLevel={escapeGame.difficulty_level}
+              availableTime={escapeGame.available_time}
+              genre={escapeGame.genre}
+              location={{
+                latitude: escapeGame.latitude,
+                longitude: escapeGame.longitude,
+                placeId: escapeGame.place_id
+              }}
+            />
+          </h5>
+        ) : (
+          ""
+        )}
         {escapeGame.description.split("\\n").map((item, i) => {
           return <p key={i}>{item}</p>;
         })}
       </CardBody>
-      
     </Card>
   </a>
 );

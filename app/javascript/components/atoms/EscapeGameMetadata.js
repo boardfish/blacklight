@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import startCase from "lodash/startCase";
 import { UncontrolledTooltip } from "reactstrap";
@@ -41,16 +41,38 @@ const chooseGenreIcon = genre => {
   }[genre];
 };
 
+const getGoogleMapsURLFor = ({ latitude, longitude, placeId }) => {
+  return `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}&query_place_id=${placeId}`;
+};
+
 const fuzzyTime = minutes => {
   const hours = Math.floor(minutes / 60);
   const mins = minutes - hours * 60;
   return `${hours > 0 ? `${hours}hr` : ""} ${mins > 0 ? `${mins}m` : ""}`;
 };
 
-export default ({ id, difficultyLevel, availableTime, genre }) => (
+export default ({ id, difficultyLevel, availableTime, genre, location }) => (
   <span>
+    {
+      location && location.latitude && location.longitude && location.placeId ?
+      <Fragment>
+        <a
+          href={getGoogleMapsURLFor(location)}
+          rel="noopener"
+          target="_blank"
+          className="badge badge-primary mr-1"
+          id={`location-${id}`}
+        >
+          <FontAwesomeIcon icon="map-marker" />
+        </a>
+        <UncontrolledTooltip target={`location-${id}`} placement="bottom">
+          View on Google Maps
+        </UncontrolledTooltip>
+      </Fragment>
+      : ''
+    }
     <span className="badge badge-primary mr-1" id={`difficultyLevel-${id}`}>
-      {renderDifficulty(difficultyLevel)}{" "}
+      {renderDifficulty(difficultyLevel)}
     </span>
     <UncontrolledTooltip target={`difficultyLevel-${id}`} placement="bottom">
       {startCase(difficultyLevel)}
