@@ -1,6 +1,7 @@
 // Solarized color theme, originally by Ethan Schoonover
 // Licensed under the MIT License
 // https://github.com/altercation/solarized/blob/master/LICENSE
+@import url('https://fonts.googleapis.com/css?family=Sen:400,700,800&display=swap');
 
 $solarized: (
   "Base3": #fdf6e3,
@@ -93,7 +94,19 @@ $theme-colors: (
 $body-bg: solarized("Base3");
 $body-text: solarized("Base00");
 
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$headings-font-family: "Sen", $font-family-sans-serif;
+$headings-font-weight:        800 !default;
+
 @import "~bootstrap/scss/bootstrap";
+
+.navbar-brand {
+  font-family: $headings-font-family;
+  text-transform: uppercase;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+}
 
 .text-dark {
   color: solarized("Base0")
