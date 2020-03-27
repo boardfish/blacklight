@@ -52,7 +52,7 @@ const fuzzyTime = minutes => {
 };
 
 export default ({ id, difficultyLevel, availableTime, genre, location }) => (
-  <span>
+  <Fragment>
     {
       location && location.latitude && location.longitude && location.placeId ?
       <Fragment>
@@ -86,5 +86,5 @@ export default ({ id, difficultyLevel, availableTime, genre, location }) => (
     <span className="badge badge-primary">
       <FontAwesomeIcon icon="hourglass-start" /> {fuzzyTime(availableTime)}
     </span>
-  </span>
+  </Fragment>
 );

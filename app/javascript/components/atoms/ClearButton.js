@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default ({ cleared, escapeGameId, authenticity_token, stateColors, size }) => {
+export default ({ cleared, escapeGameId, authenticity_token, stateColors, size, className, style }) => {
   const [clearedState, setCleared] = useState(cleared);
   useEffect(() => {
     setCleared(cleared);
@@ -27,6 +27,8 @@ export default ({ cleared, escapeGameId, authenticity_token, stateColors, size }
         updateCleared(newState);
       }}
       size={size}
+      className={className}
+      style={style}
     >
       {clearedState ? <FontAwesomeIcon icon="lock-open" /> : <FontAwesomeIcon icon="lock" />}
     </Button>

@@ -31,16 +31,9 @@ export default ({
     <Card>
       <CardHeader>
         <div className="d-flex flex-row">
-          <h4 className="mr-auto">{escapeGame.name}</h4>
-          <ClearButton
-            cleared={cleared}
-            size="sm"
-            stateColors={chooseColor(exploring, cleared)}
-            escapeGameId={escapeGame.id}
-            authenticity_token={authenticity_token}
-          />
+          <h4 className="escape-game-name">{escapeGame.name}</h4>
         </div>
-        <p className="text-muted">{escapeGame.summary}</p>
+        <p className="escape-game-summary">{escapeGame.summary}</p>
       </CardHeader>
       {imagePath ? (
         <BlurHashTest
@@ -54,6 +47,14 @@ export default ({
             punch: 1
           }}
         >
+          <ClearButton
+            cleared={cleared}
+            size="sm"
+            stateColors={chooseColor(exploring, cleared)}
+            escapeGameId={escapeGame.id}
+            authenticity_token={authenticity_token}
+            style={{zIndex: 1}}
+          />
           <h5 className="ml-auto mt-auto mr-2" style={{ zIndex: 1 }}>
             <EscapeGameMetadata
               id={escapeGame.id}
@@ -73,7 +74,15 @@ export default ({
       )}
       <CardBody>
         {!imagePath ? (
-          <h5 className="d-flex justify-content-end">
+          <h5 className="d-flex justify-content-end align-items-center">
+            <ClearButton
+              cleared={cleared}
+              size="sm"
+              stateColors={chooseColor(exploring, cleared)}
+              escapeGameId={escapeGame.id}
+              authenticity_token={authenticity_token}
+              className="mr-auto"
+            />
             <EscapeGameMetadata
               id={escapeGame.id}
               difficultyLevel={escapeGame.difficulty_level}
