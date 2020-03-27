@@ -1,6 +1,7 @@
 // Solarized color theme, originally by Ethan Schoonover
 // Licensed under the MIT License
 // https://github.com/altercation/solarized/blob/master/LICENSE
+@import url('https://fonts.googleapis.com/css?family=Sen:400,700,800&display=swap');
 
 $solarized: (
   "Base3": #fdf6e3,
@@ -17,7 +18,7 @@ $solarized: (
   @return map-get($solarized, $key);
 }
 
-$white: solarized("Base3"); // Base3
+$white: solarized("Base3");    // Base3
 $gray-100: solarized("Base2"); // Base2
 $gray-200: #afc0c0; // Light gray (avoid using)
 $gray-300: #a2b3b3; // Light gray (avoid using)
@@ -43,16 +44,16 @@ $grays: (
 ) !default;
 // fusv-enable
 
-$blue: #268bd2; // Blue
-$indigo: #d336ac;
+$blue: #268bd2;   // Blue
+$indigo: #d336ac; 
 $purple: #6c71c4; // Violet
-$pink: #d33682; // Magenta
-$red: #dc322f; // Red
+$pink: #d33682;   // Magenta
+$red: #dc322f;    // Red
 $orange: #cb4b16; // Orange
 $yellow: #b58900; // Yellow
-$green: #859900; // Green
+$green: #859900;  // Green
 $teal: #20c997 !default;
-$cyan: #2aa198; // Cyan
+$cyan: #2aa198;   // Cyan
 
 $colors: (
   "blue": $blue,
@@ -70,7 +71,7 @@ $colors: (
   "gray-dark": $gray-800
 );
 
-$primary: $blue !default;
+$primary: $red !default;
 $secondary: $gray-600 !default;
 $success: $green !default;
 $info: $cyan !default;
@@ -93,17 +94,31 @@ $theme-colors: (
 $body-bg: solarized("Base3");
 $body-text: solarized("Base00");
 
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$headings-font-family: "Sen", $font-family-sans-serif;
+$headings-font-weight:        800 !default;
+
 @import "~bootstrap/scss/bootstrap";
 
+.navbar-brand {
+  font-family: $headings-font-family;
+  text-transform: uppercase;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+}
+
 .text-dark {
-  color: solarized("Base0") b {
-    color: solarized("Base1");
+  color: solarized("Base0")
+  b {
+    color: solarized("Base1")
   }
 }
 
 .text-light {
-  color: solarized("Base00") b {
-    color: solarized("Base01");
+  color: solarized("Base00")
+  b {
+    color: solarized("Base01")
   }
 }
 
@@ -116,13 +131,7 @@ body[data-theme="dark"] {
   @extend .text-light;
 }
 [data-theme="dark"] {
-  .bg-light,
-  .table,
-  .card,
-  .form-control,
-  .custom-select,
-  .custom-file-label,
-  .dropdown-menu {
+  .bg-light, .table, .card, .form-control, .custom-select, .custom-file-label, .dropdown-menu {
     @extend .bg-dark;
     @extend .text-light;
   }
@@ -138,10 +147,9 @@ body[data-theme="dark"] {
     background-color: $gray-600;
   }
 
-  .dropdown-item {
+  .dropdown-item{
     @extend .text-light;
-    &:hover,
-    &:focus {
+    &:hover, &:focus {
       color: lighten($light, 10%);
       background-color: $gray-900;
     }
