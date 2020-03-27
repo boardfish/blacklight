@@ -23,6 +23,7 @@ export default ({ authenticity_token }) => {
       <input
         type="text"
         className="form-control"
+        placeholder="Search for an escape room"
         onChange={e => {
           fetchEscapeGames(e.target.value);
         }}
