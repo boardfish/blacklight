@@ -59,5 +59,10 @@ class EscapeGame < ApplicationRecord
     self.blurhash = Blurhash.encode(
       @image.columns, @image.rows, @image.export_pixels
     )
+  # rubocop:disable Lint/SuppressedException
+  rescue ActiveStorage::FileNotFoundError
+    # rubocop:enable Lint/SuppressedException
+    # This happens when a new record has been made and the attached image isn't
+    # on the record yet.
   end
 end

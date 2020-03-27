@@ -45,27 +45,26 @@ FactoryBot.define do
     difficulty_level { EscapeGame.difficulty_levels.keys.sample }
     available_time { Random.rand(30..150) }
     latitude { location.dig(:location, :latitude) }
-    longitude { location.dig(:location, :longitude)  }
+    longitude { location.dig(:location, :longitude) }
     place_id { location.dig(:location, :place_id) }
     user_id { User.count > 2 ? User.all.sample.id : create(:user).id }
     after(:build) do |escape_game|
-      begin
       puts "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png"
       image_to_attach = File.open(
-          Rails.root.join(
-            'spec',
-            'fixtures',
-            'files',
-            'escape_game',
-            "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png"
-          )
+        Rails.root.join(
+          'spec',
+          'fixtures',
+          'files',
+          'escape_game',
+          "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png"
         )
+      )
       escape_game.images.attach(
         io: image_to_attach,
         filename: "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png",
         content_type: 'image/png'
       )
-    # rubocop:disable Lint/SuppressedException
+      # rubocop:disable Lint/SuppressedException
     rescue Errno::ENOENT
       # rubocop:enable Lint/SuppressedException
     end

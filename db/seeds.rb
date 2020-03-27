@@ -13,3 +13,5 @@ seed_user = FactoryBot.create(:user)
     user: seed_user
   )
 end
+# Build blurhashes for newly attached images
+EscapeGame.find_each(&:save)
