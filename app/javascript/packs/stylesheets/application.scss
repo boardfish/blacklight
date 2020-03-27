@@ -1,17 +1,17 @@
 // Solarized color theme, originally by Ethan Schoonover
 // Licensed under the MIT License
 // https://github.com/altercation/solarized/blob/master/LICENSE
-$white:    #fdf6e3;
-$gray-100: #eee8d5;
-$gray-200: #93a1a1;
-$gray-300: #839496;
-$gray-400: #657b83;
-$gray-500: #586e75;
-$gray-600: #073642;
-$gray-700: #002b36;
-$gray-800: #343a40;
-$gray-900: #212529;
-$black:    #000;
+$white: #fdf6e3;
+$gray-100: #d8d7c4;
+$gray-200: #afc0c0;
+$gray-300: #a2b3b3;
+$gray-400: #93a1a1;
+$gray-500: #8ea1a3;
+$gray-600: #657b83;
+$gray-700: #586e75;
+$gray-800: #073642;
+$gray-900: #002b36;
+$black: #000;
 
 // fusv-disable
 $grays: (
@@ -27,32 +27,89 @@ $grays: (
 ) !default;
 // fusv-enable
 
-
-$blue:    #268bd2;
-$indigo:  #d336ac;
-$purple:  #6c71c4;
-$pink:    #d33682;
-$red:     #dc322f;
-$orange:  #cb4b16;
-$yellow:  #b58900;
-$green:   #859900;
-$teal:    #20c997;
-$cyan:    #2aa198;
+$blue: #268bd2;
+$indigo: #d336ac;
+$purple: #6c71c4;
+$pink: #d33682;
+$red: #dc322f;
+$orange: #cb4b16;
+$yellow: #b58900;
+$green: #859900;
+$teal: #20c997;
+$cyan: #2aa198;
 
 $colors: (
-  "blue":       $blue,
-  "indigo":     $indigo,
-  "purple":     $purple,
-  "pink":       $pink,
-  "red":        $red,
-  "orange":     $orange,
-  "yellow":     $yellow,
-  "green":      $green,
-  "teal":       $teal,
-  "cyan":       $cyan,
-  "white":      $white,
-  "gray":       $gray-600,
-  "gray-dark":  $gray-800
+  "blue": $blue,
+  "indigo": $indigo,
+  "purple": $purple,
+  "pink": $pink,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "green": $green,
+  "teal": $teal,
+  "cyan": $cyan,
+  "white": $white,
+  "gray": $gray-600,
+  "gray-dark": $gray-800
 );
 
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-800 !default;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+) !default;
+
 @import "~bootstrap/scss/bootstrap";
+
+body[data-theme="dark"] {
+  background-color: $gray-900;
+  @extend .text-light;
+}
+[data-theme="dark"] {
+  .bg-light, .table, .card, .form-control, .custom-select, .custom-file-label, .dropdown-menu {
+    @extend .bg-dark;
+    @extend .text-light;
+  }
+  .navbar-light {
+    .navbar-nav .nav-link {
+      @extend .text-light;
+    }
+    .navbar-brand {
+      @extend .text-light;
+    }
+  }
+  .jumbotron {
+    background-color: $gray-600;
+  }
+
+  .dropdown-item{
+    @extend .text-light;
+    &:hover, &:focus {
+      color: lighten($light, 10%);
+      background-color: $gray-900;
+    }
+  }
+
+  .text-body {
+    @extend .text-light;
+  }
+}
+
+.dropdown-toggle {
+  @extend .text-body;
+}

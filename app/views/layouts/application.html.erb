@@ -12,7 +12,7 @@
     <%= javascript_pack_tag 'stylesheets/application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body class="container-fluid d-flex flex-column px-0" style="min-height: 100vh;">
+<body class="container-fluid d-flex flex-column px-0" style="min-height: 100vh;" data-theme="<%= params[:theme] %>">
     <%= react_component(
       "atoms/NavBar",
       {
