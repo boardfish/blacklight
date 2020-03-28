@@ -143,6 +143,8 @@ h4.escape-game-name {
   padding-left: 1.25rem;
   padding-right: 1em;
   border-radius: 0 1em 0 0;
+  max-width: 99%;
+  color: solarized("Base3");
 }
 
 body[data-theme="dark"] {
