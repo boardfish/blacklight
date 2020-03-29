@@ -56,15 +56,13 @@ export default ({ id, difficultyLevel, availableTime, genre, location }) => (
     {
       location && location.latitude && location.longitude && location.placeId ?
       <Fragment>
-        <a
-          href={getGoogleMapsURLFor(location)}
-          rel="noopener"
-          target="_blank"
+        <span
+          onClick={() => window.location = getGoogleMapsURLFor(location)}
           className="badge badge-primary mr-1"
           id={`location-${id}`}
         >
           <FontAwesomeIcon icon="map-marker" />
-        </a>
+        </span>
         <UncontrolledTooltip target={`location-${id}`} placement="bottom">
           View on Google Maps
         </UncontrolledTooltip>
