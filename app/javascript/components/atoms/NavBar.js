@@ -32,8 +32,8 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
           <Nav className="mr-auto" navbar>
             {
               isEnthusiast
-                ? NavbarData.enthusiastLoggedIn.map(({ href, name }) => (
-                  <NavItem>
+                ? NavbarData.enthusiastLoggedIn.map(({ href, name }, index) => (
+                  <NavItem key={index}>
                     <NavLink href={href}>{name}</NavLink>
                   </NavItem>
                 ))
@@ -41,15 +41,15 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
             }
             {
               isMaintainer
-                ? NavbarData.maintainerLoggedIn.map(({ href, name }) => (
-                  <NavItem>
+                ? NavbarData.maintainerLoggedIn.map(({ href, name }, index) => (
+                  <NavItem key={index}>
                     <NavLink href={href}>{name}</NavLink>
                   </NavItem>
                 ))
                 : ""
             }
-            {NavbarData.alwaysVisible.map(({ href, name }) => (
-              <NavItem>
+            {NavbarData.alwaysVisible.map(({ href, name }, index) => (
+              <NavItem key={index}>
                 <NavLink href={href}></NavLink>
               </NavItem>
             ))}

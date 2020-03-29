@@ -17,7 +17,7 @@ const spiciness = difficultyLevel => {
 const renderDifficulty = difficultyLevel => {
   var content = [];
   for (var i = 0; i < spiciness(difficultyLevel); i++) {
-    content.push(<FontAwesomeIcon icon="burn" />);
+    content.push(<FontAwesomeIcon icon="burn" key={i} />);
   }
   return content;
 };
