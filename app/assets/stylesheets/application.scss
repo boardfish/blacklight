@@ -20,7 +20,40 @@
   opacity: 0;
 }
 
+.card {
+  transition: 0.2s border-color ease-in;
+  border: 2px solid var(--primary)
+}
+
+.bigger-jeff {
+  animation: raise 0.2s ease-out;
+  transform: translateY(-.5em);
+  border: 2px solid var(--selected)
+}
+
+.smaller-jeff {
+  animation: lower 0.2s ease-in;
+}
+
 @keyframes fadeout {
   from { opacity: 1; }
   to { opacity: 0; }
+}
+
+@keyframes raise {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(-.5em);
+  }
+}
+
+@keyframes lower {
+  from {
+    transform: translateY(-.5em);
+  }
+  to {
+    transform: none;
+  }
 }

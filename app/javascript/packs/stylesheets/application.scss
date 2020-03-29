@@ -76,12 +76,14 @@ $secondary: $gray-600 !default;
 $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
+$selected: $yellow;
 $danger: $red !default;
 $light: solarized("Base2");
 $dark: solarized("Base02");
 
 $theme-colors: (
   "primary": $primary,
+  "selected": $selected,
   "secondary": $secondary,
   "success": $success,
   "info": $info,
@@ -99,6 +101,34 @@ $headings-font-family: "Sen", $font-family-sans-serif;
 $headings-font-weight:        800 !default;
 
 @import "~bootstrap/scss/bootstrap";
+
+.blurdash-fadeout {
+  animation: fadeout 0.2s ease-in;
+  opacity: 0;
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes raise {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(-.5em);
+  }
+}
+
+@keyframes lower {
+  from {
+    transform: translateY(-.5em);
+  }
+  to {
+    transform: none;
+  }
+}
 
 .navbar-brand {
   font-family: $headings-font-family;
@@ -158,7 +188,31 @@ h4.escape-game-name {
 .card {
   background: darken($primary, 25%);
   color: solarized("Base3");
+  transition: 0.2s border-color ease-in;
+  border: 2px solid var(--primary)
 }
+
+a.card {
+  text-decoration: none;
+  color: solarized("Base3");
+}
+
+.focused {
+  animation: raise 0.2s ease-out;
+  transform: translateY(-.5em);
+  border: 2px solid $selected;
+  .escape-game-name {
+    background-color: $selected;
+  }
+  .escape-game-summary {
+    background-color: darken($selected, 10%);
+  }
+}
+
+.unfocused {
+  animation: lower 0.2s ease-in;
+}
+
 
 body[data-theme="dark"] {
   background-color: solarized("Base03");
