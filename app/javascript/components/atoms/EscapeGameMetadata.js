@@ -17,7 +17,7 @@ const spiciness = difficultyLevel => {
 const renderDifficulty = difficultyLevel => {
   var content = [];
   for (var i = 0; i < spiciness(difficultyLevel); i++) {
-    content.push(<FontAwesomeIcon icon="burn" />);
+    content.push(<FontAwesomeIcon icon="burn" key={i} />);
   }
   return content;
 };
@@ -52,19 +52,17 @@ const fuzzyTime = minutes => {
 };
 
 export default ({ id, difficultyLevel, availableTime, genre, location }) => (
-  <span>
+  <Fragment>
     {
       location && location.latitude && location.longitude && location.placeId ?
       <Fragment>
-        <a
-          href={getGoogleMapsURLFor(location)}
-          rel="noopener"
-          target="_blank"
+        <span
+          onClick={() => window.location = getGoogleMapsURLFor(location)}
           className="badge badge-primary mr-1"
           id={`location-${id}`}
         >
           <FontAwesomeIcon icon="map-marker" />
-        </a>
+        </span>
         <UncontrolledTooltip target={`location-${id}`} placement="bottom">
           View on Google Maps
         </UncontrolledTooltip>
@@ -86,5 +84,5 @@ export default ({ id, difficultyLevel, availableTime, genre, location }) => (
     <span className="badge badge-primary">
       <FontAwesomeIcon icon="hourglass-start" /> {fuzzyTime(availableTime)}
     </span>
-  </span>
+  </Fragment>
 );

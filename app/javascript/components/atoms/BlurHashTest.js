@@ -9,8 +9,7 @@ export default ({ blurhash, src, blurhashOpts, className, children }) => {
       src={src}
       className="d-flex"
       style={{
-        background: `url(${src}) no-repeat center`,
-        backgroundSize: 'cover',
+        background: `center / cover no-repeat url(${src})`,
         height: '200px', maxHeight:'200px'}}>
       <img
         src={src}

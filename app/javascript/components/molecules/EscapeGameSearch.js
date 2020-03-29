@@ -4,6 +4,7 @@ import throttle from "lodash-es/throttle";
 
 export default ({ authenticity_token }) => {
   const [escapeGames, setEscapeGames] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchEscapeGames = throttle(function(search) {
     fetch(`/explore${search ? `?q=${encodeURIComponent(search)}` : ""}`, {
@@ -15,8 +16,10 @@ export default ({ authenticity_token }) => {
       .then(resp => resp.json()) // Transform the data into json
       .then(function(data) {
         setEscapeGames(data);
+        setLoading(false);
       });
   }, 1000);
+  useEffect(() => fetchEscapeGames(""), []);
 
   return (
     <div>
@@ -25,12 +28,17 @@ export default ({ authenticity_token }) => {
         className="form-control"
         placeholder="Search for an escape room"
         onChange={e => {
+          setLoading(true);
           fetchEscapeGames(e.target.value);
         }}
       />
-      <p>
-        {escapeGames.length} result{escapeGames.length == 1 ? "" : "s"}
-      </p>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <p>
+          {escapeGames.length} result{escapeGames.length == 1 ? "" : "s"}
+        </p>
+      )}
       <ExploreList
         escapeGames={escapeGames}
         authenticity_token={authenticity_token}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ClearButton from "../atoms/ClearButton";
 import { Card, CardBody, CardHeader, CardFooter, CardImg } from "reactstrap";
 import BlurHashTest from "../atoms/BlurHashTest";
@@ -21,26 +21,23 @@ export default ({
   imagePath,
   authenticity_token,
   exploring
-}) => (
-  <a
-    href={escapeGame.website_link}
-    className="text-body"
-    target="_blank"
-    rel="noopener"
-  >
-    <Card>
+}) => {
+  const [hovered, setHovered] = useState('');
+  return (
+    <a
+      onMouseOver={() => setHovered('focused')}
+      onMouseOut={() => setHovered('unfocused')}
+      onFocus={() => setHovered('focused')}
+      onBlur={() => setHovered('unfocused')}
+      href={`/escape_games/${escapeGame.id}`}
+      className={`card ${hovered}`}
+      tabIndex={1}
+      >
       <CardHeader>
         <div className="d-flex flex-row">
-          <h4 className="mr-auto">{escapeGame.name}</h4>
-          <ClearButton
-            cleared={cleared}
-            size="sm"
-            stateColors={chooseColor(exploring, cleared)}
-            escapeGameId={escapeGame.id}
-            authenticity_token={authenticity_token}
-          />
+          <h4 className="escape-game-name">{escapeGame.name}</h4>
         </div>
-        <p className="text-muted">{escapeGame.summary}</p>
+        <p className="escape-game-summary">{escapeGame.summary}</p>
       </CardHeader>
       {imagePath ? (
         <BlurHashTest
@@ -54,6 +51,14 @@ export default ({
             punch: 1
           }}
         >
+          <ClearButton
+            cleared={cleared}
+            size="sm"
+            stateColors={chooseColor(exploring, cleared)}
+            escapeGameId={escapeGame.id}
+            authenticity_token={authenticity_token}
+            style={{ zIndex: 1 }}
+          />
           <h5 className="ml-auto mt-auto mr-2" style={{ zIndex: 1 }}>
             <EscapeGameMetadata
               id={escapeGame.id}
@@ -73,7 +78,15 @@ export default ({
       )}
       <CardBody>
         {!imagePath ? (
-          <h5 className="d-flex justify-content-end">
+          <h5 className="d-flex justify-content-end align-items-center">
+            <ClearButton
+              cleared={cleared}
+              size="sm"
+              stateColors={chooseColor(exploring, cleared)}
+              escapeGameId={escapeGame.id}
+              authenticity_token={authenticity_token}
+              className="mr-auto"
+            />
             <EscapeGameMetadata
               id={escapeGame.id}
               difficultyLevel={escapeGame.difficulty_level}
@@ -93,6 +106,6 @@ export default ({
           return <p key={i}>{item}</p>;
         })}
       </CardBody>
-    </Card>
-  </a>
-);
+    </a>
+  );
+};
