@@ -32,7 +32,11 @@ class EscapeGamesController < ApplicationController
 
   # GET /escape_games/1
   # GET /escape_games/1.json
-  def show; end
+  def show
+    @related_escape_games = EscapeGameService.list_with_clears(
+      current_user, @escape_game.user.escape_games.where.not(id: @escape_game.id)
+    )
+  end
 
   # GET /escape_games/new
   def new
