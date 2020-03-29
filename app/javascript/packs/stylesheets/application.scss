@@ -147,6 +147,19 @@ h4.escape-game-name {
   color: solarized("Base3");
 }
 
+.navbar {
+  background-color: darken($primary, 25%);
+  color: solarized("Base3");
+  .nav-link, .navbar-brand {
+    color: inherit;
+  }
+}
+
+.card {
+  background: darken($primary, 25%);
+  color: solarized("Base3");
+}
+
 body[data-theme="dark"] {
   background-color: solarized("Base03");
   @extend .text-light;

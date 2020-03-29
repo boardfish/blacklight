@@ -25,7 +25,7 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
 
   return (
     <div>
-      <Navbar color="primary" light expand="md" fixed="top">
+      <Navbar expand="md" fixed="top">
         <NavbarBrand href="/">Blacklight</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
