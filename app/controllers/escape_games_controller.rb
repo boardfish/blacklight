@@ -34,7 +34,8 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games/1.json
   def show
     @related_escape_games = EscapeGameService.list_with_clears(
-      current_user, @escape_game.user.escape_games.where.not(id: @escape_game.id)
+      current_user,
+      @escape_game.user.escape_games.where.not(id: @escape_game.id)
     )
   end
 
@@ -127,14 +128,10 @@ class EscapeGamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def escape_game_params
-    if params.require(:escape_game) == '1'
-      params[:escape_game]
-    else
-      params.require(:escape_game).permit(
-        :name, :genre, :summary, :description,
-        :difficulty_level, :available_time, :website_link, :place_id, :latitude,
-        :longitude, :visible, :user_id, images: []
-      )
-    end
+    params.require(:escape_game).permit(
+      :name, :genre, :summary, :description,
+      :difficulty_level, :available_time, :website_link, :place_id, :latitude,
+      :longitude, :visible, :user_id, images: []
+    )
   end
 end
