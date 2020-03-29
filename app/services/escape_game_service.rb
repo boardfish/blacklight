@@ -19,6 +19,10 @@ class EscapeGameService
         Clear.where(user: user, escape_game: escape_game).last.destroy!
       end
     end
+
+    def list_with_clears(user, games)
+      new(user, games).list_clears
+    end
   end
 
   def initialize(user, escape_games)
@@ -49,7 +53,7 @@ class EscapeGameService
   end
 
   def list_clears
-    @escape_games.with_attached_images.includes(:clears).map do |e|
+    @escape_games.includes(:clears).with_attached_images.map do |e|
       image_path = explore_thumbnail_for(e.images&.first)
       {
         escape_game: e,
