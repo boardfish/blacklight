@@ -64,6 +64,13 @@ RSpec.describe EscapeGamesController, type: :controller do
         assigns(:escape_games).filter { |game| !game.name.include? 'Mushroom' }
       ).to be_empty
     end
+
+    it 'filters escape rooms by difficulty' do
+      get :explore, params: { difficulty: 'beginner' }
+      expect(
+        assigns(:escape_games).filter { |game| !game[:difficulty_level] == 'beginner' }
+      ).to be_empty
+    end
   end
 
   describe 'GET #show' do
