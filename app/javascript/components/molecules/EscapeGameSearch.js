@@ -26,7 +26,7 @@ export default ({ authenticity_token }) => {
   const startSearch = debounce((query) => {
     setLoading(true)
     setSearch(query)
-  }, 3000);
+  }, 700);
 
   useEffect(
     () => {
