@@ -18,7 +18,7 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games/explore.json
   def explore
     @escape_games = EscapeGameService.search_with_clears(
-      current_user, params[:q], params[:difficulty]
+      current_user, params[:search], params[:difficulty]
     )
     respond_to do |format|
       format.html do

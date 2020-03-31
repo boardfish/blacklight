@@ -35,9 +35,10 @@ class EscapeGameService
   end
 
   def search(query, difficulty)
-    result = EscapeGame
-             .kept.where.not(user: @user).ransack(name_cont: query).result
-    difficulty ? result.where(difficulty_level: difficulty) : result
+    params = {}
+    params[:name_cont] = query if query
+    params[:difficulty_level_eq] = difficulty if difficulty
+    EscapeGame.kept.where.not(user: @user).ransack(params).result
   end
 
   attr_writer :escape_games

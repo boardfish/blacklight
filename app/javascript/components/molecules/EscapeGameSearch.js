@@ -4,38 +4,102 @@ import debounce from "lodash-es/debounce";
 
 export default ({ authenticity_token }) => {
   const [escapeGames, setEscapeGames] = useState([]);
-  const [difficulty, setDifficulty] = useState('');
-  const [search, setSearch] = useState('');
+  const [difficulty, setDifficulty] = useState("");
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const fetchEscapeGames = debounce(function() {
-    setLoading(true);
-    fetch(`/explore${search ? `?q=${encodeURIComponent(search)}&difficulty=${difficulty}` : ""}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+  const buildParams = () => { 
+    if (search === '' && difficulty === '') {
+      return ''
+    }
+    let params = new URLSearchParams({ search, difficulty })
+    params.forEach((value, key) => {
+      if (!value) {
+        params.delete(key)
+      } else {
+        params.set(key, encodeURIComponent(value))
       }
     })
-      .then(resp => resp.json()) // Transform the data into json
-      .then(function(data) {
-        setEscapeGames(data);
-        setLoading(false)
-      });
-  }, 2000);
+    return `?${params.toString()}`
+  }
 
-  useEffect(fetchEscapeGames, [search, difficulty]);
+  const startSearch = debounce((query) => {
+    setLoading(true)
+    setSearch(query)
+  }, 3000);
+
+  useEffect(
+    () => {
+      fetch(
+        `/explore${buildParams()}`,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        }
+      )
+        .then(response => response.json())
+        .then(data => {
+          setEscapeGames(data); // new
+          setLoading(false);
+        });
+      console.log('fresh state')
+    },
+    [search, difficulty]
+  );
 
   return (
     <div>
       <div className="input-group">
         <div className="input-group-prepend">
-          <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+          <button
+            className="btn btn-outline-secondary dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Dropdown
+          </button>
           <div className="dropdown-menu">
-            <a className="dropdown-item" onClick={() => setDifficulty('beginner')}>Beginner</a>
-            <a className="dropdown-item" onClick={() => setDifficulty('intermediate')}>Intermediate</a>
-            <a className="dropdown-item" onClick={() => setDifficulty('enthusiast')}>Enthusiast</a>
+            <a
+              className="dropdown-item"
+              onClick={() => {
+                setDifficulty(0);
+                setLoading(true);
+              }}
+            >
+              Beginner
+            </a>
+            <a
+              className="dropdown-item"
+              onClick={() => {
+                setDifficulty(1);
+                setLoading(true);
+              }}
+            >
+              Intermediate
+            </a>
+            <a
+              className="dropdown-item"
+              onClick={() => {
+                setDifficulty(2);
+                setLoading(true);
+              }}
+            >
+              Enthusiast
+            </a>
             <div role="separator" className="dropdown-divider"></div>
-            <a className="dropdown-item" onClick={() => setDifficulty(null)}>None</a>
+            <a
+              className="dropdown-item"
+              onClick={() => {
+                setDifficulty("");
+                setLoading(true);
+              }}
+            >
+              None
+            </a>
           </div>
         </div>
         <input
@@ -43,7 +107,7 @@ export default ({ authenticity_token }) => {
           className="form-control"
           placeholder="Search for an escape room"
           onChange={e => {
-            setSearch(e.target.value)
+            startSearch(e.target.value)
           }}
         />
       </div>
