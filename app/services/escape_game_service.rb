@@ -36,7 +36,7 @@ class EscapeGameService
 
   def search(query, difficulty)
     result = EscapeGame
-      .kept.where.not(user: @user).ransack(name_cont: query).result
+             .kept.where.not(user: @user).ransack(name_cont: query).result
     difficulty ? result.where(difficulty_level: difficulty) : result
   end
 
