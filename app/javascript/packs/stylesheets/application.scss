@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
   color: solarized("Base1") !important;
 }
 
-p.escape-game-summary {
+.escape-game-summary {
   margin-left: -1.25rem;
   margin-top: 0;
   padding-left: 1.25rem;
@@ -165,7 +165,7 @@ p.escape-game-summary {
   border-radius: 0 1em 1em 0;
 }
 
-h4.escape-game-name {
+.escape-game-name {
   background-color: darken($primary, 10%);
   margin-bottom: 0;
   margin-left: -1.25rem;

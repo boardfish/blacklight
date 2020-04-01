@@ -27,3 +27,7 @@ Style/Documentation:
     - 'app/mailers/application_mailer.rb'
     - 'app/models/application_record.rb'
     - 'app/controllers/application_controller.rb'
+  
+Lint/SuppressedException:
+  Exclude:
+    - 'spec/factories/escape_games.rb'

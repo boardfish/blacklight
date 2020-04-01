@@ -64,9 +64,7 @@ FactoryBot.define do
         filename: "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png",
         content_type: 'image/png'
       )
-      # rubocop:disable Lint/SuppressedException
     rescue Errno::ENOENT
-      # rubocop:enable Lint/SuppressedException
     end
   end
 end
