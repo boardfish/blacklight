@@ -55,6 +55,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
+  gem 'rails_real_favicon'
   gem 'rspec-rails', '~> 4.0.0rc1'
 end
 

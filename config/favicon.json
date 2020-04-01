@@ -1,0 +1,64 @@
+{
+    "master_picture": "app/assets/images/logo.svg",
+    "favicon_design": {
+        "ios": {
+            "picture_aspect": "background_and_margin",
+            "background_color": "#073642",
+            "margin": "18%",
+            "assets": {
+                "ios6_and_prior_icons": false,
+                "ios7_and_later_icons": false,
+                "precomposed_icons": false,
+                "declare_only_default_icon": true
+            },
+            "app_name": "Blacklight"
+        },
+        "desktop_browser": {
+            "design": "raw"
+        },
+        "windows": {
+            "picture_aspect": "no_change",
+            "background_color": "#fdf6e3",
+            "on_conflict": "override",
+            "assets": {
+                "windows_80_ie_10_tile": false,
+                "windows_10_ie_11_edge_tiles": {
+                    "small": false,
+                    "medium": true,
+                    "big": false,
+                    "rectangle": false
+                }
+            },
+            "app_name": "Blacklight"
+        },
+        "android_chrome": {
+            "picture_aspect": "shadow",
+            "theme_color": "#fdf6e3",
+            "manifest": {
+                "name": "Blacklight",
+                "display": "standalone",
+                "orientation": "not_set",
+                "on_conflict": "override",
+                "declared": true
+            },
+            "assets": {
+                "legacy_icon": false,
+                "low_resolution_icons": false
+            }
+        },
+        "safari_pinned_tab": {
+            "picture_aspect": "black_and_white",
+            "threshold": 65.625,
+            "theme_color": "#dc322f"
+        }
+    },
+    "settings": {
+        "compression": 5,
+        "scaling_algorithm": "Spline",
+        "error_on_image_too_small": false,
+        "readme_file": false,
+        "html_code_file": false,
+        "use_path_as_is": false
+    }
+}
+
