@@ -1,23 +1,13 @@
-<div class="container">
+<div class="container mt-2">
   <div class="card">
     <div class="card-body">
-      <%= react_component(
-      "atoms/ClearButton",
-      {
-        cleared: cleared?,
-        escapeGameId: @escape_game.id,
-        authenticity_token: form_authenticity_token,
-        stateColors: ['secondary', 'success']
-        }) %>
-      <h1 class="escape-game-name">
-        <%= @escape_game.name %>
-      </h1>
+      <div class="w-100 d-flex">
+        <h1 class="escape-game-name">
+          <%= @escape_game.name %>
+        </h1>
 
-      <p class="escape-game-summary">
-        <%= @escape_game.summary %>
-      </p>
-
-      <%= react_component(
+        <div class="ml-auto d-flex align-items-center mb-1">
+          <%= react_component(
         "atoms/EscapeGameMetadata",
         {
           id: @escape_game.id,
@@ -29,48 +19,54 @@
             longitude: @escape_game.longitude,
             place_id: @escape_game.place_id
           }
-        }
+        }, { tag: 'h4', class: 'mr-2 mb-0' }
         )%>
+          <%= react_component(
+        "atoms/ClearButton",
+        {
+          cleared: cleared?,
+          escapeGameId: @escape_game.id,
+          authenticity_token: form_authenticity_token,
+          stateColors: ['secondary', 'success']
+          }) %>
+        </div>
+      </div>
+
+      <p class="escape-game-summary">
+        <%= @escape_game.summary %>
+      </p>
 
       <p>
         <%= @escape_game.description %>
       </p>
 
       <% if @escape_game.website_link %>
-        <%= link_to 'Website', @escape_game.website_link %>
+      <%= link_to 'Website', @escape_game.website_link %>
       <% end %>
 
-      <iframe
-        width="450"
-        height="250"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?key=<%= GOOGLE_MAPS_EMBED_API_KEY %>&q=place_id:<%= CGI.escape(@escape_game.place_id) %>" allowfullscreen>
-      </iframe>
-
-      <p>
-        <strong>User:</strong>
-        <%= @escape_game.user_id %>
-      </p>
-
-      <p>
-        <strong>Cleared by:</strong>
-        <%= @escape_game.clears.count %>
-      </p>
-
-      <div>
-        <% @escape_game.images.each do |image| %>
-        <%= image_tag  url_for(image), class: "img-fluid" %>
+      <div class="d-flex justify-content-center" style="min-height: 18em">
+        <% unless @escape_game.place_id.empty? %>
+          <iframe frameborder="0" class="flex-grow-1" style="border:0; height: inherit; flex-basis: 50%" src="https://www.google.com/maps/embed/v1/place?key=<%= GOOGLE_MAPS_EMBED_API_KEY %>&q=place_id:<%= CGI.escape(@escape_game.place_id) %>" allowfullscreen>
+          </iframe>
         <% end %>
+        <% if @escape_game.images.attached? %>
+          <%= react_component 'atoms/ImageCarousel', {
+            items: @escape_game.images.map { |image| {src: url_for(image)} },
+          }, class: 'flex-grow-1', style: 'flex-basis: 50%'
+            %>
+        <% end%>
       </div>
-
-      <h2>You may also enjoy...</h2>
-      <%= react_component 'atoms/ExploreList',
-        escapeGames: @related_escape_games,
-        authenticity_token: form_authenticity_token
-        %>
-
-      <%= link_to 'Edit', edit_escape_game_path(@escape_game) %> |
-      <%= link_to 'Back', escape_games_path %>
     </div>
   </div>
+
+  <% if @related_escape_games.any? %>
+    <h2>You may also enjoy...</h2>
+    <%= react_component 'atoms/ExploreList',
+      escapeGames: @related_escape_games,
+      authenticity_token: form_authenticity_token
+      %>
+  <% end %>
+
+  <%= link_to 'Edit', edit_escape_game_path(@escape_game) %> |
+  <%= link_to 'Back', escape_games_path %>
 </div>
