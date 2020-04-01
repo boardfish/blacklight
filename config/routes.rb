@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :escape_games do
     resources :images, only: [:destroy]
   end
+  resources :clears do
+    resources :images, only: [:destroy]
+  end
   get 'explore', to: 'escape_games#explore'
   put 'escape_games/:id/cleared', to: 'escape_games#cleared', as: :escape_game_cleared
   get 'escape_games/:id/cleared', to: 'escape_games#already_cleared', as: :escape_game_clear_check

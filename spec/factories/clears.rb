@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :clear do
-    user { nil }
-    escape_game { nil }
+    user { random_user }
+    escape_game { EscapeGame.order(Arel.sql('RANDOM()')).first }
   end
 end

@@ -58,10 +58,11 @@ RSpec.describe EscapeGamesController, type: :controller do
     end
 
     it 'filters escape rooms by name' do
-      get :explore, params: { q: 'Mushroom' }
-      puts assigns(:escape_games).map(&:name)
+      get :explore, params: { search: 'Mushroom' }
       expect(
-        assigns(:escape_games).filter { |game| !game.name.include? 'Mushroom' }
+        assigns(:escape_games).map { |e| e[:escape_game] }.filter do |game|
+          !game.name.include? 'Mushroom'
+        end
       ).to be_empty
     end
 
@@ -69,16 +70,18 @@ RSpec.describe EscapeGamesController, type: :controller do
       get :explore, params: { difficulty: 'beginner' }
       expect(
         assigns(:escape_games).reject do |game|
-          game[:difficulty_level] == 'beginner'
+          game[:escape_game].difficulty_level == 'beginner'
         end
       ).to be_empty
     end
 
     it 'filters escape rooms by both name and difficulty at once' do
-      get :explore, params: { difficulty: 2, q: 'Mushroom' }
+      get :explore, params: { difficulty: 2, search: 'Mushroom' }
       puts assigns(:escape_games)
       expect(
-        assigns(:escape_games).filter { |game| !game.name.include? 'Mushroom' }
+        assigns(:escape_games).map { |e| e[:escape_game] }.filter do |game|
+          !game.name.include? 'Mushroom'
+        end
       ).to be_empty
       expect(
         assigns(:escape_games).reject do |game|
