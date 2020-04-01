@@ -10,6 +10,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'stylesheets/application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'application/favicon' %>
 </head>
 
 <body class="container-fluid d-flex flex-column px-0" style="min-height: 100vh;" data-theme="<%= params[:theme] %>">
@@ -21,6 +22,7 @@
         username: current_user&.nickname,
         userId: current_user&.id,
         currentPage: "Hello from react-rails.",
+        logoPath: asset_path('logo.svg'),
         loginButton: (!user_signed_in? ?
           button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary') :
           link_to('Logout', destroy_user_session_path, class: 'btn btn-primary'))

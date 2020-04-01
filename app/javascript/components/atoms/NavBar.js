@@ -18,7 +18,7 @@ import {
 
 import NavbarData from '../../data/navbar.json'
 
-export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username, userId }) => {
+export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username, userId, logoPath }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -26,7 +26,10 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
   return (
     <div>
       <Navbar expand="md" fixed="top">
-        <NavbarBrand href="/">Blacklight</NavbarBrand>
+        <NavbarBrand href="/" className="d-flex align-items-center">
+          <img src={logoPath}  style={{maxHeight: '1em' }}/>
+          <span class="ml-1">Blacklight</span>
+        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
