@@ -5,9 +5,9 @@ class EscapeGameService
   include Rails.application.routes.url_helpers
 
   class << self
-    def search_with_clears(user, query)
+    def search_with_clears(user, query, difficulty)
       new(user, nil).tap do |egs|
-        egs.escape_games = egs.search(query)
+        egs.escape_games = egs.search(query, difficulty)
         return egs.list_clears
       end
     end
@@ -34,9 +34,11 @@ class EscapeGameService
     @user = user
   end
 
-  def search(query)
-    EscapeGame
-      .kept.where.not(user: @user).ransack(name_cont: query).result
+  def search(query, difficulty)
+    params = {}
+    params[:name_cont] = query if query
+    params[:difficulty_level_eq] = difficulty if difficulty
+    EscapeGame.kept.where.not(user: @user).ransack(params).result
   end
 
   attr_writer :escape_games
