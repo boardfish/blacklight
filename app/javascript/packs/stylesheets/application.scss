@@ -255,3 +255,9 @@ body[data-theme="dark"] {
 .dropdown-toggle {
   @extend .text-body;
 }
+
+.markdown-preview {
+  flex-basis: 50%;
+  height: inherit;
+  overflow-y: auto;
+}

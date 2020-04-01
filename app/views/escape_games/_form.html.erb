@@ -30,7 +30,7 @@
 </div>
 
 <div class="field">
-    <%= form.text_area :description, help: 'Give a more thorough description of your escape room in 1000 characters or less.' %>
+    <%= react_component 'atoms/MarkdownField', initialContent: escape_game.description %>
 </div>
 
 <div class="field">
