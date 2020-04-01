@@ -102,9 +102,6 @@ export default ({
         ) : (
           ""
         )}
-        {escapeGame.description.split("\\n").map((item, i) => {
-          return <p key={i}>{item}</p>;
-        })}
       </CardBody>
     </a>
   );

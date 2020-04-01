@@ -36,9 +36,12 @@
         <%= @escape_game.summary %>
       </p>
 
-      <p>
-        <%= @escape_game.description %>
-      </p>
+      <%=  Redcarpet::Markdown.new(
+            Redcarpet::Render::HTML.new(filter_html: true),
+            autolink: true,
+            strikethrough: true,
+            tables: true
+            ).render(@escape_game.description).html_safe %>
 
       <% if @escape_game.website_link %>
       <%= link_to 'Website', @escape_game.website_link %>
@@ -46,11 +49,11 @@
 
       <div class="d-flex justify-content-center" style="min-height: 18em">
         <% unless @escape_game.place_id.empty? %>
-          <iframe frameborder="0" class="flex-grow-1" style="border:0; height: inherit; flex-basis: 50%" src="https://www.google.com/maps/embed/v1/place?key=<%= GOOGLE_MAPS_EMBED_API_KEY %>&q=place_id:<%= CGI.escape(@escape_game.place_id) %>" allowfullscreen>
-          </iframe>
+        <iframe frameborder="0" class="flex-grow-1" style="border:0; height: inherit; flex-basis: 50%" src="https://www.google.com/maps/embed/v1/place?key=<%= GOOGLE_MAPS_EMBED_API_KEY %>&q=place_id:<%= CGI.escape(@escape_game.place_id) %>" allowfullscreen>
+        </iframe>
         <% end %>
         <% if @escape_game.images.attached? %>
-          <%= react_component 'atoms/ImageCarousel', {
+        <%= react_component 'atoms/ImageCarousel', {
             items: @escape_game.images.map { |image| {src: url_for(image)} },
           }, class: 'flex-grow-1', style: 'flex-basis: 50%'
             %>
@@ -60,8 +63,8 @@
   </div>
 
   <% if @related_escape_games.any? %>
-    <h2>You may also enjoy...</h2>
-    <%= react_component 'atoms/ExploreList',
+  <h2>You may also enjoy...</h2>
+  <%= react_component 'atoms/ExploreList',
       escapeGames: @related_escape_games,
       authenticity_token: form_authenticity_token
       %>
