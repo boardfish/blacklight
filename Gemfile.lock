@@ -219,6 +219,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    redcarpet (3.5.0)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -326,6 +327,7 @@ DEPENDENCIES
   rails_real_favicon
   ransack!
   react-rails
+  redcarpet
   rmagick
   rspec-rails (~> 4.0.0rc1)
   rubocop

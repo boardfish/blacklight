@@ -28,7 +28,7 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
       <Navbar expand="md" fixed="top">
         <NavbarBrand href="/" className="d-flex align-items-center">
           <img src={logoPath}  style={{maxHeight: '1em' }}/>
-          <span class="ml-1">Blacklight</span>
+          <span className="ml-1">Blacklight</span>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
