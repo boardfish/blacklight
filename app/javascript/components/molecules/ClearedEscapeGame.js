@@ -5,7 +5,7 @@ import EscapeGameMetadata from "../atoms/EscapeGameMetadata";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ImageCarousel from "../atoms/ImageCarousel";
 
-export default ({ escapeGame, clear, images }) => (
+export default ({ escapeGame, clear, images, form_authenticity_token }) => (
   <Card className="mb-2">
     <CardBody>
       <div className="d-flex align-items-center">
@@ -41,12 +41,23 @@ export default ({ escapeGame, clear, images }) => (
           <FontAwesomeIcon icon={images.length > 0 ? "chevron-down" : "image"} />
         </Button>
       </div>
+      <UncontrolledCollapse toggler={`#clear-${clear.id}-images`}>
       {images.length > 0
-      ?  <UncontrolledCollapse toggler={`#clear-${clear.id}-images`}>
-        <ImageCarousel items={images || []} />
-      </UncontrolledCollapse>
-      : ''
+       ? <ImageCarousel items={images || []} />
+       : ''
       }
+      <form role="form" encType="multipart/form-data" action={`/clears/${clear.id}`} acceptCharset="UTF-8" method="post">
+        <input type="hidden" name="_method" value="patch" />
+        <input type="hidden" name="authenticity_token" value={form_authenticity_token} />
+        <div className="custom-file">
+          <input multiple="multiple" className="custom-file-input" type="file" name="clear[images][]" id="clear_images" />
+          <label className="custom-file-label" htmlFor="clear_images">
+            Choose file
+          </label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+      </UncontrolledCollapse>
            {/* TODO: Clear date */}
     </CardBody>
   </Card>

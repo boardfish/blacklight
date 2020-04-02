@@ -8,7 +8,8 @@
         items: @all_images
       }, { class: 'col-md-6' } %>
   <%= react_component 'atoms/ClearedList', {
-        escapeGames: @clears
+        escapeGames: @clears,
+        form_authenticity_token: form_authenticity_token
       }, { class: 'col-md-6' } %>
 </div>
 
