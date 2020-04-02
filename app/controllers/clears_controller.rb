@@ -8,7 +8,14 @@ class ClearsController < ApplicationController
   # GET /clears
   # GET /clears.json
   def index
-    @clears = Clear.where(user: current_user)
+    @clears = ClearService.cleared_games_for(current_user).map do |clear|
+      {
+        escape_game: clear.escape_game,
+        clear: clear,
+        cleared: true,
+        image_path: 'https://placehold.it/300'
+      }
+    end
   end
 
   # GET /clears/1
