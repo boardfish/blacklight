@@ -261,3 +261,7 @@ body[data-theme="dark"] {
   height: inherit;
   overflow-y: auto;
 }
+
+.bg-body {
+  background-color: $body-bg !important;
+}

@@ -51,6 +51,7 @@ const Example = ({ items, className }) => {
       activeIndex={activeIndex}
       next={next}
       previous={previous}
+      className='border border-primary bg-primary rounded'
     >
       <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
       {slides}
