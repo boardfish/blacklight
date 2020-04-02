@@ -2,9 +2,15 @@
 
 <h1>Clears</h1>
 
-<%= react_component 'atoms/ClearedList', {
-      escapeGames: @clears
-    } %>
+
+<div class="row">
+  <%= react_component 'atoms/ImageCarousel', {
+        items: @all_images
+      }, { class: 'col-md-6' } %>
+  <%= react_component 'atoms/ClearedList', {
+        escapeGames: @clears
+      }, { class: 'col-md-6' } %>
+</div>
 
 <noscript>
   <table>

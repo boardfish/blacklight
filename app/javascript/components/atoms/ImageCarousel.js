@@ -37,7 +37,11 @@ const Example = ({ items, className }) => {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <img src={item.src} alt={item.altText} className="d-block w-100" />
+        <img src={item.src} alt={item.altText} className="d-block mx-auto" style={{
+          maxHeight: '30em',
+          width: 'auto',
+          height: 'auto'
+          }}/>
       </CarouselItem>
     );
   });

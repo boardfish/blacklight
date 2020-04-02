@@ -8,14 +8,16 @@ class ClearsController < ApplicationController
   # GET /clears
   # GET /clears.json
   def index
-    @clears = ClearService.cleared_games_for(current_user).map do |clear|
+    @clears_to_render = ClearService.cleared_games_for(current_user)
+    @clears = @clears_to_render.map do |clear|
       {
         escape_game: clear.escape_game,
         clear: clear,
         cleared: true,
-        image_path: 'https://placehold.it/300'
+        images: clear.images.map { |image| { src: url_for(image) }}
       }
     end
+    @all_images = @clears_to_render.map(&:images).flatten.map { |image| { src: url_for(image) }}
   end
 
   # GET /clears/1
