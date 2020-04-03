@@ -11,22 +11,22 @@ RSpec.describe ClearsController, type: :controller do
     clear = @clear
     attacking_user = random_user(owner: @clear.user)
     sign_in attacking_user
-    expect {
+    expect do
       put :update, params: {
         id: clear.to_param,
         clear: attributes_for(:clear).merge(user: attacking_user)
       }
-    }.to raise_error(ActiveRecord::RecordNotFound)
+    end.to raise_error(ActiveRecord::RecordNotFound)
   end
 
   it 'does not allow users to delete others\' clears' do
     clear = @clear
     attacking_user = random_user(owner: @clear.user)
     sign_in attacking_user
-    expect {
+    expect do
       delete :destroy, params: {
         id: clear.to_param
       }
-    }.to raise_error(ActiveRecord::RecordNotFound)
+    end.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
