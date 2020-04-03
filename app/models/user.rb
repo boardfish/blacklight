@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[auth0]
   enum purpose: %i[maintainer enthusiast is_both]
   has_many :clears
+  has_one_attached :avatar
 
   def onboarded?
     maintainer || enthusiast
@@ -21,6 +22,18 @@ class User < ApplicationRecord
       # emails, uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def bio
+    public ? super : nil
+  end
+
+  def location
+    public ? super : nil
+  end
+
+  def website
+    public ? super : nil
   end
 
   has_many :escape_games

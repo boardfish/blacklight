@@ -87,10 +87,8 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    if params.require(:user) == '0'
-      params[:user]
-    else
-      params.require(:user).permit(:maintainer, :enthusiast)
-    end
+    params.require(:user).permit(
+      :maintainer, :enthusiast, :avatar, :bio, :location, :website, :public
+    )
   end
 end

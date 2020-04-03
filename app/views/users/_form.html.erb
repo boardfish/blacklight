@@ -12,6 +12,26 @@
 <% end %>
 
 <div class="field">
+    <%= form.text_field :email,
+                        disabled: true
+                        %>
+</div>
+
+<%= form.file_field :avatar %>
+
+<div class="field">
+    <%= form.text_field :bio %>
+</div>
+
+<div class="field">
+    <%= form.text_field :location %>
+</div>
+
+<div class="field">
+    <%= form.text_field :website %>
+</div>
+
+<div class="field">
     <%= form.check_box :maintainer,
                         custom: true,
                         label: 'I\'m a maintainer' %>
@@ -21,6 +41,12 @@
     <%= form.check_box :enthusiast,
                         custom: true,
                         label: 'I\'m an enthusiast' %>
+</div>
+
+<div class="field">
+    <%= form.check_box :public,
+                        custom: true,
+                        label: 'Show my profile on the site' %>
 </div>
 
 <div class="actions">

@@ -265,3 +265,16 @@ body[data-theme="dark"] {
 .bg-body {
   background-color: $body-bg !important;
 }
+
+.user-avatar {
+  border-radius: 50%;
+  height: 64px;
+}
+
+.user-representation {
+  display: flex;
+  flex-direction: row;
+  &:hover {
+    text-decoration: none;
+  }
+}
