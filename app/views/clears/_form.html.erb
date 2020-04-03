@@ -36,6 +36,12 @@
       <%= form.file_field :images, multiple: true %>
   </div>
 
+  <% if @clear.images.attached? %>
+  <% @clear.images.each do |image| %>
+    <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+  <% end %>
+<% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Returns cleared games for a user.
 module ClearService
   class << self
     def cleared_games_for(user)
