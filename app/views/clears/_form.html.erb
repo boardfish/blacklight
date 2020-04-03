@@ -1,48 +1,48 @@
 <%= form_with(model: clear, local: true) do |form| %>
-  <% if clear.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(clear.errors.count, "error") %> prohibited this clear from being saved:</h2>
+<% if clear.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(clear.errors.count, "error") %> prohibited this clear from being saved:</h2>
 
-      <ul>
-        <% clear.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% clear.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-      <table class="table">
-          <tr>
-              <th>Image</th>
-              <th>Remove?</th>
-          </tr>
-          <% clear.images.each do |image| %>
-          <tr>
-              <td>
-                  <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
-              </td>
-              <td>
-                  <%= link_to "Remove", clear_image_path(clear, image),
+<div class="field">
+  <table class="table">
+    <tr>
+      <th>Image</th>
+      <th>Remove?</th>
+    </tr>
+    <% clear.images.each do |image| %>
+    <tr>
+      <td>
+        <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
+      </td>
+      <td>
+        <%= link_to "Remove", clear_image_path(clear, image),
                       method: :delete,
                       data: { confirm: "Are you sure?" },
                       remote: true,
                       class: "remove-image btn btn-danger"
                   %>
-              </td>
-          </tr>
-          <% end %>
-      </table>
-      <%= form.file_field :images, multiple: true %>
-  </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <%= form.file_field :images, multiple: true %>
+</div>
 
-  <% if @clear.images.attached? %>
-  <% @clear.images.each do |image| %>
-    <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
-  <% end %>
+<% if @clear.images.attached? %>
+<% @clear.images.each do |image| %>
+<%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+<% end %>
 <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="actions">
+  <%= form.submit %>
+</div>
 <% end %>

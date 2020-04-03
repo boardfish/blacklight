@@ -15,4 +15,29 @@ RSpec.describe 'escape_games/edit', type: :view do
     ) do
     end
   end
+
+  it 'doesn\'t overwrite files on update' do
+    # Attach an image so one already exists.
+    image_to_attach = File.open(
+      Rails.root.join(
+        'spec',
+        'fixtures',
+        'files',
+        'escape_game',
+        'SSBU-Big_Blue.png'
+      )
+    )
+    @escape_game.images.attach(
+      io: image_to_attach,
+      filename: 'original_image.png',
+      content_type: 'image/png'
+    )
+    render
+    # Make sure there's a hidden field for the image that already exists on the
+    # clear
+    assert_select 'form[action=?][method=?]', escape_game_path(@escape_game), 'post' do
+      assert_select 'input[multiple=multiple][type=hidden]' \
+                    '[name=clear\[images\]\[\]]'
+    end
+  end
 end

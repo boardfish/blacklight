@@ -90,6 +90,11 @@
     <%= form.file_field :images, multiple: true %>
 </div>
 
+<% if @escape_game.images.attached? %>
+<% @escape_game.images.each do |image| %>
+<%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+<% end %>
+
 <div class="d-flex flex-row">
     <div class="field">
         <%= form.check_box :visible,
