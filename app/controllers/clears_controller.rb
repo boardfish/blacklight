@@ -14,10 +14,12 @@ class ClearsController < ApplicationController
         escape_game: clear.escape_game,
         clear: clear,
         cleared: true,
-        images: clear.images.map { |image| {
-          src: url_for(image),
-          signed_id: image.signed_id
-          } }
+        images: clear.images.map do |image|
+                  {
+                    src: url_for(image),
+                    signed_id: image.signed_id
+                  }
+                end
       }
     end
     @all_images = @clears_to_render.map(&:images).flatten.map do |image|
@@ -63,7 +65,11 @@ class ClearsController < ApplicationController
     respond_to do |format|
       if @clear.update(clear_params)
         format.html do
-          redirect_to @clear, notice: 'Clear was successfully updated.'
+          redirect_to clears_path, notice: {
+            title: 'Images attached!',
+            content: 'You\'ve successfully attached images. What a way to' \
+            ' mark your victory!'
+          }
         end
         format.json { render :show, status: :ok, location: @clear }
       else

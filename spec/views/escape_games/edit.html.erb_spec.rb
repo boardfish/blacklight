@@ -35,7 +35,8 @@ RSpec.describe 'escape_games/edit', type: :view do
     render
     # Make sure there's a hidden field for the image that already exists on the
     # clear
-    assert_select 'form[action=?][method=?]', escape_game_path(@escape_game), 'post' do
+    assert_select 'form[action=?][method=?]',
+                  escape_game_path(@escape_game), 'post' do
       assert_select 'input[multiple=multiple][type=hidden]' \
                     '[name=clear\[images\]\[\]]'
     end
