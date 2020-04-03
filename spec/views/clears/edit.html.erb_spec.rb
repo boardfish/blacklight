@@ -2,17 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe 'escape_games/edit', type: :view do
+RSpec.describe 'clears/edit', type: :view do
   before(:each) do
-    @escape_game = assign(:escape_game, EscapeGame.first)
+    @clear = assign(:clear, create(:clear))
   end
 
-  it 'renders the edit escape_game form' do
+  it 'renders the edit clear form' do
     render
 
-    assert_select(
-      'form[action=?][method=?]', escape_game_path(@escape_game), 'post'
-    ) do
+    assert_select 'form[action=?][method=?]', clear_path(@clear), 'post' do
     end
   end
 
@@ -27,18 +25,17 @@ RSpec.describe 'escape_games/edit', type: :view do
         'SSBU-Big_Blue.png'
       )
     )
-    @escape_game.images.attach(
+    @clear.images.attach(
       io: image_to_attach,
       filename: 'original_image.png',
       content_type: 'image/png'
     )
     render
     # Make sure there's a hidden field for the image that already exists on the
-    # escape game
-    assert_select 'form[action=?][method=?]',
-                  escape_game_path(@escape_game), 'post' do
+    # clear
+    assert_select 'form[action=?][method=?]', clear_path(@clear), 'post' do
       assert_select 'input[multiple=multiple][type=hidden]' \
-                    '[name=escape_game\[images\]\[\]]'
+                    '[name=clear\[images\]\[\]]'
     end
   end
 end

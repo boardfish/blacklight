@@ -4,4 +4,5 @@
 class Clear < ApplicationRecord
   belongs_to :user
   belongs_to :escape_game
+  has_many_attached :images
 end
