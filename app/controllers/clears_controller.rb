@@ -14,7 +14,10 @@ class ClearsController < ApplicationController
         escape_game: clear.escape_game,
         clear: clear,
         cleared: true,
-        images: clear.images.map { |image| { src: url_for(image) } }
+        images: clear.images.map { |image| {
+          src: url_for(image),
+          signed_id: image.signed_id
+          } }
       }
     end
     @all_images = @clears_to_render.map(&:images).flatten.map do |image|

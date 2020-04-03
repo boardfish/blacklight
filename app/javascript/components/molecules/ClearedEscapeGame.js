@@ -55,6 +55,9 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
             Choose file
           </label>
         </div>
+        {images.map(image => (
+          <input type="hidden" multiple="multiple" name="clear[images][]" value={image.signed_id} />
+        ))}
         <button type="submit">Submit</button>
       </form>
       </UncontrolledCollapse>
