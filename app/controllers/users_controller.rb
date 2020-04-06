@@ -15,8 +15,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @escape_games = @user.escape_games
-    @egs.escape_games = @escape_games
+    @egs.escape_games = @user.escape_games
+    @escape_games = @egs.list_clears
+    @egs.escape_games = EscapeGame.where(clears: { user: @user })
     @clears = @egs.list_clears
   end
 
@@ -87,7 +88,7 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find_by!(id: params[:id], public: true)
-    @egs = EscapeGameService.new(current_user)
+    @egs = EscapeGameService.new(current_user, nil)
   end
 
   def set_current_user

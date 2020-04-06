@@ -2,7 +2,7 @@
     <div class="card d-flex align-items-center ml-5 justify-content-center">
       <div class="bg-light rounded p-3 d-flex flex-column align-items-center">
         <%= react_component 'atoms/Avatar',
-              avatar: url_for(@user.avatar),
+              avatar: @user.avatar.attached? ? url_for(@user.avatar) : '',
               className: 'm-2',
               height: '5em'
               %>
@@ -10,7 +10,7 @@
           <h1 class="mb-0"><%= @user.nickname %></h1>
           <span class="d-block">
             <%= @user.location && @user.website ? "#{@user.location} |" : @user.location %>
-            <%= link_to "Website", @user.website %>
+            <%= link_to "Website", @user.website if @user.website %>
           </span>
         </div>
         <div class="d-flex mt-2">
@@ -63,9 +63,9 @@
           <ul class="escape-game-name-list">
             <% @clears.each do |clear| %>
             <li>
-              <%= link_to clear.escape_game.name, clear.escape_game, class: 'escape-game-name' %>
+              <%= link_to clear[:escape_game].name, clear[:escape_game], class: 'escape-game-name' %>
               <small class="d-block text-muted escape-game-summary">
-                <%= clear.escape_game.difficulty_level.humanize %> | <%= link_to "Google Maps", clear.escape_game.google_maps_url %>
+                <%= clear[:escape_game].difficulty_level.humanize %> | <%= link_to "Google Maps", clear[:escape_game].google_maps_url %>
               </small>
             </li>
             <% end %>
