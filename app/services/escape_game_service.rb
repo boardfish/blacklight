@@ -55,12 +55,16 @@ class EscapeGameService
   end
 
   def list_clears
-    @escape_games.includes(:clears).with_attached_images.map do |e|
+    @escape_games.includes(:clears).includes(:user).with_attached_images.map do |e|
       image_path = explore_thumbnail_for(e.images&.first)
       {
         escape_game: e,
         cleared: e.clears.exists?(user: @user),
-        image_path: image_path
+        image_path: image_path,
+        user: {
+          avatar: e.user.avatar.attached? ? url_for(e.user.avatar) : nil,
+          id: e.user.id
+        }
       }
     end
   end

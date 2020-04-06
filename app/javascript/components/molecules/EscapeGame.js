@@ -3,6 +3,8 @@ import ClearButton from "../atoms/ClearButton";
 import { Card, CardBody, CardHeader, CardFooter, CardImg } from "reactstrap";
 import BlurHashTest from "../atoms/BlurHashTest";
 import EscapeGameMetadata from "../atoms/EscapeGameMetadata";
+import Avatar from "../atoms/Avatar";
+import UserRepresentation from "./UserRepresentation";
 
 const chooseColor = (exploring) => {
   switch (exploring) {
@@ -21,6 +23,7 @@ export default ({
   imagePath,
   authenticity_token,
   exploring,
+  user,
 }) => {
   const [hovered, setHovered] = useState("");
   return (
@@ -57,6 +60,14 @@ export default ({
               longitude: escapeGame.longitude,
               placeId: escapeGame.place_id,
             }}
+          />
+          <Avatar
+            className="ml-2"
+            onClick={() => {
+              window.location = `/users/${user.id}`;
+            }}
+            avatar={user.avatar}
+            height={"2em"}
           />
         </h5>
       </CardHeader>
