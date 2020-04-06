@@ -24,6 +24,7 @@ export default ({
   authenticity_token,
   exploring,
   user,
+  className
 }) => {
   const [hovered, setHovered] = useState("");
   return (
@@ -33,7 +34,7 @@ export default ({
       onFocus={() => setHovered("focused")}
       onBlur={() => setHovered("unfocused")}
       href={`/escape_games/${escapeGame.id}`}
-      className={`card ${hovered}`}
+      className={`card ${hovered} ${className}`}
       tabIndex={1}
     >
       <CardHeader>

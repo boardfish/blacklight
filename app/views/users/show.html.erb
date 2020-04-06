@@ -1,4 +1,4 @@
-  <div class="card-deck flex-grow-1 w-100 my-3">
+  <div class="card-deck flex-grow-1 w-100 my-3" style="max-height: 88vh; height: 100%;">
     <div class="card d-flex align-items-center ml-5 justify-content-center">
       <div class="bg-light rounded p-3 d-flex flex-column align-items-center">
         <%= react_component 'atoms/Avatar',
@@ -31,23 +31,25 @@
           </span>
           <% end %>
         </div>
+        <p class="my-3">
+          <%= @user.bio %>
+        </p>
       </div>
 
     </div>
     <% if @user.maintainer %>
     <div class="card">
-      <div class="card-body w-100 d-flex align-items-center">
-        <div>
-          <span>
+      <div class="card-body w-100 d-flex flex-column align-items-center">
+          <span class="d-block">
             Owns
             <b><%= pluralize(@user.escape_games.count, 'escape game') %></b>
           </span>
           <%= react_component 'atoms/ExploreList',
-                  escapeGames: @escape_games,
+                  { escapeGames: @escape_games,
                   authenticity_token: form_authenticity_token,
-                  containerClass: 'w-100'
+                  cardClass: 'mb-3',
+                  containerClass: 'w-100' }, { class: 'pesky-thing' }
                   %>
-        </div>
       </div>
     </div>
     <% end %>
@@ -74,3 +76,4 @@
     </div>
     <% end %>
   </div>
+</div>

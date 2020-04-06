@@ -1,7 +1,7 @@
 import React from "react";
 import EscapeGame from "../molecules/EscapeGame";
 
-export default ({ escapeGames, authenticity_token, containerClass }) => {
+export default ({ escapeGames, authenticity_token, cardClass, containerClass }) => {
   return (
     <div className={containerClass || 'card-columns'}>
       {(escapeGames || []).map(({ escape_game, cleared, image_path, user }, index) => (
@@ -13,6 +13,7 @@ export default ({ escapeGames, authenticity_token, containerClass }) => {
           imagePath={image_path}
           user={user}
           key={index}
+          className={cardClass}
         />
       ))}
     </div>
