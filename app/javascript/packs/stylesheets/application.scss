@@ -71,7 +71,7 @@ $colors: (
   "gray-dark": $gray-800
 );
 
-$primary: $red !default;
+$primary: $blue;
 $secondary: $gray-600 !default;
 $success: $green !default;
 $info: $cyan !default;
@@ -178,16 +178,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  background-color: darken($primary, 25%);
-  color: solarized("Base3");
+  background-color: $body-bg;
+  color: $body-text;
   .nav-link, .navbar-brand {
     color: inherit;
   }
 }
 
 .card {
-  background: darken($primary, 25%);
-  color: solarized("Base3");
+  background: $body-bg;
   transition: 0.2s border-color ease-in;
   border: 2px solid var(--primary)
 }
