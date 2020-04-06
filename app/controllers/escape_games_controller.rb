@@ -11,7 +11,10 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games
   # GET /escape_games.json
   def index
-    @escape_games = current_user.escape_games.kept
+    @escape_games = params[:user_id] ? User.find(params[:user_id]).escape_games : current_user.escape_games
+    @escape_games = EscapeGameService.list_with_clears(
+      current_user, @escape_games
+    )
   end
 
   # GET /escape_games/explore

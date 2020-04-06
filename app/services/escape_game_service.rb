@@ -55,7 +55,7 @@ class EscapeGameService
   end
 
   def list_clears
-    @escape_games.joins(:clears).includes(:user).with_attached_images.map do |e|
+    @escape_games.includes(:clears).includes(:user).with_attached_images.map do |e|
       image_path = explore_thumbnail_for(e.images&.first)
       {
         escape_game: e,

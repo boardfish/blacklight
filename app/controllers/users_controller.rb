@@ -90,10 +90,6 @@ class UsersController < ApplicationController
       current_user,
       @user.escape_games
     )
-    @cleared_escape_games = EscapeGameService.list_with_clears(
-      current_user,
-      EscapeGame.joins(:clears).where(clears: { user: @user} )
-    )
   end
 
   def set_current_user

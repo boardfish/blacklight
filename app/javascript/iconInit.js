@@ -20,6 +20,7 @@ import {
   faMobile,
   faQuestionCircle,
   faShapes,
+  faTimes,
   faUser,
   faUserAstronaut,
   faUserLock
@@ -46,6 +47,7 @@ library.add(
   faMobile,
   faQuestionCircle,
   faShapes,
+  faTimes,
   faUser,
   faUserAstronaut,
   faUserLock
