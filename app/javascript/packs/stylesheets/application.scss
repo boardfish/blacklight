@@ -178,11 +178,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-  background-color: $body-bg;
-  color: $body-text;
+  background-color: solarized("Base2");
+  color: solarized("Base01");
+  font-weight: bold;
   .nav-link, .navbar-brand {
     color: inherit;
   }
+  border-bottom: 1px solid $primary;
 }
 
 .card {
@@ -222,13 +224,9 @@ body[data-theme="dark"] {
     @extend .bg-dark;
     @extend .text-light;
   }
-  .navbar-light {
-    .navbar-nav .nav-link {
-      @extend .text-light;
-    }
-    .navbar-brand {
-      @extend .text-light;
-    }
+  .navbar {
+    color: solarized("Base1");
+    background-color: solarized("Base02");
   }
   .jumbotron {
     background-color: $gray-600;
