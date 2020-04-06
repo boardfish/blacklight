@@ -14,7 +14,14 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show; end
+  def show
+    @escape_games = EscapeGameService.list_with_clears(current_user, @user.escape_games)
+    @clears = @user
+      .clears
+      .includes(:escape_game)
+      .select(:id, :name, :place_id, :latitude, :longitude, :difficulty_level)
+      .references(:escape_game)
+  end
 
   # GET /users/1/edit
   def edit; end

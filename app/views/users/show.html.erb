@@ -1,64 +1,87 @@
-<div class="container mt-2">
-  <div class="card">
-    <div class="card-body">
-      <div class="w-100 d-flex align-items-center">
-        <h1 class="escape-game-name mr-auto h-100">
-          <%= @user.nickname %>
-        </h1>
-        <span class="bg-primary rounded p-2 text-light">
-          <%= react_component 'atoms/Count',
+<div class="container card mt-2">
+  <div class="w-100 d-flex align-items-center mt-3">
+    <h1 class="user-name d-flex align-items-center mr-auto pl-5 h-100">
+      <%= react_component 'atoms/Avatar',
+              avatar: url_for(@user.avatar),
+              className: 'm-2',
+              height: '2em'
+              %>
+      <div>
+        <%= @user.nickname %>
+        <small class="d-block">
+          <%= @user.location && @user.website ? "#{@user.location} |" : @user.location %>
+          <%= link_to "Website", @user.website %>
+        </small>
+      </div>
+    </h1>
+    <% if @user.maintainer %>
+    <span class="bg-primary rounded p-2 text-light">
+      <%= react_component 'atoms/Count',
               iconName: 'lock',
               count: @user.escape_games.count
               %>
-        </span>
-        <span class="ml-2 bg-primary rounded p-2 text-light">
-          <%= react_component 'atoms/Count',
-              iconName: 'lock-open',
-              count: @user.clears.count
-              %>
-        </span>
-        <%= react_component 'atoms/Avatar',
-            avatar: url_for(@user.avatar),
-            className: 'ml-2 mb-1',
-            height: '3em'
-            %>
-      </div>
+    </span>
+    <% end %>
+    <% if @user.maintainer %>
+      <span class="ml-2 bg-primary rounded p-2 text-light">
+        <%= react_component 'atoms/Count',
+                iconName: 'lock-open',
+                count: @user.clears.count
+                %>
+      </span>
+    <% end %>
+  </div>
+  <div class="card-body">
 
-      <p class="escape-game-summary">
-        <%= @user.bio && (@user.location || @user.website) ? "#{@user.bio} |" : @user.bio %>
-        <%= @user.location && @user.website ? "#{@user.location} |" : @user.location %>
-        <%= link_to @user.website, @user.website %>
-      </p>
+    <div class="mt-2">
       <div class="card-deck">
         <% if @user.maintainer %>
         <div class="card">
-          <div class="card-body d-flex align-items center">
-            <span>
-              Owns
-              <b><%= pluralize(@user.escape_games.count, 'escape game') %></b>
-            </span>
+          <div class="card-body d-flex w-100 align-items-center justify-content-center">
+            <%= @user.bio %>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body w-100 d-flex align-items-center">
+            <div>
+              <span>
+                Owns
+                <b><%= pluralize(@user.escape_games.count, 'escape game') %></b>
+              </span>
+              <ul class="escape-game-name-list">
+  <%= react_component 'atoms/ExploreList',
+        escapeGames: @escape_games,
+        authenticity_token: form_authenticity_token
+        %>
+              </ul>
+            </div>
+            <%= link_to 'View', escape_games_path(user_id: @user), class: "btn btn-primary ml-auto" %>
           </div>
         </div>
         <% end %>
         <% if @user.enthusiast %>
         <div class="card">
-          <div class="card-body d-flex align-items center">
-            <span>
-              <b><%= pluralize(@user.clears.count, 'game') %></b> cleared
-              <%= link_to 'View', clears_path(@user), class: "btn btn-primary" %>
-            </span>
+          <div class="card-body w-100 d-flex align-items-center">
+            <div>
+              <span>
+                <b><%= pluralize(@user.clears.count, 'game') %></b> cleared
+              </span>
+              <ul class="escape-game-name-list">
+                <% @clears.each do |clear| %>
+                <li>
+                  <%= link_to clear.escape_game.name, clear.escape_game, class: 'escape-game-name' %>
+                  <small class="d-block text-muted escape-game-summary">
+                    <%= clear.escape_game.difficulty_level.humanize %> | <%= link_to "Google Maps", clear.escape_game.google_maps_url %>
+                  </small>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+            <%= link_to 'View', clears_path(@user), class: "btn btn-primary ml-auto" %>
           </div>
         </div>
         <% end %>
       </div>
     </div>
   </div>
-
-  <% if @related_escape_games.any? %>
-    <h2>Escape games by this maintainer</h2>
-    <%= react_component 'atoms/ExploreList',
-      escapeGames: @related_escape_games,
-      authenticity_token: form_authenticity_token
-      %>
-  <% end %>
 </div>

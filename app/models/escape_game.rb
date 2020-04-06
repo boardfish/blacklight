@@ -48,6 +48,10 @@ class EscapeGame < ApplicationRecord
     with: /([A-z\-\d])*/, message: 'may not be a valid Google Maps Place ID'
   }
 
+  def google_maps_url
+    "https://www.google.com/maps/search/?api=1&query=#{latitude},#{longitude}&query_place_id=#{place_id}";
+  end
+
   private
 
   def build_blurhash

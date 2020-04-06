@@ -71,7 +71,7 @@ $colors: (
   "gray-dark": $gray-800
 );
 
-$primary: $blue;
+$primary: $purple;
 $secondary: $gray-600 !default;
 $success: $green !default;
 $info: $cyan !default;
@@ -180,6 +180,18 @@ h1, h2, h3, h4, h5, h6 {
   color: solarized("Base3");
 }
 
+.user-name {
+  background-color: darken($primary, 10%);
+  margin-bottom: 0;
+  margin-left: -1rem;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1em;
+  border-radius: 0 1em 1em 0;
+  max-width: 99%;
+  color: solarized("Base3");
+}
+
 .navbar {
   background-color: solarized("Base2");
   color: solarized("Base01");
@@ -276,5 +288,17 @@ body[data-theme="dark"] {
   flex-direction: row;
   &:hover {
     text-decoration: none;
+  }
+}
+
+.escape-game-name-list {
+  padding-left: 0;
+  list-style: none;
+  li {
+    a.escape-game-name {
+      display: block;
+    }
+    line-height: 1.25;
+    margin-bottom: .5em;
   }
 }
