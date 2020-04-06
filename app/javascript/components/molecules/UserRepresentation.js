@@ -3,14 +3,11 @@ import Avatar from "../atoms/Avatar";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default ({ user, avatar }) => {
-  const [showMore, setShowMore] = useState(false);
+export default ({ user, avatar, expandedView }) => {
   return (
     <a
       href={`/users/${user.id}`}
-      className={`user-representation${showMore ? " bg-light" : ""}`}
-      onMouseOver={() => setShowMore(true)}
-      onMouseOut={() => setShowMore(false)}
+      className="user-representation"
     >
       <Avatar avatar={avatar} />
       <div className="ml-2">
@@ -22,11 +19,15 @@ export default ({ user, avatar }) => {
             <FontAwesomeIcon icon="user" />
           )}{" "}
           Joined {moment(user.created_at).fromNow()}
-          {user.bio ? <span className={`${showMore ? "" : "d-none"}`}> | {user.bio}</span> : ""}
-          {user.website ? <span className={`${showMore ? "" : "d-none"}`}>
-            {" | "}<FontAwesomeIcon icon='globe' />{" "}
-            {user.website}
-            </span> : ''}
+          {expandedView && user.bio ? <span> | {user.bio}</span> : ""}
+          {expandedView && user.website ? (
+            <span>
+              {" | "}
+              <FontAwesomeIcon icon="globe" /> {user.website}
+            </span>
+          ) : (
+            ""
+          )}
         </p>
       </div>
     </a>

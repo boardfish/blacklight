@@ -3,8 +3,11 @@
 # Controller that allows users to show and update their profiles.
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_current_user, only: %i[
+    edit update destroy maintainer enthusiast maintainer_and_enthusiast
+  ]
   before_action :set_user, only: %i[
-    show edit update destroy maintainer enthusiast maintainer_and_enthusiast
+    show
   ]
 
   I18N_HASH = I18n.t('controllers.users')
@@ -82,6 +85,10 @@ class UsersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_user
+    @user = User.find_by!(id: params[:id], public: true)
+  end
+
+  def set_current_user
     @user = current_user
   end
 
