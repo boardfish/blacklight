@@ -1,4 +1,58 @@
-<div class="container my-3">
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Back', users_path %>
+<div class="container mt-2">
+  <div class="card">
+    <div class="card-body">
+      <div class="w-100 d-flex">
+        <h1 class="escape-game-name">
+          <%= @user.nickname %>
+        </h1>
+        <%= react_component 'atoms/Avatar',
+            avatar: url_for(@user.avatar),
+            className: 'mb-1',
+            height: '3em'
+            %>
+      </div>
+
+      <p class="escape-game-summary">
+        <%= @user.bio && (@user.location || @user.website) ? "#{@user.bio} |" : @user.bio %>
+        <%= @user.location && @user.website ? "#{@user.location} |" : @user.location %>
+        <%= link_to @user.website %>
+      </p>
+      <div class="card-deck">
+        <% if @user.maintainer %>
+          <div class="card">
+            <div class="card-body">
+              <span>
+                Owns 
+                <b><%= pluralize(@user.escape_games.count, 'escape game') %></b>
+              </span>
+            </div>
+          </div>
+        <% end %>
+        <% if @user.enthusiast %>
+          <div class="card">
+            <div class="card-body">
+              <span>
+                <b><%= pluralize(@user.clears.count, 'game') %></b> cleared
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <% if @related_escape_games.any? %>
+  <h2>Escape games by this maintainer</h2>
+  <%= react_component 'atoms/ExploreList',
+      escapeGames: @related_escape_games,
+      authenticity_token: form_authenticity_token
+      %>
+  <% end %>
+  <% if @cleared_escape_games.any? %>
+  <h2>Escape games this user has cleared</h2>
+  <%= react_component 'atoms/ExploreList',
+      escapeGames: @cleared_escape_games,
+      authenticity_token: form_authenticity_token
+      %>
+  <% end %>
 </div>

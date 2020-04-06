@@ -163,6 +163,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--primary);
   color: white !important;
   border-radius: 0 1em 1em 0;
+  a {
+    color: inherit;
+  }
 }
 
 .escape-game-name {

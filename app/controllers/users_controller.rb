@@ -86,6 +86,14 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find_by!(id: params[:id], public: true)
+    @related_escape_games = EscapeGameService.list_with_clears(
+      current_user,
+      @user.escape_games
+    )
+    @cleared_escape_games = EscapeGameService.list_with_clears(
+      current_user,
+      EscapeGame.joins(:clears).where(clears: { user: @user} )
+    )
   end
 
   def set_current_user
