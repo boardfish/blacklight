@@ -10,17 +10,14 @@ class UsersController < ApplicationController
     show
   ]
 
-  I18N_HASH = I18n.t('controllers.users')
+  I18N = I18n.t('controllers.users')
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @escape_games = EscapeGameService.list_with_clears(current_user, @user.escape_games)
-    @clears = @user
-      .clears
-      .includes(:escape_game)
-      .select(:id, :name, :place_id, :latitude, :longitude, :difficulty_level)
-      .references(:escape_game)
+    @escape_games = @user.escape_games
+    @egs.escape_games = @escape_games
+    @clears = @egs.list_clears
   end
 
   # GET /users/1/edit
@@ -32,8 +29,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html do
-          redirect_to @user,
-                      notice: I18N_HASH.dig(:update, :success)
+          redirect_to @user, notice: I18N.dig(:update, :success)
         end
         format.json { render :show, status: :ok, location: @user }
       else
@@ -49,7 +45,7 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.html do
-        redirect_to root_path, alert: I18N_HASH.dig(:destroy, :success)
+        redirect_to root_path, alert: I18N.dig(:destroy, :success)
       end
       format.json { head :no_content }
     end
@@ -58,20 +54,18 @@ class UsersController < ApplicationController
   def maintainer
     @user.maintainer = true
     if @user.save
-      redirect_to edit_user_path(@user),
-                  notice: I18N_HASH.dig(:maintainer, :success)
+      redirect_to edit_user_path(@user), notice: I18N.dig(:maintainer, :success)
     else
-      redirect_to root_path, alert: I18N_HASH.dig(:maintainer, :failure)
+      redirect_to root_path, alert: I18N.dig(:maintainer, :failure)
     end
   end
 
   def enthusiast
     @user.enthusiast = true
     if @user.save
-      redirect_to edit_user_path(@user),
-                  notice: I18N_HASH.dig(:enthusiast, :success)
+      redirect_to edit_user_path(@user), notice: I18N.dig(:enthusiast, :success)
     else
-      redirect_to root_path, alert: I18N_HASH.dig(:enthusiast, :failure)
+      redirect_to root_path, alert: I18N.dig(:enthusiast, :failure)
     end
   end
 
@@ -81,10 +75,10 @@ class UsersController < ApplicationController
 
     if @user.save
       redirect_to edit_user_path(@user),
-                  notice: I18N_HASH.dig(:maintainer_and_enthusiast, :success)
+                  notice: I18N.dig(:maintainer_and_enthusiast, :success)
     else
       redirect_to root_path,
-                  alert: I18N_HASH.dig(:maintainer_and_enthusiast, :failure)
+                  alert: I18N.dig(:maintainer_and_enthusiast, :failure)
     end
   end
 
@@ -93,10 +87,7 @@ class UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find_by!(id: params[:id], public: true)
-    @related_escape_games = EscapeGameService.list_with_clears(
-      current_user,
-      @user.escape_games
-    )
+    @egs = EscapeGameService.new(current_user)
   end
 
   def set_current_user
