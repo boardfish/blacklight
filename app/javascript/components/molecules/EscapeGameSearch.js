@@ -7,6 +7,7 @@ export default ({ authenticity_token }) => {
   const [difficulty, setDifficulty] = useState("");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [locationFilterEnabled, setLocationFilter] = useState(false);
 
   const buildParams = () => { 
     if (search === '' && difficulty === '') {
@@ -28,6 +29,32 @@ export default ({ authenticity_token }) => {
     setSearch(query)
   }, 700);
 
+  const filterNearMe = (escapeGames) => {
+    if (!locationFilterEnabled) {
+      return 0;
+    }
+    const map = new google.maps.Map(document.getElementById("map-canvas"), {});
+    const service = new google.maps.places.PlacesService(map);
+    window.navigator.geolocation.getCurrentPosition((position) => {
+      service.nearbySearch(
+        {
+          location: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+          radius: 5000,
+          keyword: "escape",
+        },
+        (results, status) => {
+          const ids = results.map(place => place.place_id)
+          setEscapeGames(escapeGames.filter(({ escape_game }) => {
+            return ids.includes(escape_game.place_id)
+          }))
+        }
+      );
+    }, () => setLocationFilter(false));
+  }
+
   useEffect(
     () => {
       fetch(
@@ -41,16 +68,17 @@ export default ({ authenticity_token }) => {
       )
         .then(response => response.json())
         .then(data => {
-          setEscapeGames(data); // new
+          setEscapeGames(data);
+          filterNearMe(data);
           setLoading(false);
         });
-      console.log('fresh state')
     },
-    [search, difficulty]
+    [search, difficulty, locationFilterEnabled]
   );
 
   return (
     <div>
+      <div className="d-none" id="map-canvas"></div>
       <div className="input-group">
         <div className="input-group-prepend">
           <button
@@ -90,6 +118,15 @@ export default ({ authenticity_token }) => {
             >
               Enthusiast
             </a>
+            <a
+              className="dropdown-item"
+              onClick={() => {
+                setLocationFilter(!locationFilterEnabled)
+                setLoading(true);
+              }}
+            >
+              Near me (5km)
+            </a>
             <div role="separator" className="dropdown-divider"></div>
             <a
               className="dropdown-item"
@@ -98,7 +135,7 @@ export default ({ authenticity_token }) => {
                 setLoading(true);
               }}
             >
-              None
+              Clear filters
             </a>
           </div>
         </div>
