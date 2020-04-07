@@ -49,17 +49,21 @@
   <%= form.text_field :website_link, help: 'If you have a website or social media, link to it here.' %>
 </div>
 
-<div class="field">
-  <%= form.text_field :place_id, label: 'Google Maps Place ID' %>
-</div>
+<%= react_component 'atoms/ReactPlacesAutocomplete' %>
 
-<div class="field">
-  <%= form.text_field :latitude %>
-</div>
+<noscript>
+  <div class="field">
+    <%= form.text_field :place_id, label: 'Google Maps Place ID' %>
+  </div>
 
-<div class="field">
-  <%= form.text_field :longitude %>
-</div>
+  <div class="field">
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.text_field :longitude %>
+  </div>
+</noscript>
 
 <div class="field">
   <%= form.hidden_field :user_id %>
