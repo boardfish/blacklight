@@ -7,74 +7,65 @@ export default ({ authenticity_token }) => {
   const [difficulty, setDifficulty] = useState("");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [locationFilterEnabled, setLocationFilter] = useState(false);
+  const [location, setLocation] = useState({ lat: null, lng: null });
 
-  const buildParams = () => { 
-    if (search === '' && difficulty === '') {
-      return ''
+  const buildParams = () => {
+    if (search === "" && difficulty === "") {
+      return "";
     }
-    let params = new URLSearchParams({ search, difficulty })
+    let params = new URLSearchParams({ search, difficulty });
     params.forEach((value, key) => {
       if (!value) {
-        params.delete(key)
+        params.delete(key);
       } else {
-        params.set(key, encodeURIComponent(value))
+        params.set(key, encodeURIComponent(value));
       }
-    })
-    return `?${params.toString()}`
-  }
+    });
+    return `?${params.toString()}`;
+  };
 
   const startSearch = debounce((query) => {
-    setLoading(true)
-    setSearch(query)
+    setLoading(true);
+    setSearch(query);
   }, 700);
 
   const filterNearMe = (escapeGames) => {
-    if (!locationFilterEnabled) {
+    if (location.lat === null) {
       return 0;
     }
     const map = new google.maps.Map(document.getElementById("map-canvas"), {});
     const service = new google.maps.places.PlacesService(map);
-    window.navigator.geolocation.getCurrentPosition((position) => {
-      service.nearbySearch(
-        {
-          location: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          },
-          radius: 5000,
-          keyword: "escape",
-        },
-        (results, status) => {
-          const ids = results.map(place => place.place_id)
-          setEscapeGames(escapeGames.filter(({ escape_game }) => {
-            return ids.includes(escape_game.place_id)
-          }))
-        }
-      );
-    }, () => setLocationFilter(false));
-  }
+    service.nearbySearch(
+      {
+        location,
+        radius: 5000,
+        keyword: "escape",
+      },
+      (results, status) => {
+        const ids = results.map((place) => place.place_id);
+        setEscapeGames(
+          escapeGames.filter(({ escape_game }) => {
+            return ids.includes(escape_game.place_id);
+          })
+        );
+      }
+    );
+  };
 
-  useEffect(
-    () => {
-      fetch(
-        `/explore${buildParams()}`,
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          }
-        }
-      )
-        .then(response => response.json())
-        .then(data => {
-          setEscapeGames(data);
-          filterNearMe(data);
-          setLoading(false);
-        });
-    },
-    [search, difficulty, locationFilterEnabled]
-  );
+  useEffect(() => {
+    fetch(`/explore${buildParams()}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setEscapeGames(data);
+        filterNearMe(data);
+        setLoading(false);
+      });
+  }, [search, difficulty, location]);
 
   return (
     <div>
@@ -121,7 +112,14 @@ export default ({ authenticity_token }) => {
             <a
               className="dropdown-item"
               onClick={() => {
-                setLocationFilter(!locationFilterEnabled)
+                window.navigator.geolocation.getCurrentPosition(
+                  (position) =>
+                    setLocation({
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude,
+                    }),
+                  () => setLocation({ lat: null, lng: null })
+                );
                 setLoading(true);
               }}
             >
@@ -132,6 +130,7 @@ export default ({ authenticity_token }) => {
               className="dropdown-item"
               onClick={() => {
                 setDifficulty("");
+                setLocation({ lat: null, lng: null })
                 setLoading(true);
               }}
             >
@@ -143,8 +142,8 @@ export default ({ authenticity_token }) => {
           type="text"
           className="form-control"
           placeholder="Search for an escape room"
-          onChange={e => {
-            startSearch(e.target.value)
+          onChange={(e) => {
+            startSearch(e.target.value);
           }}
         />
       </div>
