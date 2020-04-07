@@ -83,7 +83,7 @@ class EscapeGameService
     {
       escape_game: game,
       cleared: game.clears.exists?(user: @user),
-      image_path: explore_thumbnail_for(game.images&.first),
+      image_path: explore_thumbnail_for(game.default_image),
       user: {
         avatar: game.user.avatar.attached? ? url_for(game.user.avatar) : nil,
         id: game.user.id
