@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from "react";
-import ExploreList from "../atoms/ExploreList";
 import debounce from "lodash-es/debounce";
+import React, { useEffect, useState } from "react";
+import ExploreList from "../atoms/ExploreList";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 
 export default ({ authenticity_token }) => {
   const [escapeGames, setEscapeGames] = useState([]);
@@ -8,6 +12,7 @@ export default ({ authenticity_token }) => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState({ lat: null, lng: null });
+  const [placesSearch, setPlacesSearch] = useState("");
 
   const buildParams = () => {
     if (search === "" && difficulty === "") {
@@ -79,7 +84,7 @@ export default ({ authenticity_token }) => {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Dropdown
+            Filters
           </button>
           <div className="dropdown-menu">
             <a
@@ -130,7 +135,7 @@ export default ({ authenticity_token }) => {
               className="dropdown-item"
               onClick={() => {
                 setDifficulty("");
-                setLocation({ lat: null, lng: null })
+                setLocation({ lat: null, lng: null });
                 setLoading(true);
               }}
             >
@@ -146,6 +151,58 @@ export default ({ authenticity_token }) => {
             startSearch(e.target.value);
           }}
         />
+      </div>
+      <div className="form-group row mt-2">
+        <label className="col-form-label col-sm-2 text-right">
+          Near...
+        </label>
+        <PlacesAutocomplete
+          value={placesSearch}
+          onChange={(newPlacesSearch) => setPlacesSearch(newPlacesSearch)}
+          onSelect={(address) => {
+            geocodeByAddress(address)
+              .then((results) => getLatLng(results[0]))
+              .then((latLng) => setLocation({ ...latLng }))
+              .catch((error) => console.error("Error", error));
+          }}
+        >
+          {({
+            getInputProps,
+            suggestions,
+            getSuggestionItemProps,
+            loading,
+          }) => (
+            <div className="col-sm-10">
+              <div className="d-flex">
+                <input
+                  {...getInputProps({
+                    placeholder: "Search Google Maps...",
+                    className: "form-control flex-grow-1",
+                  })}
+                />
+              </div>
+              <ul className="list-group">
+                {loading && <li className="list-group-item">Loading...</li>}
+                {suggestions.map((suggestion) => {
+                  const className = suggestion.active
+                    ? "list-group-item bg-primary text-light"
+                    : "list-group-item";
+                  const style = { cursor: "pointer" };
+                  return (
+                    <li
+                      {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style,
+                      })}
+                    >
+                      <span>{suggestion.description}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+        </PlacesAutocomplete>
       </div>
       {loading ? (
         <p>Loading...</p>
