@@ -9,7 +9,8 @@ class ClearsController < ApplicationController
   # GET /clears
   # GET /clears.json
   def index
-    @clears_to_render = ClearService.cleared_games_for(current_user)
+    user = params[:user_id] ? User.find_by!(public: true, id: params[:user_id]) : current_user
+    @clears_to_render = ClearService.cleared_games_for(user)
     @clears = @clears_to_render.map do |clear|
       {
         escape_game: clear.escape_game,

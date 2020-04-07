@@ -1,18 +1,104 @@
-<div class="jumbotron">
-    <h1 class="display-4">Find your escape</h1>
-    <p class="lead">
-        Blacklight helps you find the next escape room you'd like to challenge.
-        Whether you've got specific access requirements or you're just hungry
-        for a challenge, Blacklight will reveal your next adventure.
+<div class="jumbotron mb-0">
+  <h1 class="display-4">Find your escape</h1>
+  <p class="lead">
+    Blacklight helps you find the next escape room you'd like to challenge.
+    Whether you've got specific access requirements or you're just hungry
+    for a challenge, Blacklight will reveal your next adventure.
+  </p>
+</div>
+<div class="row mx-0 flex-grow-1 text-center">
+  <div class="col-md bg-secondary text-light p-5 d-flex flex-column justify-content-center">
+    <h2>Crack the locks...</h2>
+    <p>
+      If you're a fan of escape rooms, this is the place to be!
     </p>
-    <% if current_user && !current_user.onboarded? %>
-    <div class="d-flex flex-column align-items-center">
-        <h2>Welcome!</h2>
-        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+    <p>
+      Explore the selection of escape rooms listed on the site to track down
+      your next big heist. 
+    </p>
+    <p>
+      Show your records to the world over on your public
+      profile.  
+    </p>
+    <p>
+      Add some photos after the job's done and the mystery's solved!
+    </p>
+  </div>
+  <div class="col-md bg-primary text-light p-5 d-flex flex-column justify-content-center">
+    <h2>...or make them yourself</h2>
+    <p>
+      If you own an escape room, Blacklight's got your back!
+    </p>
+    <p>
+      List your escape room on the site in all its detail.
+    </p>
+    <p>
+      Check out who's cleared it.
+    </p>
+    <p>
+      Encourage your groups to record their trials on Blacklight!
+    </p>
+  </div>
+  <div class="col-md p-5 d-flex flex-column justify-content-center">
+    <h2>Let's get started!</h2>
+    <% if current_user %>
+      <% if !current_user.onboarded? %>
+        <div class="d-flex flex-column align-items-center">
+          <p>
+            Thanks for signing up to the site! Now, it's time to pick out your
+            role. You can change this at any time in your profile.
+          </p>
+          <p>
+            Maintainers can list their escape rooms on the site. Enthusiasts
+            gain a section on their profile where folks can see which escape
+            rooms they've cleared.
+          </p>
+          <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
             <%= button_to('I\'m a maintainer!', make_user_maintainer_path(current_user), method: :post, class: 'btn btn-primary mr-md-2 mb-2') %>
             <%= button_to('I\'m an enthusiast!', make_user_enthusiast_path(current_user), method: :post, class: 'btn btn-primary mr-md-2 mb-2') %>
             <%= button_to('I\'m both!', make_maintainer_and_enthusiast_path(current_user), method: :post, class: 'btn btn-primary mb-2') %>
+          </div>
         </div>
-    </div>
+      <% else %>
+        <% if current_user.maintainer %>
+          <h3>Your escape rooms</h3>
+          <p>Perhaps you want to...</p>
+          <ul> 
+            <li>
+              <%= link_to 'update one of your existing listings?', escape_games_path %>
+            </li>
+            <li>
+              <%= link_to 'create a new listing?', new_escape_game_path %>
+            </li>
+          </ul>
+        <% end %>
+        <% if current_user.enthusiast %>
+          <h3>Begin your quest</h3>
+          <p>Perhaps you want to...</p>
+          <ul> 
+            <li>
+              <%= link_to 'find a new escape room to tackle?', explore_path %>
+            </li>
+            <li>
+              <%= link_to 'show someone your profile?', current_user %>
+            </li>
+            <li>
+              <%= link_to 'show someone your image gallery?', clears_path(user_id: current_user.id) %>
+            </li>
+          </ul>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>
+        To make the best of Blacklight and reveal new escape rooms, it's a
+        great idea to make an account! Click the Login button to get started.
+      </p>
+      <p>
+        Blacklight members can share their escape room talents with the world
+        and explore new escape rooms to take on. And if you own escape rooms,
+        you can list them on Blacklight too if you join! It's no mystery that
+        joining Blacklight will help you get the best of escape rooms.
+      </p>
     <% end %>
+  </div>
 </div>
