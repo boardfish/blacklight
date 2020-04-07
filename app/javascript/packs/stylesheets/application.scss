@@ -71,7 +71,7 @@ $colors: (
   "gray-dark": $gray-800
 );
 
-$primary: $red !default;
+$primary: $purple;
 $secondary: $gray-600 !default;
 $success: $green !default;
 $info: $cyan !default;
@@ -163,6 +163,9 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--primary);
   color: white !important;
   border-radius: 0 1em 1em 0;
+  a {
+    color: inherit;
+  }
 }
 
 .escape-game-name {
@@ -177,17 +180,30 @@ h1, h2, h3, h4, h5, h6 {
   color: solarized("Base3");
 }
 
-.navbar {
-  background-color: darken($primary, 25%);
+.user-name {
+  background-color: darken($primary, 10%);
+  margin-bottom: 0;
+  margin-left: -1rem;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1em;
+  border-radius: 0 1em 1em 0;
+  max-width: 99%;
   color: solarized("Base3");
+}
+
+.navbar {
+  background-color: solarized("Base2");
+  color: solarized("Base01");
+  font-weight: bold;
   .nav-link, .navbar-brand {
     color: inherit;
   }
+  border-bottom: 1px solid $primary;
 }
 
 .card {
-  background: darken($primary, 25%);
-  color: solarized("Base3");
+  background: $body-bg;
   transition: 0.2s border-color ease-in;
   border: 2px solid var(--primary)
 }
@@ -223,13 +239,9 @@ body[data-theme="dark"] {
     @extend .bg-dark;
     @extend .text-light;
   }
-  .navbar-light {
-    .navbar-nav .nav-link {
-      @extend .text-light;
-    }
-    .navbar-brand {
-      @extend .text-light;
-    }
+  .navbar {
+    color: solarized("Base1");
+    background-color: solarized("Base02");
   }
   .jumbotron {
     background-color: $gray-600;
@@ -264,4 +276,35 @@ body[data-theme="dark"] {
 
 .bg-body {
   background-color: $body-bg !important;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  height: 64px;
+}
+
+.user-representation {
+  display: flex;
+  flex-direction: row;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.escape-game-name-list {
+  padding-left: 0;
+  list-style: none;
+  li {
+    a.escape-game-name {
+      display: block;
+    }
+    line-height: 1.25;
+    margin-bottom: .5em;
+  }
+}
+
+.pesky-thing {
+  max-height: 78vh;
+  overflow-y: scroll;
+  padding: 10px 0;
 }

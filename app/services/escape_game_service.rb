@@ -41,6 +41,14 @@ class EscapeGameService
     EscapeGame.kept.where.not(user: @user).ransack(params).result
   end
 
+  def mini_clear_list
+    @user.clears.includes(:escape_game)
+         .select(
+           :id, :name, :place_id, :latitude, :longitude, :difficulty_level
+         )
+         .references(:escape_game)
+  end
+
   attr_writer :escape_games
 
   # for each escape_game, list whether the user has a Clear with it.
@@ -54,14 +62,32 @@ class EscapeGameService
     )
   end
 
-  def list_clears
-    @escape_games.includes(:clears).with_attached_images.map do |e|
-      image_path = explore_thumbnail_for(e.images&.first)
-      {
-        escape_game: e,
-        cleared: e.clears.exists?(user: @user),
-        image_path: image_path
-      }
+  def load_clears_and_maintainer
+    @escape_games.includes(:clears).includes(:user).with_attached_images
+  end
+
+  def format_for_explore_view
+    @escape_games.map do |e|
+      format_game_for_explore_view(e)
     end
+  end
+
+  def list_clears
+    @escape_games = load_clears_and_maintainer
+    format_for_explore_view
+  end
+
+  private
+
+  def format_game_for_explore_view(game)
+    {
+      escape_game: game,
+      cleared: game.clears.exists?(user: @user),
+      image_path: explore_thumbnail_for(game.images&.first),
+      user: {
+        avatar: game.user.avatar.attached? ? url_for(game.user.avatar) : nil,
+        id: game.user.id
+      }
+    }
   end
 end

@@ -8,5 +8,9 @@ FactoryBot.define do
     nickname { Faker::Internet.unique.username }
     maintainer { [true, false].sample }
     enthusiast { [true, false].sample }
+
+    public { true }
+
+    website { 'https://simon.fish' }
   end
 end

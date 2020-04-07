@@ -10,6 +10,9 @@ class EscapeGame < ApplicationRecord
   has_many :clears, dependent: :destroy
   before_save :build_blurhash
 
+  scope :by, ->(user_id) { where(user_id: user_id) }
+  scope :all_but, ->(escape_game) { where.not(id: escape_game.id) }
+
   belongs_to :user
   validates :name, presence: true
   validates :genre, presence: true
@@ -47,6 +50,11 @@ class EscapeGame < ApplicationRecord
   validates :place_id, format: {
     with: /([A-z\-\d])*/, message: 'may not be a valid Google Maps Place ID'
   }
+
+  def google_maps_url
+    'https://www.google.com/maps/search/' \
+    "?api=1&query=#{latitude},#{longitude}&query_place_id=#{place_id}"
+  end
 
   private
 

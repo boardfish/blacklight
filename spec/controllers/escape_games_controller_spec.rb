@@ -85,7 +85,7 @@ RSpec.describe EscapeGamesController, type: :controller do
       ).to be_empty
       expect(
         assigns(:escape_games).reject do |game|
-          game[:difficulty_level] == 'enthusiast'
+          game[:escape_game].difficulty_level == 'enthusiast'
         end
       ).to be_empty
     end

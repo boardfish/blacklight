@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   end
   get 'explore', to: 'escape_games#explore'
   put 'escape_games/:id/cleared', to: 'escape_games#cleared', as: :escape_game_cleared
-  get 'escape_games/:id/cleared', to: 'escape_games#already_cleared', as: :escape_game_clear_check
   resources :users, except: :index
   get 'sessions/new'
   get 'sessions/destroy'

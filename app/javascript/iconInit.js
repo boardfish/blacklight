@@ -8,6 +8,7 @@ import {
   faDungeon,
   faFighterJet,
   faGhost,
+  faGlobe,
   faHistory,
   faHourglassStart,
   faImage,
@@ -19,7 +20,10 @@ import {
   faMobile,
   faQuestionCircle,
   faShapes,
-  faUserAstronaut
+  faTimes,
+  faUser,
+  faUserAstronaut,
+  faUserLock
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -31,6 +35,7 @@ library.add(
   faDungeon,
   faFighterJet,
   faGhost,
+  faGlobe,
   faHistory,
   faHourglassStart,
   faImage,
@@ -42,5 +47,8 @@ library.add(
   faMobile,
   faQuestionCircle,
   faShapes,
-  faUserAstronaut
+  faTimes,
+  faUser,
+  faUserAstronaut,
+  faUserLock
 );

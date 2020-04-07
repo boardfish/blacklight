@@ -5,21 +5,22 @@ class EscapeGamesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_escape_game, only: %i[show cleared]
   before_action :set_user_escape_game, only: %i[edit update destroy]
+  before_action :configure_egs, only: %i[index explore show]
 
-  I18N_HASH = I18n.t('controllers.escape_games')
+  I18N = I18n.t('controllers.escape_games')
 
   # GET /escape_games
   # GET /escape_games.json
   def index
-    @escape_games = current_user.escape_games.kept
+    @egs.escape_games = EscapeGame.by(params[:user_id] || current_user.id)
+    @escape_games = @egs.list_clears
   end
 
   # GET /escape_games/explore
   # GET /escape_games/explore.json
   def explore
-    @escape_games = EscapeGameService.search_with_clears(
-      current_user, params[:search], params[:difficulty]
-    )
+    @egs.escape_games = @egs.search(params[:search], params[:difficulty])
+    @escape_games = @egs.list_clears
     respond_to do |format|
       format.html do
         render :explore
@@ -33,10 +34,8 @@ class EscapeGamesController < ApplicationController
   # GET /escape_games/1
   # GET /escape_games/1.json
   def show
-    @related_escape_games = EscapeGameService.list_with_clears(
-      current_user,
-      @escape_game.user.escape_games.where.not(id: @escape_game.id)
-    )
+    @egs.escape_games = EscapeGame.by(@escape_game.user).all_but(@escape_game)
+    @related_escape_games = @egs.list_clears
   end
 
   # GET /escape_games/new
@@ -55,7 +54,7 @@ class EscapeGamesController < ApplicationController
     respond_to do |format|
       if @escape_game.save
         format.html do
-          redirect_to @escape_game, notice: I18N_HASH.dig(:create, :success)
+          redirect_to @escape_game, notice: I18N.dig(:create, :success)
         end
         format.json do
           render :show, status: :created, location: @escape_game
@@ -75,7 +74,7 @@ class EscapeGamesController < ApplicationController
     respond_to do |format|
       if @escape_game.update(escape_game_params.merge(user: @escape_game.user))
         format.html do
-          redirect_to @escape_game, notice: I18N_HASH.dig(:update, :success)
+          redirect_to @escape_game, notice: I18N.dig(:update, :success)
         end
         format.json { render :show, status: :ok, location: @escape_game }
       else
@@ -93,7 +92,7 @@ class EscapeGamesController < ApplicationController
     @escape_game.discard
     respond_to do |format|
       format.html do
-        redirect_to escape_games_url, notice: I18N_HASH.dig(:destroy, :success)
+        redirect_to escape_games_url, notice: I18N.dig(:destroy, :success)
       end
       format.json { head :no_content }
     end
@@ -103,15 +102,9 @@ class EscapeGamesController < ApplicationController
     EscapeGameService.set_cleared(@escape_game, current_user, params[:cleared])
     respond_to do |format|
       format.html do
-        redirect_to @escape_game, notice: I18N_HASH.dig(:cleared, :success)
+        redirect_to @escape_game, notice: I18N.dig(:cleared, :success)
       end
       format.json { head :no_content }
-    end
-  end
-
-  def already_cleared
-    respond_to do |format|
-      format.json { render json: { cleared: true } }
     end
   end
 
@@ -133,5 +126,9 @@ class EscapeGamesController < ApplicationController
       :difficulty_level, :available_time, :website_link, :place_id, :latitude,
       :longitude, :visible, :user_id, images: []
     )
+  end
+
+  def configure_egs
+    @egs = EscapeGameService.new(current_user, [])
   end
 end
