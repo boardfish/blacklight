@@ -49,7 +49,11 @@
   <%= form.text_field :website_link, help: 'If you have a website or social media, link to it here.' %>
 </div>
 
-<%= react_component 'atoms/ReactPlacesAutocomplete' %>
+<%= react_component 'atoms/ReactPlacesAutocomplete', initialPlace: {
+  lat: escape_game.latitude,
+  lng: escape_game.longitude,
+  placeId: escape_game.place_id
+} %>
 
 <noscript>
   <div class="field">

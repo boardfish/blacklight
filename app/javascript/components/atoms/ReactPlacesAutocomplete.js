@@ -4,13 +4,13 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
-export default () => {
+export default ({ initialPlace }) => {
   const [address, setAddress] = useState("");
-  const [selectedPlace, setSelectedPlace] = useState({
-    lat: "",
-    lng: "",
-    placeId: "",
-  });
+  const [selectedPlace, setSelectedPlace] = useState(initialPlace);
+
+  const getGoogleMapsURLFor = ({ lat, lng, placeId }) => {
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&query_place_id=${placeId}`;
+  };
 
   const handleSelect = (address, placeId) => {
     geocodeByAddress(address)
@@ -38,44 +38,79 @@ export default () => {
         value={selectedPlace.placeId}
         readOnly
       />
-      <PlacesAutocomplete
-        value={address}
-        onChange={(newAddress) => setAddress(newAddress)}
-        onSelect={handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: "Search Places ...",
-                className: "location-search-input",
-              })}
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map((suggestion) => {
-                const className = suggestion.active
-                  ? "suggestion-item--active"
-                  : "suggestion-item";
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                  : { backgroundColor: "#ffffff", cursor: "pointer" };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
+      <div className="form-group row">
+        <label className="col-form-label col-sm-2 text-right">
+          Google Maps Place
+        </label>
+        <PlacesAutocomplete
+          value={address}
+          onChange={(newAddress) => setAddress(newAddress)}
+          onSelect={handleSelect}
+        >
+          {({
+            getInputProps,
+            suggestions,
+            getSuggestionItemProps,
+            loading,
+          }) => (
+            <div className="col-sm-10">
+              <div className="d-flex">
+                <input
+                  {...getInputProps({
+                    placeholder: "Search Google Maps...",
+                    className: "form-control flex-grow-1",
+                  })}
+                />
+                <button
+                  className={`btn btn-secondary ml-2 ${
+                    selectedPlace.placeId ? "" : "d-none"
+                  }`}
+                  type="button"
+                  onClick={() =>
+                    setSelectedPlace({
+                      lat: "",
+                      lng: "",
+                      placeId: "",
+                    })
+                  }
+                >
+                  ×
+                </button>
+              </div>
+              {selectedPlace.placeId ? (
+                <p>
+                  <small className="text-muted">
+                    Click{" "}
+                    <a target="_blank" rel="noopener" href={getGoogleMapsURLFor(selectedPlace)}>this link</a>{" "}
+                    to view the currently selected Google Maps Place.
+                  </small>
+                </p>
+              ) : (
+                ""
+              )}
+              <ul className="list-group">
+                {loading && <li className="list-group-item">Loading...</li>}
+                {suggestions.map((suggestion) => {
+                  const className = suggestion.active
+                    ? "list-group-item bg-primary text-light"
+                    : "list-group-item";
+                  const style = { cursor: "pointer" };
+                  return (
+                    <li
+                      {...getSuggestionItemProps(suggestion, {
+                        className,
+                        style,
+                      })}
+                    >
+                      <span>{suggestion.description}</span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
+          )}
+        </PlacesAutocomplete>
+      </div>
     </Fragment>
   );
 };
