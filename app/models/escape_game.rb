@@ -69,6 +69,7 @@ class EscapeGame < ApplicationRecord
   validates :place_id, format: {
     with: /([A-z\-\d])*/, message: 'may not be a valid Google Maps Place ID'
   }
+  validates_length_of :images, maximum: 4
 
   def google_maps_url
     'https://www.google.com/maps/search/' \
