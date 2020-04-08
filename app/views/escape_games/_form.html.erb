@@ -85,6 +85,11 @@
         <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
       </td>
       <td>
+        <%= link_to "Set as Default", escape_game_default_image_path(escape_game, image),
+                    method: :put,
+                    remote: true,
+                    class: "default_image btn btn-primary"
+                %>
         <%= link_to "Remove", escape_game_image_path(escape_game, image),
                     method: :delete,
                     data: { confirm: "Are you sure?" },
