@@ -49,13 +49,13 @@
 
       <div class="d-flex justify-content-center" style="min-height: 18em">
         <% unless @escape_game.place_id.empty? %>
-        <iframe frameborder="0" class="flex-grow-1" style="border:0; height: inherit; flex-basis: 50%" src="https://www.google.com/maps/embed/v1/place?key=<%= GOOGLE_MAPS_EMBED_API_KEY %>&q=place_id:<%= CGI.escape(@escape_game.place_id) %>" allowfullscreen>
+        <iframe frameborder="0" class="flex-grow-1" style="border:0; height: inherit; flex-basis: 50%; min-width: 0" src="https://www.google.com/maps/embed/v1/place?key=<%= GOOGLE_MAPS_EMBED_API_KEY %>&q=place_id:<%= CGI.escape(@escape_game.place_id) %>" allowfullscreen>
         </iframe>
         <% end %>
         <% if @escape_game.images.attached? %>
         <%= react_component 'atoms/ImageCarousel', {
             items: @escape_game.images.map { |image| {src: url_for(image)} },
-          }, class: 'flex-grow-1', style: 'flex-basis: 50%'
+          }, class: 'flex-grow-1', style: 'flex-basis: 50%; min-width: 0'
             %>
         <% end%>
       </div>
