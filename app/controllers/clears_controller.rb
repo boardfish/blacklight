@@ -28,10 +28,6 @@ class ClearsController < ApplicationController
     end
   end
 
-  # GET /clears/1
-  # GET /clears/1.json
-  def show; end
-
   # GET /clears/new
   def new
     @clear = Clear.new
