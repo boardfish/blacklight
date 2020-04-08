@@ -1,11 +1,13 @@
-<%= form_with(model: clear, local: true) do |form| %>
+<%= bootstrap_form_with(model: clear, local: true) do |form| %>
 <% if clear.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(clear.errors.count, "error") %> prohibited this clear from being saved:</h2>
+<div id="error_explanation" class="alert alert-warning">
+  <h2><%= t("activerecord.errors.template.header.#{clear.errors.count > 1 ? 'other' : 'one'}", count: clear.errors.count, model: 'completion record') %></h2>
 
   <ul>
     <% clear.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+    <li>
+      <%= message %>.
+    </li>
     <% end %>
   </ul>
 </div>
@@ -18,6 +20,7 @@
       <th>Remove?</th>
     </tr>
     <% clear.images.each do |image| %>
+    <% next unless image.id %>
     <tr>
       <td>
         <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
@@ -33,11 +36,14 @@
     </tr>
     <% end %>
   </table>
-  <%= form.file_field :images, multiple: true %>
+  <% if @clear.images.select(&:id).count < 4 %>
+    <%= form.file_field :images, multiple: true %>
+  <% end %>
 </div>
 
 <% if @clear.images.attached? %>
 <% @clear.images.each do |image| %>
+<% next unless image.id %>
 <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
 <% end %>
 <% end %>

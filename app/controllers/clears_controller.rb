@@ -2,7 +2,6 @@
 
 # Controller for CRUD actions on Clear objects.
 class ClearsController < ApplicationController
-  before_action :set_clear, only: %i[show]
   before_action :set_user_clear, only: %i[edit update destroy]
   before_action :authenticate_user!
 
@@ -30,11 +29,22 @@ class ClearsController < ApplicationController
 
   # GET /clears/1
   # GET /clears/1.json
-  def show; end
+  def show
+    respond_to do |format|
+      format.html { redirect_to clears_path }
+      format.json do
+        render json: current_user.clears.find(params[:id]), status: :ok
+      end
+    end
+  end
 
   # GET /clears/new
   def new
-    @clear = Clear.new
+    redirect_to explore_path, notice: {
+      title: 'Mark off another one!',
+      content: 'You can mark an escape game as cleared here. You can also ' \
+      'check them off on escape games\' individual listings.'
+    }
   end
 
   # GET /clears/1/edit
@@ -95,11 +105,6 @@ class ClearsController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_clear
-    @clear = Clear.find(params[:id])
-  end
 
   def set_user_clear
     @clear = current_user.clears.find(params[:id])

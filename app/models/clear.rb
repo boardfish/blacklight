@@ -5,4 +5,5 @@ class Clear < ApplicationRecord
   belongs_to :user
   belongs_to :escape_game
   has_many_attached :images
+  validates_length_of :images, maximum: 4
 end

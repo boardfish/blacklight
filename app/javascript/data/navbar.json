@@ -7,10 +7,6 @@
     ],
     "enthusiastLoggedIn": [
         {
-            "name": "Feed",
-            "href": "/feed"
-        },
-        {
             "name": "Explore",
             "href": "/explore"
         },

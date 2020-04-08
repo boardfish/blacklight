@@ -88,6 +88,10 @@ en:
   activerecord:
     errors:
       models:
+        clear:
+          attributes:
+            images:
+              too_long: 'are limited to only 4 uploads'
         escape_game:
           attributes:
             images:

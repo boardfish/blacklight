@@ -1,6 +1,8 @@
-<h1>Editing Clear</h1>
+<div class="container-fluid">
+  <h1>Add Photos - <%= @clear.escape_game.name %></h1>
 
-<%= render 'form', clear: @clear %>
+  <%= render 'form', clear: @clear %>
 
-<%= link_to 'Show', @clear %> |
-<%= link_to 'Back', clears_path %>
+  <%= link_to 'Show', @clear %> |
+  <%= link_to 'Back', clears_path %>
+</div>
