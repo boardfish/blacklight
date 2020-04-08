@@ -85,6 +85,7 @@
         <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
       </td>
       <td>
+      <% if image.id %>
         <%= link_to "Set as Default", escape_game_default_image_path(escape_game, image),
                     method: :put,
                     remote: true,
@@ -96,6 +97,7 @@
                     remote: true,
                     class: "remove-image btn btn-danger"
                 %>
+      <% end %>
       </td>
     </tr>
     <% end %>
