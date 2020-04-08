@@ -82,12 +82,12 @@
       <th>Remove?</th>
     </tr>
     <% escape_game.images.each do |image| %>
+    <% next unless image.id %>
     <tr>
       <td>
         <%= image_tag  url_for(image), class: "img-fluid", style: "max-height: 100px" %>
       </td>
       <td>
-      <% if image.id %>
         <%= link_to "Set as Default", escape_game_default_image_path(escape_game, image),
                     method: :put,
                     remote: true,
@@ -99,16 +99,18 @@
                     remote: true,
                     class: "remove-image btn btn-danger"
                 %>
-      <% end %>
       </td>
     </tr>
     <% end %>
   </table>
+  <% if escape_game.images.select(&:id).count < 4 %>
   <%= form.file_field :images, multiple: true %>
+  <% end%>
 </div>
 
 <% if @escape_game.images.attached? %>
 <% @escape_game.images.each do |image| %>
+<% next unless image.id %>
 <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
 <% end %>
 <% end %>
