@@ -40,7 +40,11 @@ class ClearsController < ApplicationController
 
   # GET /clears/new
   def new
-    @clear = Clear.new
+    redirect_to explore_path, notice: {
+      title: 'Mark off another one!',
+      content: 'You can mark an escape game as cleared here. You can also ' \
+      'check them off on escape games\' individual listings.'
+    }
   end
 
   # GET /clears/1/edit
