@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     delete '/images/:id', to: 'images#destroy', as: :image
     put '/images/:id', to: 'images#default', as: :default_image
   end
-  resources :clears, except: %i[show] do
+  resources :clears do
     delete '/images/:id', to: 'images#clear_destroy', as: :image
   end
   get 'explore', to: 'escape_games#explore'
