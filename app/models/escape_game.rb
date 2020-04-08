@@ -2,18 +2,25 @@
 
 require 'rmagick'
 
-# Represents an escape game. This may be one of many offered at the same
-# location.
+# Override for the default_image getter. Needs to be done this way because we
+# can only avoid recursively calling `default_image` with `super` by going one
+# level up the ancestor chain, at least where ActiveStorage attachments are
+# involved.
+# Returns the default image if it's set, or the first available image otherwise.
 module DefaultImage
   def default_image
-    if super.attached?
-      return super
+    set_default_image = super
+    if set_default_image.is_a?(ActiveStorage::Attached::One) && \
+       set_default_image.attached?
+      super
     else
-      return images.first 
+      images.first
     end
   end
 end
 
+# Represents an escape game. This may be one of many offered at the same
+# location.
 class EscapeGame < ApplicationRecord
   prepend DefaultImage
   include Discard::Model
@@ -71,7 +78,7 @@ class EscapeGame < ApplicationRecord
   private
 
   def build_blurhash
-    return unless default_image.attached?
+    return if default_image.nil?
 
     default_image.open do |file|
       @image = Magick::ImageList.new(file.path)
