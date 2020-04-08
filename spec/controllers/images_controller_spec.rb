@@ -13,8 +13,6 @@ RSpec.describe ImagesController, type: :controller do
 
   it 'removes an image from an escape game' do
     # byebug
-    puts @escape_game.inspect
-    puts @escape_game.images.last
     expect do
       delete :destroy, params: {
         escape_game_id: @escape_game.id, id: @escape_game.images.last.id

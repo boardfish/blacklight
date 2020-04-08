@@ -18,11 +18,13 @@ RSpec.describe '/clears', type: :request do
   # Clear. As you add validations to Clear, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    # skip('Add a hash of attributes valid for your model')
+    attributes_for(:clear)
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    # skip('Add a hash of attributes invalid for your model')
+    attributes_for(:clear, user_id: nil)
   end
 
   before(:each) do
@@ -55,6 +57,7 @@ RSpec.describe '/clears', type: :request do
   describe 'GET /edit' do
     it 'render a successful response' do
       clear = Clear.create! valid_attributes
+      sign_in clear.user
       get edit_clear_url(clear)
       expect(response).to be_successful
     end
@@ -64,7 +67,7 @@ RSpec.describe '/clears', type: :request do
     context 'with valid parameters' do
       it 'creates a new Clear' do
         expect do
-          post clears_url, params: { clear: valid_attributes }
+          post(clears_url, params: { clear: valid_attributes })
         end.to change(Clear, :count).by(1)
       end
 
@@ -90,30 +93,19 @@ RSpec.describe '/clears', type: :request do
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
+      # Tests for these have been removed as we don't expect the user to update
+      # which escape room a given clear points at. This route is likely to be
+      # removed.
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
-      it 'updates the requested clear' do
-        clear = Clear.create! valid_attributes
-        patch clear_url(clear), params: { clear: new_attributes }
-        clear.reload
-        skip('Add assertions for updated state')
+        attributes_for(:clear)
       end
 
       it 'redirects to the clear' do
         clear = Clear.create! valid_attributes
+        sign_in clear.user
         patch clear_url(clear), params: { clear: new_attributes }
         clear.reload
-        expect(response).to redirect_to(clear_url(clear))
-      end
-    end
-
-    context 'with invalid parameters' do
-      it "renders a successful response (to display the 'edit' template)" do
-        clear = Clear.create! valid_attributes
-        patch clear_url(clear), params: { clear: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to redirect_to(clears_url)
       end
     end
   end
@@ -121,6 +113,7 @@ RSpec.describe '/clears', type: :request do
   describe 'DELETE /destroy' do
     it 'destroys the requested clear' do
       clear = Clear.create! valid_attributes
+      sign_in clear.user
       expect do
         delete clear_url(clear)
       end.to change(Clear, :count).by(-1)
@@ -128,6 +121,7 @@ RSpec.describe '/clears', type: :request do
 
     it 'redirects to the clears list' do
       clear = Clear.create! valid_attributes
+      sign_in clear.user
       delete clear_url(clear)
       expect(response).to redirect_to(clears_url)
     end

@@ -49,7 +49,6 @@ FactoryBot.define do
     place_id { location.dig(:location, :place_id) }
     user_id { User.count > 2 ? User.all.sample.id : create(:user).id }
     after(:build) do |escape_game|
-      puts "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png"
       image_to_attach = File.open(
         Rails.root.join(
           'spec',

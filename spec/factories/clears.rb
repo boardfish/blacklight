@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :clear do
-    user { random_user }
-    escape_game do
-      EscapeGame.order(Arel.sql('RANDOM()')).first || create(:escape_game)
+    user_id { random_user.id }
+    escape_game_id do
+      (EscapeGame.order(Arel.sql('RANDOM()')).first || create(:escape_game)).id
     end
   end
 end
