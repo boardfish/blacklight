@@ -77,7 +77,6 @@ RSpec.describe EscapeGamesController, type: :controller do
 
     it 'filters escape rooms by both name and difficulty at once' do
       get :explore, params: { difficulty: 2, search: 'Mushroom' }
-      puts assigns(:escape_games)
       expect(
         assigns(:escape_games).map { |e| e[:escape_game] }.filter do |game|
           !game.name.include? 'Mushroom'
