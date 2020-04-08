@@ -1,11 +1,13 @@
 <%= bootstrap_form_with(model: escape_game, local: true, class: 'w-100') do |form| %>
 <% if escape_game.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(escape_game.errors.count, "error") %> prohibited this escape_game from being saved:</h2>
+<div id="error_explanation" class="alert alert-warning">
+  <h2><%= t("activerecord.errors.template.header.#{escape_game.errors.count > 1 ? 'other' : 'one'}", count: escape_game.errors.count, model: 'escape game') %></h2>
 
   <ul>
     <% escape_game.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+    <li>
+      <%= message %>.
+    </li>
     <% end %>
   </ul>
 </div>

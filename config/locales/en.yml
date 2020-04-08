@@ -85,3 +85,15 @@ en:
         failure:
           title: Failed to update...
           content: We couldn't save the changes you requested. Please try again.
+  activerecord:
+    errors:
+      models:
+        escape_game:
+          attributes:
+            images:
+              too_long: 'are limited to only 4 uploads'
+      template:
+        header:
+          one:   "Just one thing to fix!"
+          other: "Looks like there are %{count} issues with your %{model}..."
+        body:    "There were problems with the following fields:"
