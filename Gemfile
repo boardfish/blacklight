@@ -46,6 +46,9 @@ gem 'rmagick'
 # Render Markdown
 gem 'redcarpet'
 
+# Use GCS bucket in prod
+gem "google-cloud-storage", "~> 1.11", require: false
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
