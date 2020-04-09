@@ -29,7 +29,7 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
               }}
             />
           </p>
-          <small className="d-block text-muted">
+          <small className="d-block d-md-none text-muted">
             Cleared {moment(clear.created_at).fromNow()}
           </small>
         </div>
@@ -52,16 +52,16 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
       <form role="form" encType="multipart/form-data" action={`/clears/${clear.id}`} acceptCharset="UTF-8" method="post">
         <input type="hidden" name="_method" value="patch" />
         <input type="hidden" name="authenticity_token" value={form_authenticity_token} />
-        <div className="custom-file">
+        <div className="custom-file mt-2">
           <input multiple="multiple" className="custom-file-input" type="file" name="clear[images][]" id="clear_images" />
           <label className="custom-file-label" htmlFor="clear_images">
-            Choose file
+            Choose photos
           </label>
         </div>
         {images.map(image => (
           <input type="hidden" multiple="multiple" name="clear[images][]" value={image.signed_id} />
         ))}
-        <button type="submit">Submit</button>
+        <Button type="submit" color='primary' className="mt-2 d-block ml-auto">Submit</Button>
       </form>
       </UncontrolledCollapse>
            {/* TODO: Clear date */}
