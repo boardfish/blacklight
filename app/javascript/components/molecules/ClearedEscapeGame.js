@@ -11,7 +11,7 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
       <div className="d-flex align-items-center">
         <div style={{ flexGrow: 0.3 }}>
           <a
-            className="escape-game-name h6 mb-0"
+            className="escape-game-name h6 mb-0 d-block"
             href={`/escape_games/${escapeGame.id}`}
           >
             {escapeGame.name}
@@ -29,8 +29,11 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
               }}
             />
           </p>
+          <small className="d-block text-muted">
+            Cleared {moment(clear.created_at).fromNow()}
+          </small>
         </div>
-        <p className="ml-auto mb-0">
+        <p className="ml-auto mb-0 d-none d-md-block">
           Cleared {moment(clear.created_at).fromNow()}
         </p>
         <Button
