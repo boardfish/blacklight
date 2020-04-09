@@ -19,6 +19,7 @@ require('../iconInit')
 // const imagePath = (name) => images(name, true)
 // Support component names relative to this directory:
 import 'bootstrap'
+window.$ = $;
 
 var componentRequireContext = require.context("components", true);
 var ReactRailsUJS = require("react_ujs");
