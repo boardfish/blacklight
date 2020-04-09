@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # default_url_options Rails.application.config.action_mailer.default_url_options
   resources :escape_games do
     delete '/images/:id', to: 'images#destroy', as: :image
     put '/images/:id', to: 'images#default', as: :default_image
