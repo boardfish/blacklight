@@ -32,7 +32,7 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="mr-auto text-center" navbar>
             {
               isEnthusiast
                 ? NavbarData.enthusiastLoggedIn.map(({ href, name }, index) => (
@@ -58,7 +58,7 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
             ))}
           </Nav>
           {/* No worries here, since loginButton is SSR */}
-          <Nav>
+          <Nav className="d-flex justify-content-center">
             {username ? <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   {username}
