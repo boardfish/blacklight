@@ -1,183 +1,307 @@
-stage:
-  - name: 3D Land
-    summary: Explore a brand-new 3D world!
-  - name: 75m
-    summary: Climb the girders and take down Donkey Kong!
-  - name: Arena Ferox
-    summary: Prove your worth in a legendary battle!
-  - name: Balloon Fight
-    summary: Take on a floaty free-for-all in this fun adventure!
-  - name: Battlefield
-    summary: Challenge legends and come out on top!
-  - name: Big Battlefield
-    summary: The battle's even bigger in this huge contest!
-  - name: Big Blue
-    summary: Chaos is afoot in the F-ZERO Grand Prix! Bring out the Falcon Flyer!
-  - name: Boxing Ring
-    summary: You're the smallest in a league full of brawny boxers! Got what it takes?
-  - name: Bridge of Eldin
-    summary: The hero's journey leads him to a crumbling bridge!
-  - name: Brinstar
-    summary: All kinds of grotesque horrors lurk on this planet!
-  - name: Brinstar Depths
-    summary: Brinstar's troublesome catacombs come to life in this escape room!
-  - name: Castle Siege
-    summary: Solve the puzzles, defend the castle, save the kingdom!
-  - name: Coliseum
-    summary: A contest of pride awaits!
-  - name: Corneria
-    summary: Never give up! Trust your instincts!
-  - name: Delfino Plaza
-    summary: You've been framed for vandalism! Clean the place up with FLUDD!
-  - name: Distant Planet
-    summary: Forage for humongous treasures on a Pikmin-populated planet!
-  - name: Dracula's Castle
-    summary: Vanquish the darkness, far beneath the keep!
-  - name: Dream Land
-    summary: There's a nightmare in Dream Land!
-  - name: Duck Hunt
-    summary: Shoot down those pesky ducks!
-  - name: Figure-8 Circuit
-    summary: All the chaos of Mario Kart awaits in this escape room!
-  - name: Final Destination
-    summary: An escape room...with no items?
-  - name: Find Mii
-    summary: Rescue the princess and save the kingdom!
-  - name: Flat Zone
-    summary: A Game-and-Watch classic for beginners!
-  - name: Flat Zone 2
-    summary: A Game-and-Watch classic for seasoned escape room veterans!
-  - name: Flat Zone X
-    summary: A Game-and-Watch classic for true escape room die-hards!
-  - name: Fountain of Dreams
-    summary: The Star Rod has been stolen! Help Kirby to reclaim it!
-  - name: Fourside
-    summary: The city of Fourside is being attacked by a UFO!
-  - name: Frigate Orpheon
-    summary: A huge creature is being held here, and it's just waiting to leap out!
-  - name: Gamer
-    summary: Don't let Mom catch you playing video games!
-  - name: Garden of Hope
-    summary: This paradise of flora and fauna is brimming with Pikmin!
-  - name: Gaur Plain
-    summary: The two titans of the world have awakened. Solve the mystery and put them to rest!
-  - name: Gerudo Valley
-    summary: Twinrova are causing chaos in Gerudo Valley! Learn some counterspells to stop them!
-  - name: Golden Plains
-    summary: Coins abound in the Mushroom Kingdom!
-  - name: Great Bay
-    summary: Rewind time and stop the Moon from crashing!
-  - name: The Great Cave Offensive
-    summary: Hunt a huge maze for amazing treasures!
-  - name: Great Plateau Tower
-    summary: Reawaken the hero's memories!
-  - name: Green Greens
-    summary: The king's stolen all our food - stop him!
-  - name: Green Hill Zone
-    summary: Gotta go fast to break out of this escape room in time!
-  - name: Halberd
-    summary: Infiltrate the flying airship!
-  - name: Hanenbow
-    summary: This relaxing puzzle experience uses music for effect!
-  - name: Hyrule Castle
-    summary: The kingdom's castle has a dastardly infiltrator!
-  - name: Icicle Mountain
-    summary: Reach the top of the mountain in one piece!
-  - name: Jungle Hijinxs
-    summary: This two-part room has a flipping cool mechanic!
-  - name: Jungle Japes
-    summary: the banana stash has been seized! After them!
-  - name: Kalos Pokémon League
-    summary: Use your wits to make the right moves and defeat the Elite Four!
-  - name: Kongo Falls
-    summary: Sail down the cascading falls!
-  - name: Kongo Jungle
-    summary: Kritters left and right! Keep your wits about you!
-  - name: Living Room
-    summary: Dig out the right items to make the dogs happy!
-  - name: Luigi's Mansion
-    summary: Turn over every stone and solve the mystery of the haunted mansion!
-  - name: Lylat Cruise
-    summary: Keep the ship soaring through space in the midst of a battle!
-  - name: Magicant
-    summary: Navigate the hero's memories and restore him to life!
-  - name: Mario Bros.
-    summary: The underbelly of the big city is crammed with creatures! Take them out!
-  - name: Mario Circuit
-    summary: The anti-gravity power is out! Get the race started again!
-  - name: Mario Galaxy
-    summary: Solve the mystery of the Gateway Galaxy!
-  - name: Mementos
-    summary: Become the Phantom Thieves of Hearts, and put your heads together for a big heist!
-  - name: Midgar
-    summary: Train to become the finest SOLDIER the world has ever seen!
-  - name: Miiverse
-    summary: What's everyone drawing? Try and figure out the puzzle!
-  - name: Moray Towers
-    summary: Squidkind is under threat from the Salmonids! Try and snatch their battle plans!
-  - name: Mushroom Kingdom 
-    summary: Bowser's troops are on the move! Solve the puzzles, save the kingdom!
-  - name: Mushroom Kingdom II
-    summary: This mysterious dream world is full of traps!
-  - name: Mushroomy Kingdom
-    summary: Save the rusting Mushroom Kingdom with the help of legends from the past!
-  - name: Mushroom Kingdom U
-    summary: Kamek's up to mischief! He must be stopped!
-  - name: Mute City
-    summary: The F-ZERO Grand Prix is well underway, but a plot threatens the race!
-  - name: New Donk City Hall
-    summary: Power's out in New Donk City! Track down the thief!
-  - name: New Pork City
-  - name: Norfair
-  - name: Onett
-  - name: Orbital Gate Assault
-  - name: Pac-Land
-  - name: Pac-Maze
-  - name: Palutena's Temple
-  - name: Paper Mario
-  - name: Peach's Castle
-  - name: Princess Peach's Castle
-  - name: PictoChat
-  - name: PictoChat 2
-  - name: Pilotwings
-  - name: Pirate Ship
-  - name: Planet Zebes
-  - name: Poké Floats
-  - name: Pokémon Stadium
-  - name: Pokémon Stadium 2
-  - name: Port Town Aero Dive
-  - name: Prism Tower
-  - name: Pyrosphere
-  - name: Rainbow Cruise
-  - name: Rainbow Road
-  - name: Reset Bomb Forest
-  - name: Rumble Falls
-  - name: Saffron City
-  - name: Sector Z
-  - name: Shadow Moses Island
-  - name: Skyloft
-  - name: Skyworld
-  - name: Smashville
-  - name: Spear Pillar
-  - name: Spiral Mountain
-  - name: Spirit Train
-  - name: Summit
-  - name: Super Happy Tree
-  - name: Super Mario Maker
-  - name: Suzaku Castle
-  - name: Temple
-  - name: Tomodachi Life
-  - name: Tortimer Island
-  - name: Town and City
-  - name: Umbra Clock Tower
-  - name: Unova Pokémon League
-  - name: Venom
-  - name: WarioWare, Inc.
-  - name: Wii Fit Studio
-  - name: Wily Castle
-  - name: Windy Hill Zone
-  - name: Woolly World
-  - name: Wrecking Crew
-  - name: Wuhu Island
-  - name: Yoshi's Island
-  - name: Yoshi's Story
+# Right, so I guess we'll have several different user types:
+users:
+  - nickname: StarFox
+    email: fox.mccloud@starfox.com
+    avatar: 
+    bio: |
+      StarFox Escape Games aims to bring you captivating escape games full of
+      hidden routes and challenges!
+    location: Lylat System, Deep Space
+    website: https://www.nintendo.com/games/detail/star-fox-zero-wii-u/
+    maintainer: true
+    enthusiast: false
+    escape_games:
+      - name: Lylat Cruise
+        summary: Keep the ship soaring through space in the midst of a battle!
+        genre: future
+        description: |
+          # Never give up! Trust your instincts!
+
+          Team StarFox is counting on you to keep their ship afloat in the midst
+          of attacks aplenty! Put your wits together with your teammates and
+          prove yourselves as ace pilots in the Lylat System.
+
+          ## Who is this suitable for?
+
+          Lylat Cruise is one of our most challenging rooms on offer. **Hardened
+          escape room veterans** should give this a try! Please be aware that
+          **strobe lighting** and **loud noises** are in use in this escape
+          room.
+        difficulty_level: enthusiast
+        available_time: 60
+        website_link: https://www.nintendo.com/games/detail/star-fox-zero-wii-u/
+        place_id: 
+        latitude: 
+        longitude: 
+        images: 
+      - name: Corneria
+        summary: Patrol the city, preserve the peace!
+        genre: future
+        description: |
+          # Corneria is under attack!
+
+          ...and it needs the best strategists in the Lylat System to keep it
+          safe! Put your heads together and piece together the old commander's
+          lost battle plans. You're Corneria's only hope!
+        difficulty_level: intermediate
+        available_time: 90
+        website_link: https://www.nintendo.com/games/detail/star-fox-zero-wii-u/
+        place_id: 
+        latitude: 
+        longitude: 
+        images: 
+      - name: Venom
+        summary: Playtime's over!
+        genre: future
+        description: |
+          # Star Wolf has arrived!
+
+          The dastardly trio of Star Wolf demands a duel on the scorching planet
+          of Venom! It's action stations for you and your team as you guide Star
+          Fox through the battle. Hack in and break down the other team's
+          shields, and take the win!
+        difficulty_level: intermediate
+        available_time: 60
+        website_link: https://www.nintendo.com/games/detail/star-fox-zero-wii-u/
+        place_id: 
+        latitude: 
+        longitude: 
+        images: 
+  - nickname: Sonic
+    email: sonic@sega.com
+    avatar: 
+    bio: |
+      The fastest breakouts in the west! Gotta go fast!
+    location: Wherever adventure takes me!
+    website: https://www.sonicthehedgehog.com/en-gb/
+    maintainer: true
+    enthusiast: true
+    escape_games:
+      - name: Windy Hill Zone
+        summary: Dismantle the tricks and traps of the Zeti!
+        genre: modern
+        description: |
+          # Free the fauna of the Lost Hex!
+
+          A dastardly tribe of Zeti calling themselves the Deadly Six have laid
+          a ton of traps that endanger the creatures of the Lost Hex! Brains and
+          brawn will get you through this escape room - do your best to save the
+          mysterious planet!
+
+          ## Who is this suitable for?
+
+          Windy Hill Zone is an exciting escape room that's mostly a test of
+          teamwork. It's a great room to take first-timers to! We take special
+          care to meet any and all accessibility requirements - please ask us
+          [on our website](https://simon.fish) if you've got any questions!
+        difficulty_level: beginner
+        available_time: 60
+        website_link: https://www.sega.com/games/sonic-lost-world
+        place_id: 
+        latitude: 
+        longitude: 
+        images: 
+  - nickname: SpringMan
+    email: spring.man@arms.com
+    avatar: 
+    bio: |
+      Boioioing!
+    location: Spring Stadium
+    website: https://arms.nintendo.com
+    maintainer: false
+    enthusiast: true
+    escape_games: []
+  - nickname: Mario
+    email: mario@nintendo.com
+    avatar: 
+    bio: |
+      It's-a me, Mario!
+    location: Mushroom Kingdom
+    website: https://mario.nintendo.com
+    maintainer: false
+    enthusiast: true
+    escape_games: []
+
+# stage:
+#   - name: 3D Land
+#     summary: Explore a brand-new 3D world!
+#   - name: 75m
+#     summary: Climb the girders and take down Donkey Kong!
+#   - name: Arena Ferox
+#     summary: Prove your worth in a legendary battle!
+#   - name: Balloon Fight
+#     summary: Take on a floaty free-for-all in this fun adventure!
+#   - name: Battlefield
+#     summary: Challenge legends and come out on top!
+#   - name: Big Battlefield
+#     summary: The battle's even bigger in this huge contest!
+#   - name: Big Blue
+#     summary: Chaos is afoot in the F-ZERO Grand Prix! Bring out the Falcon Flyer!
+#   - name: Boxing Ring
+#     summary: You're the smallest in a league full of brawny boxers! Got what it takes?
+#   - name: Bridge of Eldin
+#     summary: The hero's journey leads him to a crumbling bridge!
+#   - name: Brinstar
+#     summary: All kinds of grotesque horrors lurk on this planet!
+#   - name: Brinstar Depths
+#     summary: Brinstar's troublesome catacombs come to life in this escape room!
+#   - name: Castle Siege
+#     summary: Solve the puzzles, defend the castle, save the kingdom!
+#   - name: Coliseum
+#     summary: A contest of pride awaits!
+#   - name: Corneria
+#     summary: Never give up! Trust your instincts!
+#   - name: Delfino Plaza
+#     summary: You've been framed for vandalism! Clean the place up with FLUDD!
+#   - name: Distant Planet
+#     summary: Forage for humongous treasures on a Pikmin-populated planet!
+#   - name: Dracula's Castle
+#     summary: Vanquish the darkness, far beneath the keep!
+#   - name: Dream Land
+#     summary: There's a nightmare in Dream Land!
+#   - name: Duck Hunt
+#     summary: Shoot down those pesky ducks!
+#   - name: Figure-8 Circuit
+#     summary: All the chaos of Mario Kart awaits in this escape room!
+#   - name: Final Destination
+#     summary: An escape room...with no items?
+#   - name: Find Mii
+#     summary: Rescue the princess and save the kingdom!
+#   - name: Flat Zone
+#     summary: A Game-and-Watch classic for beginners!
+#   - name: Flat Zone 2
+#     summary: A Game-and-Watch classic for seasoned escape room veterans!
+#   - name: Flat Zone X
+#     summary: A Game-and-Watch classic for true escape room die-hards!
+#   - name: Fountain of Dreams
+#     summary: The Star Rod has been stolen! Help Kirby to reclaim it!
+#   - name: Fourside
+#     summary: The city of Fourside is being attacked by a UFO!
+#   - name: Frigate Orpheon
+#     summary: A huge creature is being held here, and it's just waiting to leap out!
+#   - name: Gamer
+#     summary: Don't let Mom catch you playing video games!
+#   - name: Garden of Hope
+#     summary: This paradise of flora and fauna is brimming with Pikmin!
+#   - name: Gaur Plain
+#     summary: The two titans of the world have awakened. Solve the mystery and put them to rest!
+#   - name: Gerudo Valley
+#     summary: Twinrova are causing chaos in Gerudo Valley! Learn some counterspells to stop them!
+#   - name: Golden Plains
+#     summary: Coins abound in the Mushroom Kingdom!
+#   - name: Great Bay
+#     summary: Rewind time and stop the Moon from crashing!
+#   - name: The Great Cave Offensive
+#     summary: Hunt a huge maze for amazing treasures!
+#   - name: Great Plateau Tower
+#     summary: Reawaken the hero's memories!
+#   - name: Green Greens
+#     summary: The king's stolen all our food - stop him!
+#   - name: Green Hill Zone
+#     summary: Gotta go fast to break out of this escape room in time!
+#   - name: Halberd
+#     summary: Infiltrate the flying airship!
+#   - name: Hanenbow
+#     summary: This relaxing puzzle experience uses music for effect!
+#   - name: Hyrule Castle
+#     summary: The kingdom's castle has a dastardly infiltrator!
+#   - name: Icicle Mountain
+#     summary: Reach the top of the mountain in one piece!
+#   - name: Jungle Hijinxs
+#     summary: This two-part room has a flipping cool mechanic!
+#   - name: Jungle Japes
+#     summary: the banana stash has been seized! After them!
+#   - name: Kalos Pokémon League
+#     summary: Use your wits to make the right moves and defeat the Elite Four!
+#   - name: Kongo Falls
+#     summary: Sail down the cascading falls!
+#   - name: Kongo Jungle
+#     summary: Kritters left and right! Keep your wits about you!
+#   - name: Living Room
+#     summary: Dig out the right items to make the dogs happy!
+#   - name: Luigi's Mansion
+#     summary: Turn over every stone and solve the mystery of the haunted mansion!
+#   - name: Lylat Cruise
+#     summary: Keep the ship soaring through space in the midst of a battle!
+#   - name: Magicant
+#     summary: Navigate the hero's memories and restore him to life!
+#   - name: Mario Bros.
+#     summary: The underbelly of the big city is crammed with creatures! Take them out!
+#   - name: Mario Circuit
+#     summary: The anti-gravity power is out! Get the race started again!
+#   - name: Mario Galaxy
+#     summary: Solve the mystery of the Gateway Galaxy!
+#   - name: Mementos
+#     summary: Become the Phantom Thieves of Hearts, and put your heads together for a big heist!
+#   - name: Midgar
+#     summary: Train to become the finest SOLDIER the world has ever seen!
+#   - name: Miiverse
+#     summary: What's everyone drawing? Try and figure out the puzzle!
+#   - name: Moray Towers
+#     summary: Squidkind is under threat from the Salmonids! Try and snatch their battle plans!
+#   - name: Mushroom Kingdom 
+#     summary: Bowser's troops are on the move! Solve the puzzles, save the kingdom!
+#   - name: Mushroom Kingdom II
+#     summary: This mysterious dream world is full of traps!
+#   - name: Mushroomy Kingdom
+#     summary: Save the rusting Mushroom Kingdom with the help of legends from the past!
+#   - name: Mushroom Kingdom U
+#     summary: Kamek's up to mischief! He must be stopped!
+#   - name: Mute City
+#     summary: The F-ZERO Grand Prix is well underway, but a plot threatens the race!
+#   - name: New Donk City Hall
+#     summary: Power's out in New Donk City! Track down the thief!
+#   - name: New Pork City
+#   - name: Norfair
+#   - name: Onett
+#   - name: Orbital Gate Assault
+#   - name: Pac-Land
+#   - name: Pac-Maze
+#   - name: Palutena's Temple
+#   - name: Paper Mario
+#   - name: Peach's Castle
+#   - name: Princess Peach's Castle
+#   - name: PictoChat
+#   - name: PictoChat 2
+#   - name: Pilotwings
+#   - name: Pirate Ship
+#   - name: Planet Zebes
+#   - name: Poké Floats
+#   - name: Pokémon Stadium
+#   - name: Pokémon Stadium 2
+#   - name: Port Town Aero Dive
+#   - name: Prism Tower
+#   - name: Pyrosphere
+#   - name: Rainbow Cruise
+#   - name: Rainbow Road
+#   - name: Reset Bomb Forest
+#   - name: Rumble Falls
+#   - name: Saffron City
+#   - name: Sector Z
+#   - name: Shadow Moses Island
+#   - name: Skyloft
+#   - name: Skyworld
+#   - name: Smashville
+#   - name: Spear Pillar
+#   - name: Spiral Mountain
+#   - name: Spirit Train
+#   - name: Summit
+#   - name: Super Happy Tree
+#   - name: Super Mario Maker
+#   - name: Suzaku Castle
+#   - name: Temple
+#   - name: Tomodachi Life
+#   - name: Tortimer Island
+#   - name: Town and City
+#   - name: Umbra Clock Tower
+#   - name: Unova Pokémon League
+#   - name: Venom
+#   - name: WarioWare, Inc.
+#   - name: Wii Fit Studio
+#   - name: Wily Castle
+#   - name: Windy Hill Zone
+#   - name: Woolly World
+#   - name: Wrecking Crew
+#   - name: Wuhu Island
+#   - name: Yoshi's Island
+#   - name: Yoshi's Story
