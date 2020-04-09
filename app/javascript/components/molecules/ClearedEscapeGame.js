@@ -11,7 +11,7 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
       <div className="d-flex align-items-center">
         <div style={{ flexGrow: 0.3 }}>
           <a
-            className="escape-game-name h6 mb-0"
+            className="escape-game-name h6 mb-0 d-block"
             href={`/escape_games/${escapeGame.id}`}
           >
             {escapeGame.name}
@@ -29,8 +29,11 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
               }}
             />
           </p>
+          <small className="d-block d-md-none text-muted">
+            Cleared {moment(clear.created_at).fromNow()}
+          </small>
         </div>
-        <p className="ml-auto mb-0">
+        <p className="ml-auto mb-0 d-none d-md-block">
           Cleared {moment(clear.created_at).fromNow()}
         </p>
         <Button
@@ -49,16 +52,16 @@ export default ({ escapeGame, clear, images, form_authenticity_token }) => (
       <form role="form" encType="multipart/form-data" action={`/clears/${clear.id}`} acceptCharset="UTF-8" method="post">
         <input type="hidden" name="_method" value="patch" />
         <input type="hidden" name="authenticity_token" value={form_authenticity_token} />
-        <div className="custom-file">
+        <div className="custom-file mt-2">
           <input multiple="multiple" className="custom-file-input" type="file" name="clear[images][]" id="clear_images" />
           <label className="custom-file-label" htmlFor="clear_images">
-            Choose file
+            Choose photos
           </label>
         </div>
         {images.map(image => (
           <input type="hidden" multiple="multiple" name="clear[images][]" value={image.signed_id} />
         ))}
-        <button type="submit">Submit</button>
+        <Button type="submit" color='primary' className="mt-2 d-block ml-auto">Submit</Button>
       </form>
       </UncontrolledCollapse>
            {/* TODO: Clear date */}
