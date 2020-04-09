@@ -73,7 +73,7 @@ export default ({ authenticity_token }) => {
   }, [search, difficulty, location]);
 
   return (
-    <div>
+    <div className="flex-grow-1 d-flex flex-column">
       <div className="d-none" id="map-canvas"></div>
       <div className="input-group">
         <div className="input-group-prepend">
