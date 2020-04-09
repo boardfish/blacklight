@@ -7,6 +7,7 @@ import {
   faCogs,
   faDungeon,
   faFighterJet,
+  faFish,
   faGhost,
   faGlobe,
   faHistory,
@@ -23,7 +24,7 @@ import {
   faTimes,
   faUser,
   faUserAstronaut,
-  faUserLock
+  faUserLock,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -34,6 +35,7 @@ library.add(
   faCogs,
   faDungeon,
   faFighterJet,
+  faFish,
   faGhost,
   faGlobe,
   faHistory,

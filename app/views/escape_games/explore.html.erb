@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container flex-grow-1 d-flex flex-column">
     <h1>Escape Games</h1>
 
-    <%= react_component 'molecules/EscapeGameSearch', authenticity_token: form_authenticity_token %>
+    <%= react_component 'molecules/EscapeGameSearch', { authenticity_token: form_authenticity_token }, { class: 'd-flex flex-column flex-grow-1' } %>
     <noscript>
     <table>
         <thead>
