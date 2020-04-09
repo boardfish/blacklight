@@ -121,6 +121,55 @@ users:
     maintainer: false
     enthusiast: true
     escape_games: []
+  - nickname: SimonBelmont
+    email: simon.belmont@castlevania.com
+    avatar: 
+    bio: |
+      I'll vanquish the darkness!
+    location: Wallachia
+    website: https://castlevania.com
+    maintainer: false
+    enthusiast: true
+    escape_games: []
+  - nickname: VladTepes
+    email: dracula@castlevania.com
+    avatar: 
+    bio: |
+      What is a man? A miserable little pile of secrets...
+    location: Anywhere
+    website: https://castlevania.com
+    maintainer: false
+    enthusiast: true
+    escape_games: []
+  - nickname: MasterHand
+    email: master.hand@smashbros.com
+    avatar: 
+    bio: |
+      Master Hand Escape Games - a battle of wits.
+    location: The Great Maze
+    website: https://smashbros.nintendo.com
+    maintainer: true
+    enthusiast: false
+    escape_games:
+      - name: Battlefield
+        summary: Something has gone wrong in the happy-go-lucky world of Nintendo1
+        genre: abstract
+        description: |
+          # A brawl for the ages!
+
+          Something's amiss in the world of Nintendo, and it's up to you and
+          your friends to solve it!
+
+          ## Who is this suitable for?
+
+          This escape room is suitable for beginners.
+        difficulty_level: beginner
+        available_time: 64
+        website_link: https://smashbros.nintendo.com/
+        place_id: 
+        latitude: 
+        longitude: 
+        images: 
 
 # stage:
 #   - name: 3D Land

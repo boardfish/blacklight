@@ -19,11 +19,5 @@ User.where(enthusiast: true).each do |user|
     Clear.create(user: user, escape_game: escape_game)
   end
 end
-# seed_user = FactoryBot.create(:user)
-# 100.times do
-#   FactoryBot.create(:escape_game, 
-#     user: seed_user
-#   )
-# end
 # Build blurhashes for newly attached images
 EscapeGame.find_each(&:save)
