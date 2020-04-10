@@ -101,3 +101,51 @@ en:
           one:   "Just one thing to fix!"
           other: "Looks like there are %{count} issues with your %{model}..."
         body:    "There were problems with the following fields:"
+  # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+  devise:
+    failure:
+      already_authenticated:
+        title: "You're already authenticated."
+        content: "Looks like you're already signed in!"
+      invalid:
+        title: "Invalid %{authentication_keys} or password."
+        content: "Something's not right there... Give it another shot!k"
+      not_found_in_database:
+        title: "Invalid %{authentication_keys} or password."
+        content: "Something's not right there... Give it another shot!k"
+      timeout:
+        title: "Your session expired!"
+        content: "You'll need to sign in again to continue."
+      unauthenticated:
+        title: "You need to sign in or sign up before continuing."
+        content: "This corner of the site is for members only! You might want to sign up first..."
+    registrations:
+      destroyed:
+        title: "Safe travels!"
+        content: "Your account has been successfully cancelled. We hope to see you again soon!"
+      signed_up:
+        title: "Welcome!"
+        content: "You've signed up successfully."
+      updated:
+        title: "Update successful!"
+        content: "Your account was updated successfully."
+    sessions:
+      signed_in:
+        title: "Welcome!"
+        content: "You've signed in successfully."
+      signed_out:
+        title: "Catch you later!"
+        content: "You've signed out successfully."
+      already_signed_out:
+        title: "Catch you later!"
+        content: "You've signed out successfully."
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
