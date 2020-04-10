@@ -55,12 +55,12 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Used when seeding database
 gem 'factory_bot'
 gem 'factory_bot_rails'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger
   # console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'faker'
   gem 'rails-controller-testing'
   gem 'rails_real_favicon'
   gem 'rspec-rails', '~> 4.0.0rc1'
