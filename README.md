@@ -24,15 +24,14 @@ session. You can then use `rails` and `rake` commands from there.
 
 Use `docker-compose exec web rake db:setup` to create the database in the
 `postgresql` container. This will also seed the database with some escape room
-data based on Faker::Games::SuperSmashBros.stage. If you'd like to attach images
-too, you can retrieve these by running the script in
-`spec/fixtures/files/escape_game`.
+data based on *Super Smash Bros. Ultimate* characters and stages.. If you'd like
+to attach images too, you can retrieve these from SSBWiki by running the scripts
+in `spec/fixtures/files`. Run these scripts **before** seeding the database.
 
 ### Permissions issues?
 
 If `docker-compose build` reports permissions issues related to `tmp/db`, run 
 `sudo chown -R $USER:$USER .` from the Blacklight directory and try again.
-
 
 ## To be documented
 
@@ -40,3 +39,18 @@ If `docker-compose build` reports permissions issues related to `tmp/db`, run
 * How to run the test suite
 * Services (job queues, cache servers, search engines, etc.)
 * Deployment instructions
+
+---
+
+## Disclaimer for seed data
+
+Under Section 107 of the Copyright Act 1976, allowance is made for "fair use"
+for purposes such as criticism, commenting, news reporting, teaching,
+scholarship, and research. Fair use is a use permitted by copyright statute that
+might otherwise be infringing. Non-profit, educational or personal use tips the
+balance in favour of fair use.
+
+The seed data obtained from [SSBWiki](https://ssbwiki.com) of both text and
+images relating to the *Super Smash Bros. Ultimate* video game is used only to
+demonstrate the functionality of Blacklight when occupied by users and escape
+games. It has no negative impact on the original works.
