@@ -4,7 +4,8 @@ require 'yaml'
 require 'uri'
 require 'nokogiri'
 require 'open-uri'
-stages = YAML.load_file('data.yml')['stage']
+require 'cgi'
+stages = YAML.load_file('scraper-data.yml')['stage']
 
 WEB_ROOT = 'https://www.ssbwiki.com'
 
@@ -26,7 +27,7 @@ end
 
 def download_image(link)
   URI.open(link) do |image|
-    File.open("./#{link.path.to_s.split('/')[-1]}", 'wb') do |file|
+    File.open("./escape_game/#{link.path.to_s.split('/')[-1]}", 'wb') do |file|
       file.write(image.read)
     end
   end
