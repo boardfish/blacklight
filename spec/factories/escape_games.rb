@@ -37,11 +37,13 @@ escape_game_locations = [
 
 FactoryBot.define do
   factory :escape_game do
-    location = escape_game_locations.sample
+    transient do
+      location { escape_game_locations.sample }
+    end
     name { Faker::Games::SuperSmashBros.unique.stage }
     genre { EscapeGame.genres.keys.sample }
     summary { Faker::Lorem.sentence(word_count: 5) }
-    description { Faker::Lorem.paragraphs.join('\n') }
+    description { "# " + Faker::Lorem.paragraphs.join("\n\n") }
     difficulty_level { EscapeGame.difficulty_levels.keys.sample }
     available_time { Random.rand(30..150) }
     latitude { location.dig(:location, :latitude) }
