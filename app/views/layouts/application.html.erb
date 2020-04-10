@@ -30,10 +30,8 @@
         }) %>
     <main class="d-flex flex-column w-100 flex-grow-1" style="padding-top: 56px;">
         <% if (notice || alert) %>
-        <div class="my-3">
-            <%= notice ? react_component('atoms/Alert', { type: 'info', alert: notice }) : '' %>
-            <%= alert ? react_component('atoms/Alert', { type: 'danger', alert: alert }) : '' %>
-        </div>
+          <%= notice ? react_component('atoms/Alert', { type: 'info', alert: notice }) : '' %>
+          <%= alert ? react_component('atoms/Alert', { type: 'danger', alert: alert }) : '' %>
         <% end %>
         <%= yield %>
     </main>
