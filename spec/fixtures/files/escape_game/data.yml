@@ -63,6 +63,8 @@ users:
     maintainer: true
     enthusiast: true
     escape_games:
+      - name: Green Hill Zone
+        summary: Gotta go fast to break out of this escape room in time!
       - name: Windy Hill Zone
         summary: Dismantle the tricks and traps of the Zeti!
         genre: modern
@@ -98,9 +100,15 @@ users:
       It's-a me, Mario!
     location: Mushroom Kingdom
     website: https://mario.nintendo.com
-    maintainer: false
+    maintainer: true
     enthusiast: true
-    escape_games: []
+    escape_games:
+      - name: Luigi's Mansion
+        summary: Turn over every stone and solve the mystery of the haunted mansion!
+      - name: Mario Bros.
+        summary: The underbelly of the big city is crammed with creatures! Take them out!
+      - name: Mario Galaxy
+        summary: Solve the mystery of the Gateway Galaxy!
   - nickname: SimonBelmont
     email: simon.belmont@castlevania.com
     bio: |
@@ -186,6 +194,8 @@ users:
         summary: Solve the puzzles, defend the castle, save the kingdom!
       - name: Coliseum
         summary: A contest of pride awaits!
+      - name: Arena Ferox
+        summary: Prove your worth in a legendary battle!
   - nickname: KingDedede
     email: dedede@dreamland.com
     bio: |
@@ -240,118 +250,54 @@ users:
           fortunately for you, they haven't covered their tracks very well. See
           if you can't lead Donkey Kong and co. to the Kremling hoard!
         difficulty_level: beginner
-
-#   - name: Green Hill Zone
-#     summary: Gotta go fast to break out of this escape room in time!
-
-# stage:
-#   - name: 3D Land
-#     summary: Explore a brand-new 3D world!
-#   - name: 75m
-#     summary: Climb the girders and take down Donkey Kong!
-#   - name: Arena Ferox
-#     summary: Prove your worth in a legendary battle!
-#   - name: Balloon Fight
-#     summary: Take on a floaty free-for-all in this fun adventure!
-#   - name: Battlefield
-#     summary: Challenge legends and come out on top!
-#   - name: Big Battlefield
-#     summary: The battle's even bigger in this huge contest!
-#   - name: Big Blue
-#     summary: Chaos is afoot in the F-ZERO Grand Prix! Bring out the Falcon Flyer!
-#   - name: Boxing Ring
-#     summary: You're the smallest in a league full of brawny boxers! Got what it takes?
-#   - name: Bridge of Eldin
-#     summary: The hero's journey leads him to a crumbling bridge!
-#   - name: Castle Siege
-#     summary: Solve the puzzles, defend the castle, save the kingdom!
-#   - name: Coliseum
-#     summary: A contest of pride awaits!
-#   - name: Corneria
-#     summary: Never give up! Trust your instincts!
-#   - name: Delfino Plaza
-#     summary: You've been framed for vandalism! Clean the place up with FLUDD!
-#   - name: Distant Planet
-#     summary: Forage for humongous treasures on a Pikmin-populated planet!
-#   - name: Dream Land
-#     summary: There's a nightmare in Dream Land!
-#   - name: Duck Hunt
-#     summary: Shoot down those pesky ducks!
-#   - name: Figure-8 Circuit
-#     summary: All the chaos of Mario Kart awaits in this escape room!
-#   - name: Final Destination
-#     summary: An escape room...with no items?
-#   - name: Find Mii
-#     summary: Rescue the princess and save the kingdom!
-#   - name: Flat Zone
-#     summary: A Game-and-Watch classic for beginners!
-#   - name: Flat Zone 2
-#     summary: A Game-and-Watch classic for seasoned escape room veterans!
-#   - name: Flat Zone X
-#     summary: A Game-and-Watch classic for true escape room die-hards!
-#   - name: Fountain of Dreams
-#     summary: The Star Rod has been stolen! Help Kirby to reclaim it!
-#   - name: Fourside
-#     summary: The city of Fourside is being attacked by a UFO!
-#   - name: Frigate Orpheon
-#     summary: A huge creature is being held here, and it's just waiting to leap out!
-#   - name: Gamer
-#     summary: Don't let Mom catch you playing video games!
-#   - name: Garden of Hope
-#     summary: This paradise of flora and fauna is brimming with Pikmin!
-#   - name: Gaur Plain
-#     summary: The two titans of the world have awakened. Solve the mystery and put them to rest!
-#   - name: Gerudo Valley
-#     summary: Twinrova are causing chaos in Gerudo Valley! Learn some counterspells to stop them!
-#   - name: Golden Plains
-#     summary: Coins abound in the Mushroom Kingdom!
-#   - name: Great Bay
-#     summary: Rewind time and stop the Moon from crashing!
-#   - name: Great Plateau Tower
-#     summary: Reawaken the hero's memories!
-#   - name: Green Greens
-#     summary: The king's stolen all our food - stop him!
-#   - name: Hanenbow
-#     summary: This relaxing puzzle experience uses music for effect!
-#   - name: Hyrule Castle
-#     summary: The kingdom's castle has a dastardly infiltrator!
-#   - name: Icicle Mountain
-#     summary: Reach the top of the mountain in one piece!
-#   - name: Kalos Pokémon League
-#     summary: Use your wits to make the right moves and defeat the Elite Four!
-#   - name: Kongo Falls
-#     summary: Sail down the cascading falls!
-#   - name: Kongo Jungle
-#     summary: Kritters left and right! Keep your wits about you!
-#   - name: Living Room
-#     summary: Dig out the right items to make the dogs happy!
-#   - name: Luigi's Mansion
-#     summary: Turn over every stone and solve the mystery of the haunted mansion!
-#   - name: Lylat Cruise
-#     summary: Keep the ship soaring through space in the midst of a battle!
-#   - name: Magicant
-#     summary: Navigate the hero's memories and restore him to life!
-#   - name: Mario Bros.
-#     summary: The underbelly of the big city is crammed with creatures! Take them out!
-#   - name: Mario Circuit
-#     summary: The anti-gravity power is out! Get the race started again!
-#   - name: Mario Galaxy
-#     summary: Solve the mystery of the Gateway Galaxy!
-#   - name: Mementos
-#     summary: Become the Phantom Thieves of Hearts, and put your heads together for a big heist!
-#   - name: Midgar
-#     summary: Train to become the finest SOLDIER the world has ever seen!
-#   - name: Miiverse
-#     summary: What's everyone drawing? Try and figure out the puzzle!
-#   - name: Moray Towers
-#     summary: Squidkind is under threat from the Salmonids! Try and snatch their battle plans!
-#   - name: Mushroom Kingdom 
-#     summary: Bowser's troops are on the move! Solve the puzzles, save the kingdom!
-#   - name: Mushroom Kingdom II
-#     summary: This mysterious dream world is full of traps!
-#   - name: Mushroomy Kingdom
-#     summary: Save the rusting Mushroom Kingdom with the help of legends from the past!
-#   - name: Mushroom Kingdom U
-#     summary: Kamek's up to mischief! He must be stopped!
-#   - name: New Donk City Hall
-#     summary: Power's out in New Donk City! Track down the thief!
+      - name: 75m
+        summary: Climb the girders and take down Donkey Kong!
+  - nickname: Daisy
+    maintainer: true
+    escape_games:
+      - name: Figure-8 Circuit
+        summary: All the chaos of Mario Kart awaits in this escape room!
+      - name: Mario Circuit
+        summary: The anti-gravity power is out! Get the race started again!
+  - nickname: Ganondorf
+    maintainer: true
+    escape_games:
+      - name: Bridge of Eldin
+        summary: The hero's journey leads him to a crumbling bridge!
+      - name: Skyloft
+        summary: Solve the mystery of the goddess!
+      - name: Great Bay
+        summary: Rewind time and stop the Moon from crashing!
+      - name: Hyrule Castle
+        summary: The kingdom's castle has a dastardly infiltrator!
+      - name: Gerudo Valley
+        summary: Twinrova are causing chaos in Gerudo Valley! Learn some counterspells to stop them!
+  - nickname: Shulk
+    maintainer: true
+    bio: I can change the future
+    location: Bionis
+    escape_games:
+      - name: Gaur Plain
+        summary: The two titans of the world have awakened. Solve the mystery and put them to rest!
+  - nickname: Luigi
+    maintainer: true
+    bio: That's Mama Luigi to you, Mario!
+    location: Luigi's Mansion
+    escape_games:
+      - name: Mushroom Kingdom 
+        summary: Bowser's troops are on the move! Solve the puzzles, save the kingdom!
+      - name: Mushroom Kingdom II
+        summary: This mysterious dream world is full of traps!
+      - name: Mushroomy Kingdom
+        summary: Save the rusting Mushroom Kingdom with the help of legends from the past!
+      - name: Mushroom Kingdom U
+        summary: Kamek's up to mischief! He must be stopped!
+      - name: New Donk City Hall
+        summary: Power's out in New Donk City! Track down the thief!
+  - nickname: Cloud
+    maintainer: true
+    bio: きょうみ ない ね 
+    location: Midgar
+    escape_games:
+      - name: Midgar
+        summary: Train to become the finest SOLDIER the world has ever seen!
