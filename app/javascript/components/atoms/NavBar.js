@@ -12,13 +12,12 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
-  Button
 } from 'reactstrap';
 
 import NavbarData from '../../data/navbar.json'
+import DarkModeSwitch from "./DarkModeSwitch";
 
-export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username, userId, logoPath }) => {
+export default ({ isEnthusiast, isMaintainer, loginButton, username, userId, logoPath }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -58,7 +57,8 @@ export default ({ currentPage, isEnthusiast, isMaintainer, loginButton, username
             ))}
           </Nav>
           {/* No worries here, since loginButton is SSR */}
-          <Nav className="d-flex justify-content-center">
+          <Nav className="d-flex justify-content-center align-items-center">
+            <DarkModeSwitch />
             {username ? <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   {username}

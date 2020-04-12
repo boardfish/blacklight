@@ -235,6 +235,9 @@ body[data-theme="dark"] {
   @extend .text-light;
 }
 [data-theme="dark"] {
+  .bg-body {
+    background-color: solarized("Base03") !important;
+  }
   .bg-light, .table, .card, .form-control, .custom-select, .custom-file-label, .dropdown-menu {
     @extend .bg-dark;
     @extend .text-light;
