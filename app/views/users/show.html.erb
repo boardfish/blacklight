@@ -9,8 +9,8 @@
         <div class="text-center">
           <h1 class="mb-0"><%= @user.nickname %></h1>
           <span class="d-block">
-            <%= @user.location && @user.website ? "#{@user.location} |" : @user.location %>
-            <%= link_to "Website", @user.website if @user.website %>
+            <%= !(@user.location.empty? || @user.website.empty?) ? "#{@user.location} |" : @user.location %>
+            <%= link_to "Website", @user.website unless @user.website.empty? %>
           </span>
         </div>
         <div class="d-flex mt-2">
@@ -31,9 +31,11 @@
           </span>
           <% end %>
         </div>
-        <p class="my-3">
-          <%= @user.bio %>
-        </p>
+        <% unless @user.bio.empty? %>
+          <p class="my-3">
+            <%= @user.bio %>
+          </p>
+        <% end %>
       </div>
 
     </div>
