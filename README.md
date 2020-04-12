@@ -26,7 +26,8 @@ Use `docker-compose exec web rake db:setup` to create the database in the
 `postgresql` container. This will also seed the database with some escape room
 data based on *Super Smash Bros. Ultimate* characters and stages.
 
-This ought to take about five minutes, as images will be downloaded from SSBWiki during seeding.
+This ought to take about five minutes, as images will be downloaded from SSBWiki
+during seeding.
 
 #### In production (Heroku)
 
@@ -40,17 +41,30 @@ following:
 2. Migrate the database with `heroku run rake db:migrate`.
 3. Seed the database with `heroku run rake db:seed`.
 
+##### Checkout steps
+
+When deploying, manually run through and check that the...
+
+- ...homepage renders correctly, particularly with regards to React components
+  like the navbar (visual check)
+- ...CSS is applied to the elements (visual check)
+- ...Bootstrap JS from asset pipeline works (try to open the Filters dropdown on
+  Explore)
+- ...Auth0 login flow works - i.e. it's possible to log in and hold a session
+- ...Auth0 logout flow works - i.e. it's possible to log out and your session is
+  destroyed
+- ...controllers work - i.e. Explore returns escape games if they exist. Create
+  one if it does not exist and make sure that the list of escape games you own
+  on your user#show page works.
+- ...JS views work - i.e. it's possible to remove images from a listing and
+  have the corresponding table row disappear
+
+This process can be automated, but was not due to time constraints.
+
 ### Permissions issues?
 
 If `docker-compose build` reports permissions issues related to `tmp/db`, run 
 `sudo chown -R $USER:$USER .` from the Blacklight directory and try again.
-
-## To be documented
-
-* Configuration
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
 
 ---
 
