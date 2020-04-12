@@ -26,4 +26,9 @@ Rails.application.routes.draw do
     post 'enthusiast', :to => 'users#enthusiast', :as => :make_user_enthusiast
     post 'both', :to => 'users#maintainer_and_enthusiast', :as => :make_maintainer_and_enthusiast
   end
+
+  # error pages
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "errors#show", code: code
+  end
 end
