@@ -14,20 +14,15 @@ FactoryBot.define do
     website { 'https://simon.fish' }
 
     after(:build) do |user|
-      image_to_attach = File.open(
-        Rails.root.join(
-          'spec',
-          'fixtures',
-          'files',
-          'avatars',
-          "#{CGI.escape(user.nickname.tr(' ', ''))}HeadSSBUWebsite.png"
+      image_link = SSBWikiImageSeeder.new("%s/File:%sHeadSSBUWebsite.%s").get_direct_link_any_type(user.nickname)
+      # can't return
+      if image_link
+        user.avatar.attach(
+          io: image_link.open,
+          filename: "SSBU-#{CGI.escape(user.nickname.tr(' ', '_'))}.png",
+          content_type: 'image/png'
         )
-      )
-      user.avatar.attach(
-        io: image_to_attach,
-        filename: "#{CGI.escape(user.nickname.tr(' ', ''))}HeadSSBUWebsite.png",
-        content_type: 'image/png'
-      )
+      end
     rescue Errno::ENOENT
     end
   end

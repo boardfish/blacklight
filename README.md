@@ -24,9 +24,21 @@ session. You can then use `rails` and `rake` commands from there.
 
 Use `docker-compose exec web rake db:setup` to create the database in the
 `postgresql` container. This will also seed the database with some escape room
-data based on *Super Smash Bros. Ultimate* characters and stages.. If you'd like
-to attach images too, you can retrieve these from SSBWiki by running the scripts
-in `spec/fixtures/files`. Run these scripts **before** seeding the database.
+data based on *Super Smash Bros. Ultimate* characters and stages.
+
+This ought to take about five minutes, as images will be downloaded from SSBWiki during seeding.
+
+#### In production (Heroku)
+
+Permissions are a pinch tighter in production, so you'll need to do the
+following:
+
+1. Reset the database if you've tried before and something's gone wrong:
+
+`heroku pg:reset`
+
+2. Migrate the database with `heroku run rake db:migrate`.
+3. Seed the database with `heroku run rake db:seed`.
 
 ### Permissions issues?
 

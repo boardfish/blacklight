@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative '../../lib/ssb_wiki_image_seeder/ssb_wiki_image_seeder.rb'
 
 escape_game_locations = [
   {
@@ -51,20 +52,15 @@ FactoryBot.define do
     place_id { location.dig(:location, :place_id) }
     user_id { User.count > 2 ? User.all.sample.id : create(:user).id }
     after(:build) do |escape_game|
-      image_to_attach = File.open(
-        Rails.root.join(
-          'spec',
-          'fixtures',
-          'files',
-          'escape_game',
-          "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png"
+      image_link = SSBWikiImageSeeder.new("%s/File:SSBU-%s.%s").get_direct_link_any_type(escape_game.name)
+      # can't return
+      if image_link
+        escape_game.images.attach(
+          io: image_link.open,
+          filename: "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png",
+          content_type: 'image/png'
         )
-      )
-      escape_game.images.attach(
-        io: image_to_attach,
-        filename: "SSBU-#{CGI.escape(escape_game.name.tr(' ', '_'))}.png",
-        content_type: 'image/png'
-      )
+      end
     rescue Errno::ENOENT
     end
   end
