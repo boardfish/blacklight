@@ -64,7 +64,8 @@ export default ({
           />
           <Avatar
             className="ml-2"
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault()
               window.location = `/users/${user.id}`;
             }}
             avatar={user.avatar}

@@ -21,7 +21,8 @@ export default ({ cleared, escapeGameId, authenticity_token, stateColors, size, 
   return (
     <Button
       color={stateColors[clearedState ? 1 : 0]}
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault()
         const newState = !clearedState;
         setCleared(newState);
         updateCleared(newState);
