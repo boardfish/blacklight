@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative '../../lib/ssb_wiki_image_seeder/ssb_wiki_image_seeder.rb'
 
 escape_game_locations = [
@@ -44,7 +45,7 @@ FactoryBot.define do
     name { Faker::Games::SuperSmashBros.unique.stage }
     genre { EscapeGame.genres.keys.sample }
     summary { Faker::Lorem.sentence(word_count: 5) }
-    description { "# " + Faker::Lorem.paragraphs.join("\n\n") }
+    description { '# ' + Faker::Lorem.paragraphs.join("\n\n") }
     difficulty_level { EscapeGame.difficulty_levels.keys.sample }
     available_time { Random.rand(30..150) }
     latitude { location.dig(:location, :latitude) }
@@ -52,7 +53,9 @@ FactoryBot.define do
     place_id { location.dig(:location, :place_id) }
     user_id { User.count > 2 ? User.all.sample.id : create(:user).id }
     after(:build) do |escape_game|
-      image_link = SSBWikiImageSeeder.new("%s/File:SSBU-%s.%s").get_direct_link_any_type(escape_game.name)
+      image_link = SSBWikiImageSeeder.new(
+        '%s/File:SSBU-%s.%s'
+      ).get_direct_link_any_type(escape_game.name)
       # can't return
       if image_link
         escape_game.images.attach(

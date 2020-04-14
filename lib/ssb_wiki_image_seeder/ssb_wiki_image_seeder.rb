@@ -5,10 +5,9 @@ require 'uri'
 require 'nokogiri'
 require 'open-uri'
 require 'cgi'
-stages = YAML.load_file('lib/ssb_wiki_image_seeder/scraper-data.yml')['stage']
 
+# Pulls seed images from SSBWiki
 class SSBWikiImageSeeder
-
   WEB_ROOT = 'https://www.ssbwiki.com'
 
   def initialize(image_link_template_string)
@@ -16,9 +15,11 @@ class SSBWikiImageSeeder
   end
 
   def get_image_page_link(stage_name, filetype)
-    @image_link_template_string % [
-      WEB_ROOT, CGI.escape(stage_name.tr(' ', '_').tr('.', '')), filetype
-    ]
+    format(
+      @image_link_template_string,
+      WEB_ROOT,
+      CGI.escape(stage_name.tr(' ', '_').tr('.', '')), filetype
+    )
   end
 
   def get_direct_image_link(stage_name, filetype)
@@ -39,10 +40,9 @@ class SSBWikiImageSeeder
   end
 
   def download_image(stage_name)
-    link = self.get_direct_link_any_type(stage_name)
+    link = get_direct_link_any_type(stage_name)
     return if link.to_s.empty?
-    URI.open(link) do |image|
-      image.read
-    end
+
+    URI.open(link, &:read)
   end
 end
