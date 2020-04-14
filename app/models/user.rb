@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[auth0]
   enum purpose: %i[maintainer enthusiast is_both]
   has_many :clears
+  has_many :escape_games
   has_one_attached :avatar
 
   def onboarded?
@@ -35,6 +36,4 @@ class User < ApplicationRecord
   def website
     public ? super : nil
   end
-
-  has_many :escape_games
 end

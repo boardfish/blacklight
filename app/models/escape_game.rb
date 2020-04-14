@@ -27,12 +27,12 @@ class EscapeGame < ApplicationRecord
   has_many_attached :images
   has_one_attached :default_image
   has_many :clears, dependent: :destroy
+  belongs_to :user
   before_save :build_blurhash
 
   scope :by, ->(user_id) { where(user_id: user_id) }
   scope :all_but, ->(escape_game) { where.not(id: escape_game.id) }
 
-  belongs_to :user
   validates :name, presence: true
   validates :genre, presence: true
   enum genre: {
