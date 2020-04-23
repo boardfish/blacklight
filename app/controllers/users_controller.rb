@@ -30,7 +30,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html do
-          redirect_to @user, notice: I18N.dig(:update, :success)
+          redirect_to (@user.public ? @user : root_path),
+                      notice: I18N.dig(:update, :success)
         end
         format.json { render :show, status: :ok, location: @user }
       else
