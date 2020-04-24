@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoginButton from "./LoginButton";
 
 const ModalExample = ({
   className,
@@ -81,10 +82,10 @@ const ModalExample = ({
     <Modal
       isOpen={modal}
       toggle={toggle}
-      backdrop={signedIn ? "static" : false}
+      backdrop={signedIn ? "static" : true}
       className={className}
     >
-      <ModalHeader toggle={toggle}>Ready to join us?</ModalHeader>
+      <ModalHeader toggle={toggle} close={signedIn ? <Fragment /> : null}>Ready to join us?</ModalHeader>
       <ModalBody>
         {signedIn ? (
           ""
@@ -122,7 +123,7 @@ const ModalExample = ({
               </li>
             </ul>
             <div className="btn-group">
-              {roles.map(({ role, description, prefix }) => (
+              {roles.map(({ role, description, icon, prefix }) => (
                 <Fragment>
                   <Button
                     color="success"
@@ -139,21 +140,24 @@ const ModalExample = ({
                     onClosed={closeAll ? toggle : undefined}
                   >
                     <ModalHeader>{role}</ModalHeader>
-                    <ModalBody>{description}</ModalBody>
+                    <ModalBody className="text-center">
+                      <FontAwesomeIcon icon={icon} size='3x' className="mb-3" />
+                      {description}
+                    </ModalBody>
                     <ModalFooter>
                       <Button color="secondary" onClick={toggleNested}>
-                        OK cool
+                        That's not me...
                       </Button>{" "}
-                      <form class="button_to" method="post" action={`/${role}`}>
+                      <form className="button_to" method="post" action={`/${role}`}>
                         <input
-                          class="btn btn-primary"
+                          className="btn btn-primary"
                           type="submit"
                           value={`I'm ${prefix}${role}!`}
                         />
                         <input
                           type="hidden"
                           name="authenticity_token"
-                          value="KNO6K5kBi6qD+ulQ1HR/9GpGrukxf0mn4PqPBOj1vkO7tvdqErjpyAz+kDzTdlBUAru8fitVl1WAF/A8u7knxg=="
+                          value={authenticityToken}
                         />
                       </form>
                     </ModalFooter>
@@ -171,9 +175,7 @@ const ModalExample = ({
           <Button color="secondary" onClick={toggle}>
             Just browsing, thanks!
           </Button>
-          <Button color="primary" onClick={toggle}>
-            Sign Up/Log In
-          </Button>{" "}
+          <LoginButton authenticityToken={authenticityToken} />
         </ModalFooter>
       ) : (
         ""

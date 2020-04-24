@@ -1,49 +1,53 @@
 <%= react_component 'atoms/OnboardingModal', signedIn: current_user, onboarded:
 current_user&.onboarded?, authenticityToken: form_authenticity_token %>
 <div class="jumbotron mb-0">
-  <h2 class="d-flex bg-info text-light p-3 rounded">
-    <%= react_component 'atoms/FontAwesomeIcon', icon: 'exclamation-circle',
-    className: 'mr-2' %>
-    Let's get started!
-  </h2>
-    <% if current_user %>
-      <% if !current_user.onboarded? %>
-        <div class="d-flex flex-column align-items-center">
-            <%= button_to('I\'m a maintainer!', make_user_maintainer_path(current_user), method: :post, class: 'btn btn-primary mr-md-2 mb-2') %>
-            <%= button_to('I\'m an enthusiast!', make_user_enthusiast_path(current_user), method: :post, class: 'btn btn-primary mr-md-2 mb-2') %>
-            <%= button_to('I\'m both!', make_maintainer_and_enthusiast_path(current_user), method: :post, class: 'btn btn-primary mb-2') %>
-        </div>
-      <% else %>
-        <% if current_user.maintainer %>
-          <h3>Your escape rooms</h3>
-          <p>Perhaps you want to...</p>
-          <ul> 
-            <li>
-              <%= link_to 'update one of your existing listings?', escape_games_path %>
-            </li>
-            <li>
-              <%= link_to 'create a new listing?', new_escape_game_path %>
-            </li>
-          </ul>
-        <% end %>
-        <% if current_user.enthusiast %>
-          <h3>Begin your quest</h3>
-          <p>Perhaps you want to...</p>
-          <ul> 
-            <li>
-              <%= link_to 'find a new escape room to tackle?', explore_path %>
-            </li>
-            <li>
-              <%= link_to 'show someone your profile?', current_user %>
-            </li>
-            <li>
-              <%= link_to 'show someone your image gallery?', clears_path(user_id: current_user.id) %>
-            </li>
-          </ul>
-        <% end %>
+  <div class="row text-center">
+    <h2 class="col-12">
+        <%= react_component 'atoms/FontAwesomeIcon', icon: 'exclamation-circle',
+      className: 'mr-2' %>
+      Let's get started!
+      <% if current_user.nil? %>
+        <small class="d-block">Like what you see? Sign up whenever you're ready!</small>
+        <small class="d-block">Already with us? Log in here.</small>
+        <%= react_component 'atoms/LoginButton', authenticityToken: form_authenticity_token %>
       <% end %>
-    <% else %>
+    </h2>
+    <% if current_user&.maintainer %>
+    <div class="col-md d-flex flex-column mb-2 mb-md-0">
+      <div class="card card-body flex-grow-1">
+      <h3>Your escape rooms</h3>
+      <p>Perhaps you want to...</p>
+      <ul>
+        <li>
+          <%= link_to 'update one of your existing listings?', escape_games_path %>
+        </li>
+        <li>
+          <%= link_to 'create a new listing?', new_escape_game_path %>
+        </li>
+      </ul>
+    </div>
+    </div>
     <% end %>
+    <% if current_user&.enthusiast %>
+    <div class="col-md d-flex flex-column">
+      <div class="card card-body flex-grow-1">
+      <h3>Begin your quest</h3>
+      <p>Perhaps you want to...</p>
+      <ul>
+        <li>
+          <%= link_to 'find a new escape room to tackle?', explore_path %>
+        </li>
+        <li>
+          <%= link_to 'show someone your profile?', current_user %>
+        </li>
+        <li>
+          <%= link_to 'show someone your image gallery?', clears_path(user_id: current_user.id) %>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <% end %>
+  </div>
 </div>
 <div class="row mx-0 flex-grow-1 text-center">
   <div class="col-md bg-info text-light p-5 d-flex flex-column justify-content-center">
@@ -67,11 +71,11 @@ current_user&.onboarded?, authenticityToken: form_authenticity_token %>
     </p>
     <p>
       Explore the selection of escape rooms listed on the site to track down
-      your next big heist. 
+      your next big heist.
     </p>
     <p>
       Show your records to the world over on your public
-      profile.  
+      profile.
     </p>
     <p>
       Add some photos after the job's done and the mystery's solved!
@@ -95,5 +99,5 @@ current_user&.onboarded?, authenticityToken: form_authenticity_token %>
       Encourage your groups to record their trials on Blacklight!
     </p>
   </div>
-  
+
 </div>

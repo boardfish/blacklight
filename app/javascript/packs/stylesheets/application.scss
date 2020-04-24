@@ -265,6 +265,10 @@ body[data-theme="dark"] {
   .text-muted {
     color: solarized("Base01") !important;
   }
+
+  .modal-content {
+    @extend .bg-dark;
+  }
 }
 
 .dropdown-toggle {

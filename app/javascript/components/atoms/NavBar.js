@@ -12,12 +12,14 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Button,
 } from 'reactstrap';
 
 import NavbarData from '../../data/navbar.json'
 import DarkModeSwitch from "./DarkModeSwitch";
+import LoginButton from "./LoginButton";
 
-export default ({ isEnthusiast, isMaintainer, loginButton, username, userId, logoPath }) => {
+export default ({ isEnthusiast, isMaintainer, authenticityToken, username, userId, logoPath }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -68,11 +70,12 @@ export default ({ isEnthusiast, isMaintainer, loginButton, username, userId, log
                     Account
                   </DropdownItem>
                   <DropdownItem divider />
-                  <DropdownItem dangerouslySetInnerHTML={{ __html: loginButton }} >
+                  <DropdownItem>
+                    <Button href='/sign_out' color='primary'>Log Out</Button>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              : <div dangerouslySetInnerHTML={{ __html: loginButton }} />
+              : <LoginButton authenticityToken={authenticityToken} />
             }
           </Nav>
         </Collapse>
