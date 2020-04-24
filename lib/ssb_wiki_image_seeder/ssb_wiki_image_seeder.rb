@@ -34,6 +34,7 @@ class SSBWikiImageSeeder
   end
 
   def get_direct_link_any_type(stage_name)
+    return nil if ENV['CI']
     png_link = get_direct_image_link(stage_name, 'png')
     jpg_link = get_direct_image_link(stage_name, 'jpg')
     [png_link, jpg_link].reject { |link| link.to_s.empty? }.first
