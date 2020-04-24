@@ -14,7 +14,8 @@ FactoryBot.define do
     website { 'https://simon.fish' }
 
     after(:build) do |user|
-      image_link = SSBWikiImageSeeder.new("%s/File:%sHeadSSBUWebsite.%s").get_direct_link_any_type(user.nickname)
+      image_link = SSBWikiImageSeeder.new('%s/File:%sHeadSSBUWebsite.%s')
+                                     .get_direct_link_any_type(user.nickname)
       # can't return
       if image_link
         user.avatar.attach(

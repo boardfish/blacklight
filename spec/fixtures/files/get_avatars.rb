@@ -10,7 +10,8 @@ stages = YAML.load_file('scraper-data.yml')['fighter']
 WEB_ROOT = 'https://www.ssbwiki.com'
 
 def get_image_page_link(char_name, filetype)
-  "#{WEB_ROOT}/File:#{CGI.escape(char_name.tr(' ', '').tr('.', ''))}HeadSSBUWebsite.#{filetype}"
+  "#{WEB_ROOT}/File:#{CGI.escape(char_name.tr(' ', '').tr('.', ''))}" \
+  "HeadSSBUWebsite.#{filetype}"
 end
 
 def get_direct_image_link(stage_name)

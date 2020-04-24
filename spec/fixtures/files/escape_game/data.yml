@@ -150,7 +150,7 @@ users:
     enthusiast: false
     escape_games:
       - name: Battlefield
-        summary: Something has gone wrong in the happy-go-lucky world of Nintendo1
+        summary: Something has gone wrong in the happy-go-lucky world of Nintendo!
         genre: abstract
         description: |
           # A brawl for the ages!
@@ -242,7 +242,7 @@ users:
           head-to-head. Want to know more? Well, you'll just have to try it for
           yourself! 
       - name: Jungle Japes
-        summary: the banana stash has been seized! After them!
+        summary: The banana stash has been seized! After them!
         description: |
           # A beginner-friendly room full of mischief!
 
