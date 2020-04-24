@@ -63,4 +63,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << "web"
+
+  config.action_mailer.default_url_options = { host: ENV.fetch('RAILS_HOST') }
 end

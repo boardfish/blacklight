@@ -27,7 +27,7 @@ RSpec.describe '/users', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      user = User.create! valid_attributes
+      user = User.create!(valid_attributes.merge(public: true))
       sign_in(user)
       get user_url(user)
       expect(response).to be_successful

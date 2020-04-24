@@ -5,7 +5,5 @@ require_relative 'application'
 Rails.application.initialize!
 
 # Set the default host and port to be the same as Action Mailer.
-unless ENV['RAILS_ENV'] == 'test'
-  Blacklight::Application.default_url_options = \
-  Blacklight::Application.config.action_mailer.default_url_options
-end
+Blacklight::Application.default_url_options = \
+Blacklight::Application.config.action_mailer.default_url_options
