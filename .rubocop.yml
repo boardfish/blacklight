@@ -31,3 +31,4 @@ Style/Documentation:
 Lint/SuppressedException:
   Exclude:
     - 'spec/factories/escape_games.rb'
+    - 'spec/factories/users.rb'
