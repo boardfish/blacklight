@@ -7,7 +7,14 @@ RSpec.describe ImagesController, type: :controller do
     @escape_game = create(:escape_game)
     @user = @escape_game.user
     @escape_game.images.attach(
-      io: File.open('spec/fixtures/files/100.png'), filename: '100.png'
+      io: File.open(
+        Rails.root.join(
+          'spec',
+          'fixtures',
+          'files',
+          '100.png'
+        )
+      ), filename: '100.png'
     )
   end
 
