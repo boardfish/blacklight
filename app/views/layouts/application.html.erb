@@ -37,7 +37,8 @@
     </main>
     <footer class="container-fluid px-0 py-3 bg-light">
         <div class="container">
-            Placeholder copyright string
+            &#169; 2020<%= "-#{Time.zone.now.year}" if Time.zone.now.year > 2020
+            %> <a href="https://simon.fish">Simon Fish</a>
         </div>
     </footer>
 </body>
