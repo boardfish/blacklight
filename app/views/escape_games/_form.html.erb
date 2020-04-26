@@ -44,7 +44,8 @@
 </div>
 
 <div class="field">
-  <%= form.number_field :available_time, help: 'How much time do you allow for participants to complete the room?' %>
+  <%= form.number_field :available_time, help: 'How much time (in minutes) do you allow for
+  participants to complete the room?', min: 0, placeholder: 'Time (minutes)' %>
 </div>
 
 <div class="field">

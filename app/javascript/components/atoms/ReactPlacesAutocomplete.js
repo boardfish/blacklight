@@ -82,7 +82,7 @@ export default ({ initialPlace }) => {
                   <small className="text-muted">
                     Click{" "}
                     <a target="_blank" rel="noopener" href={getGoogleMapsURLFor(selectedPlace)}>this link</a>{" "}
-                    to view the currently selected Google Maps Place.
+                    to show the selected Google Maps Place. You can use this to verify that it's correct.
                   </small>
                 </p>
               ) : (
