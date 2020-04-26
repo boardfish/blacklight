@@ -24,6 +24,7 @@ services:
       - AUTH0_DOMAIN
       - RAILS_HOST
       - CI
+      - RAILS_MASTER_KEY
   bundle_cache:
     image: busybox
     volumes:
