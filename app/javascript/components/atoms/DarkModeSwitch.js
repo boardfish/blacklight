@@ -28,6 +28,7 @@ export default () => {
       label={
         <FontAwesomeIcon icon={enabled ? 'sun' : 'moon'} />
       }
+      className='mr-1'
     />
   );
 };
