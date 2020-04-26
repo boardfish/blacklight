@@ -24,6 +24,7 @@
         userId: current_user&.id,
         currentPage: "Hello from react-rails.",
         logoPath: asset_path('logo.svg'),
+        authenticityToken: form_authenticity_token,
         loginButton: (!user_signed_in? ?
           button_to('Login', user_auth0_omniauth_authorize_path, method: :post, class: 'btn btn-primary') :
           link_to('Logout', destroy_user_session_path, class: 'btn btn-primary'))
