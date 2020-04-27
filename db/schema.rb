@@ -21,9 +21,7 @@ ActiveRecord::Schema.define(version: 2020_04_03_131704) do
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "discarded_at"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["discarded_at"], name: "index_active_storage_attachments_on_discarded_at"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
@@ -80,8 +78,6 @@ ActiveRecord::Schema.define(version: 2020_04_03_131704) do
     t.string "uid"
     t.string "name"
     t.string "nickname"
-    t.string "type"
-    t.integer "purpose"
     t.boolean "maintainer"
     t.boolean "enthusiast"
     t.boolean "public"
