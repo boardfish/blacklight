@@ -30,7 +30,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(user_params)
         format.html do
-          redirect_to @user, notice: I18N.dig(:update, :success)
+          redirect_to path_for_user,
+                      notice: I18N.dig(:update, :success)
         end
         format.json { render :show, status: :ok, location: @user }
       else
@@ -100,5 +101,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :maintainer, :enthusiast, :avatar, :bio, :location, :website, :public
     )
+  end
+
+  def path_for_user
+    @user.public ? @user : root_path
   end
 end

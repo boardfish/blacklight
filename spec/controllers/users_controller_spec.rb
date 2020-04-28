@@ -66,4 +66,26 @@ RSpec.describe UsersController, type: :controller do
     it_should_behave_like 'an unauthorised route', :enthusiast
     it_should_behave_like 'an unauthorised route', :maintainer_and_enthusiast
   end
+
+  it 'should redirect to the root if the user is not public' do
+    @user = random_user.tap do |u|
+      u.public = false
+      u.save
+    end
+    sign_in @user
+    expect(put(:update, params: {
+                 id: @user.id, user: @user.attributes
+               })).to redirect_to root_path
+  end
+
+  it 'should redirect to the root if the user is not public' do
+    @user = random_user.tap do |u|
+      u.public = true
+      u.save
+    end
+    sign_in @user
+    expect(put(:update, params: {
+                 id: @user.id, user: @user.attributes
+               })).to redirect_to @user
+  end
 end
