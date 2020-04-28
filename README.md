@@ -1,5 +1,7 @@
 # Blacklight
 
+[![boardfish](https://circleci.com/gh/boardfish/blacklight.svg?style=svg)](https://blacklight-dev.herokuapp.com)
+
 A system for connecting escape room businesses with enthusiasts.
 
 Developed with Ruby `2.7.0`, Rails `6.0.2`.
