@@ -4,12 +4,30 @@ A system for connecting escape room businesses with enthusiasts.
 
 Developed with Ruby `2.7.0`, Rails `6.0.2`.
 
-## Installation and running
+## Installation
 
 Ensure that you have Docker and `docker-compose` installed and configured.
 
 If you've run Blacklight previously, use `docker-compose down -v` to tear it
 down.
+
+### Setting required environment variables
+
+Blacklight needs the following environment variables set in order to operate:
+
+```
+RAILS_HOST          | The domain at which Blacklight is hosted, e.g. 'example.com'
+AUTH0_DOMAIN        | The domain Auth0 provides your application for authentication
+AUTH0_CLIENT_ID     | The client ID for your application on Auth0.
+AUTH0_CLIENT_SECRET | The client secret for your application on Auth0.
+```
+
+You'll also need to configure your own storage service if you're deploying
+Blacklight to production. Blacklight uses
+[Google Cloud Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html#setup)
+in production, so the `google-cloud-storage` gem comes as part of the Gemfile.
+
+### Running
 
 ```
 docker-compose build && docker-compose up
@@ -32,7 +50,7 @@ during seeding.
 #### In production (Heroku)
 
 Permissions are a pinch tighter in production, so you'll need to do the
-following:
+following on Heroku:
 
 1. Reset the database if you've tried before and something's gone wrong:
 
@@ -61,10 +79,21 @@ When deploying, manually run through and check that the...
 
 This process can be automated, but was not due to time constraints.
 
+## Troubleshooting
+
 ### Permissions issues?
 
 If `docker-compose build` reports permissions issues related to `tmp/db`, run 
 `sudo chown -R $USER:$USER .` from the Blacklight directory and try again.
+
+### `undefined method 'dump' for nil:NilClass`
+
+This error arises when `rails` can't access its credentials file, either due to
+a missing or otherwise incorrect `config/master.key`. If you're developing locally,
+regenerate the credentials file for yourself. If you're deploying to production,
+set the RAILS_MASTER_KEY environment variable to the contents of your
+`config/master.key`. **It is imperative that you do not commit or share your master
+key.**
 
 ---
 
