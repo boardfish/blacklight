@@ -27,7 +27,7 @@ AUTH0_CLIENT_SECRET | The client secret for your application on Auth0.
 You'll also need to configure your own storage service if you're deploying
 Blacklight to production. Blacklight uses
 [Google Cloud Storage](https://edgeguides.rubyonrails.org/active_storage_overview.html#setup)
-in production, so the `google-cloud-storage` gem comes as part of the Gemfile.
+in production, so the `google-cloud-storage` gem comes as part of the Gemfile. Remove `config/credentials.yml.enc` and run `docker-compose exec -e EDITOR="vi" web bin/rails credentials:edit` to regenerate the file. Repeating the command will allow you to add the necessary credentials.
 
 ### Running
 
@@ -87,15 +87,6 @@ This process can be automated, but was not due to time constraints.
 
 If `docker-compose build` reports permissions issues related to `tmp/db`, run 
 `sudo chown -R $USER:$USER .` from the Blacklight directory and try again.
-
-### `undefined method 'dump' for nil:NilClass`
-
-This error arises when `rails` can't access its credentials file, either due to
-a missing or otherwise incorrect `config/master.key`. If you're developing locally,
-regenerate the credentials file for yourself. If you're deploying to production,
-set the RAILS_MASTER_KEY environment variable to the contents of your
-`config/master.key`. **It is imperative that you do not commit or share your master
-key.**
 
 ---
 
