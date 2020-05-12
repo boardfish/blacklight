@@ -32,22 +32,24 @@ in production, so the `google-cloud-storage` gem comes as part of the Gemfile. R
 ### Running
 
 ```
-docker-compose build && docker-compose up
+docker-compose build
+docker-compose run web rake db:setup
+docker-compose up
 ```
 
 You'll then be able to access Blacklight on `localhost:3000`.
 
-For terminal access, run `docker-compose exec web bash` in another terminal
-session. You can then use `rails` and `rake` commands from there.
-
-### Bootstrapping the database
-
-Use `docker-compose exec web rake db:setup` to create the database in the
+Using `docker-compose run web rake db:setup` creates the database in the
 `postgresql` container. This will also seed the database with some escape room
 data based on *Super Smash Bros. Ultimate* characters and stages.
 
 This ought to take about five minutes, as images will be downloaded from SSBWiki
 during seeding.
+
+### Terminal access
+
+For terminal access, run `docker-compose exec web bash` in another terminal
+session. You can then use `bin/rails` and `rake` commands from there.
 
 #### In production (Heroku)
 
