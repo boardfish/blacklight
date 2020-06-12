@@ -18,11 +18,14 @@ down.
 Blacklight needs the following environment variables set in order to operate:
 
 ```
-RAILS_HOST          | The domain at which Blacklight is hosted, e.g. 'example.com'
-AUTH0_DOMAIN        | The domain Auth0 provides your application for authentication
-AUTH0_CLIENT_ID     | The client ID for your application on Auth0.
-AUTH0_CLIENT_SECRET | The client secret for your application on Auth0.
+RAILS_HOST                | The domain at which Blacklight is hosted, e.g. 'example.com'
+AUTH0_DOMAIN              | The domain Auth0 provides your application for authentication
+AUTH0_CLIENT_ID           | The client ID for your application on Auth0.
+AUTH0_CLIENT_SECRET       | The client secret for your application on Auth0.
+GOOGLE_MAPS_EMBED_API_KEY | A valid API key for the Google Maps Embed API.
 ```
+
+You'll also need to supply an API key for the frontend in `app/views/layouts/application.html.erb`. The app uses the Places, Geocoding, Embed and JavaScript APIs for Google Maps, so make sure you key has permissions for those.
 
 You'll also need to configure your own storage service if you're deploying
 Blacklight to production. Blacklight uses
