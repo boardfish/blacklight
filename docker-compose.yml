@@ -25,6 +25,7 @@ services:
       - RAILS_HOST
       - CI
       - RAILS_MASTER_KEY
+      - GOOGLE_MAPS_EMBED_API_KEY
   bundle_cache:
     image: busybox
     volumes:
