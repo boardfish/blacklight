@@ -1,6 +1,6 @@
 # Blacklight
 
-[![boardfish](https://circleci.com/gh/boardfish/blacklight.svg?style=svg)](https://blacklight-dev.herokuapp.com)
+![boardfish](https://circleci.com/gh/boardfish/blacklight.svg?style=svg)
 
 A system for connecting escape room businesses with enthusiasts.
 
